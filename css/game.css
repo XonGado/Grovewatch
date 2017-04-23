@@ -1,0 +1,404 @@
+*{
+	box-sizing: border-box;
+	margin: 0;
+	image-rendering: optimizeSpeed;
+	text-rendering: optimizeSpeed;
+	color-rendering: optimizeSpeed;
+	shape-rendering: optimizeSpeed;
+}
+body{
+	margin: 0;
+	background-color: #555;
+	display: flex;
+	justify-content: center;
+	/*align-items: center;*/
+	min-height: 100vh;
+}
+nav{
+	display: flex;
+	background-color: white;
+	height: 2.4vw;	
+	align-items: center;
+}
+nav .nav{
+	list-style: none;
+	display: inline-flex;
+	align-items: center;
+}
+
+nav .nav.right{
+	margin-left: auto;
+	padding-right: 3em;
+}
+
+.gold-leaf,
+.waves,
+.kills{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.score p{
+	margin-left: 2.5em;
+}
+
+.score #score-count{
+	color: #03A9F4;
+}
+
+nav .nav.right li{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.menu-btn{
+	background-color: #CDDC39;
+	border: none;
+	color: white;
+	text-transform: uppercase;
+	padding: 2px 16px;
+	font-size: 1.2em;
+}
+
+.container{
+	background-color: white;
+}
+.game-content{
+	/*overflow: hidden;*/
+	max-height: 100vh;
+}
+.left-panel{
+	/*float: left;*/
+	/*height: 95vh;*/
+}
+.grid{
+	/*height: 95vh;*/
+	/*float: left;*/
+	background-image: url("../images/battleground.png");
+	background-size: cover;
+}
+.grid .row{
+	overflow: hidden;
+	display: flex;
+}
+.grid .end-tile{
+	width: 2.5vw;
+	height: 9.2vw;
+	/*background-color: #41520a;*/
+	box-shadow: inset 0 0 10vw rgba(0,0,0,0.1);
+}
+.grid .tile{
+	width: 8vw;
+	height: 9.2vw;
+	position: relative;
+	/*background-color: #41520a;*/
+	/*border: 1px solid white;*/
+	box-shadow: inset 0 0 5vw rgba(0,0,0,0.1);
+	overflow: visible;
+}
+
+.grid .tile:hover{
+	box-shadow: inset 0 0 5vw rgba(255,255,255,0.4);
+}
+
+.grid .tile:nth-child(2){z-index: 10;}
+.grid .tile:nth-child(3){z-index: 9;}
+.grid .tile:nth-child(4){z-index: 8;}
+.grid .tile:nth-child(5){z-index: 7;}
+.grid .tile:nth-child(6){z-index: 6;}
+.grid .tile:nth-child(7){z-index: 5;}
+.grid .tile:nth-child(8){z-index: 4;}
+.grid .tile:nth-child(9){z-index: 3;}
+.grid .tile:nth-child(10){z-index: 2;}
+.grid .tile:nth-child(11){z-index: 1;}
+.grid .tile,
+.grid .end-tile{	
+	/*padding-bottom: 11.43%;*/
+}
+
+.creature-card{
+	position: relative;
+	width: 17.5vw;
+	height: 4.6vw;
+	/*background-color: skyblue;*/
+}
+
+.unaffordable, .lock, .cooldown{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 17.5vw;
+	height: 4.6vw;
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.unaffordable{
+	display: none;
+	cursor: not-allowed;
+	background-color: rgba(233,30,99 ,0.3);
+}
+
+.cooldown{
+	display: none;
+	cursor: wait;
+	background-color: rgba(1,87,155 ,0.5);
+}
+
+.lock{
+	display: none;
+	cursor: not-allowed;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.lock img{
+	position: absolute;
+	top: 0.1vw;
+	left: 0.1vw;
+	height: 2em;
+	width: 2em;
+}
+
+.cooldown span{
+	font-size: 3em;
+	color: white;
+	text-align: left;
+	width: 100%;
+	text-indent: 0.5em;
+}
+
+.cooldown span:after{
+	display: inline-block;
+	content: "s";
+	transform: translate(-50%,0);
+}
+
+.creature-card button{
+	position: absolute;
+	border: none;
+	background-color: transparent;
+	width: 100%;
+	height: 4.6vw;
+	border-top: 1px solid #DDD;
+	overflow: hidden;
+	cursor: pointer;
+	outline: none!important;
+	/*box-shadow: inset 0 0 10px rgba(0,0,0,0.1);*/
+}
+
+.creature-card button:hover{
+	background-color: #f8f3aa;
+}
+
+.creature-card button.selected{
+	background-color: #f4db75;
+}
+
+.creature-card button img{
+	width: 70%;
+	transform: translate(-25%,-40%);
+	z-index: 1;
+}
+
+.creature-card button img.sunflower{
+	transform: translate(-25%,-50%);
+}
+
+.creature-card .price{
+	position: absolute;
+	/*color: white;*/
+	bottom: 0;
+	right: 0;
+	padding: 10px;
+	font-size: 1.2em;
+}
+
+.creature-card .price img{
+	width: 1.5em;
+	height: 1.5em;
+}
+
+/*.info{
+	position: absolute;
+	top: 0.5em;
+	left: 0.5em;
+	color: #03A9F4;
+	display: block;
+	width: 1.5em;
+	height: 1.5em;
+	z-index: 100;
+}
+
+.info-content{
+	display: none;
+	position: absolute;
+	top: 0;
+}
+
+.info:hover + .info-content{
+	display: block;
+}*/
+
+.row-container{
+	float: left;
+	position: relative;
+}
+
+.monster-spawners{
+	float: left;
+}
+
+.monster-spawners .spawner{
+	width: 0vw;
+	height: 9.2vw;
+}
+
+.flex{
+	display: flex;
+}
+
+.creature,
+.monster{
+	width: 100%;
+	position: absolute;
+	overflow: visible;
+}
+
+.creature img,
+.monster img{
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+
+.price{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle;
+}
+
+.price .icon{
+	margin-left: 0.1em;
+	height: 1.2em;
+	transform: translate(0,-5%);
+}
+
+.spawn-area{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#creature-container,
+#monster-container{
+	position: relative;
+	margin-left: 2.5vw;
+	width: 80vw;
+	height: 46vw;
+	overflow: hidden;
+}
+
+.creature,
+.monster{
+	width: 8vw;
+	height: 9.2vw;
+	position: absolute; 
+}
+
+/*.monster:first-child{
+	left: 64vw;
+	top: 9.2vw;
+	transition: 5s;
+}
+
+.monster:first-child:hover{
+	left: 56vw;
+}*/
+
+#menu{
+	background-color: rgba(0,0,0,0.9);
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	display: none;
+}
+
+#menu .panel{
+	background-color: white;
+	padding: 1em;
+	border-radius: 4px;
+}
+
+#menu h1{
+	text-align: center;
+	font-size: 4em;
+}
+
+#menu button{
+	display: block;
+	width: 100%;
+	background-color: #ddd;
+	border: none;
+	margin-top: 0.5em;
+}
+
+
+
+/*.creature .body{
+	transform-origin: 50% bottom;
+	-webkit-animation: blobby 1s ease-in infinite alternate;
+	-o-animation: blobby 1s ease-in infinite alternate;
+	animation: blobby 1s ease-in infinite alternate;
+}
+
+.creature .eyes{
+	-webkit-animation: blink 5s ease-in infinite alternate;
+	-o-animation: blink 5s ease-in infinite alternate;
+	animation: blink 5s ease-in infinite alternate;
+}
+
+.creature .eye-container{
+	-webkit-animation: eyemove 1s ease-in infinite alternate;
+	-o-animation: eyemove 1s ease-in infinite alternate;
+	animation: eyemove 1s ease-in infinite alternate;
+}
+
+.creature .bullet{
+	-webkit-animation: fire 1s ease-in infinite;
+	-o-animation: fire 1s ease-in infinite;
+	animation: fire 1s ease-in infinite;
+}
+
+@keyframes blobby{
+	0%{ transform: skew(0deg) scale(1,1); }
+	100%{ transform: skew(5deg) scale(1.05,0.95); }
+}
+
+@keyframes eyemove{
+	0%{transform: translate(0,0);}
+	100%{transform: translate(-5%,0);}
+}
+
+@keyframes blink{
+	0%{ transform: scale(1,1); }
+	99%{ transform: scale(1,1);}
+	100%{ transform: scale(1,0); }
+}
+
+@keyframes fire{
+	0%{ left: 0%; }
+	100%{ left: 80vw; }
+}*/

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Grovewatch</title>
+	<link rel="stylesheet" type="text/css" href="css/game.css"/>
+	<link rel="stylesheet" type="text/css" href="css/main.css"/>
+</head>
+<body>
+	<div class="container game-content">
+		<nav>
+			<ul class="nav">
+				<li class="gold-leaf">
+					<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/>
+					<span id="gold-leaf-count">100</span>
+				</li>
+				<li class="waves">
+					<img class="icon" src="images/monster_wave.png" alt="wave-icon"/>
+					<span id="wave-count">100</span>
+				</li>		
+				<li class="kills">
+					<img class="icon" src="images/kills.png" alt="kills-icon"/>
+					<span id="kill-count">100</span>
+				</li>
+				<li class="score">
+					<p>SCORE: <span id="score-count">10000</span></p>
+				</li>			
+			</ul>
+			<ul class="nav right">
+				<li><button type="button" class="menu-btn">Menu</button></li>
+			</ul>
+		</nav>
+		<div class="flex">
+			<aside class="left-panel">
+				<section class="creatures-panel">
+					<article class="creature-card">
+						<div class="unaffordable"></div>
+						<div class="lock"><img src="images/lock.png" alt="lock"></div>
+						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<button type="button" class="creature-btn selected" data-index = "0">
+							<img src="images/creature.png" alt="creature-img"/>
+							<span class="price">50<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
+						</button>
+					</article>
+					<article class="creature-card">
+						<div class="unaffordable"></div>
+						<div class="lock"><img src="images/lock.png" alt="lock"></div>
+						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<button type="button" class="creature-btn">
+							<img class="sunflower" src="images/sunflower_creature.png" alt="creature-img"/>
+							<span class="price">100<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
+						</button>
+					</article>
+					<article class="creature-card">
+						<div class="unaffordable"></div>
+						<div class="lock"><img src="images/lock.png" alt="lock"></div>
+						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<button type="button" class="creature-btn">
+							<img src="images/creature.png" alt="creature-img"/>
+							<span class="price">150<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
+						</button>
+					</article>
+					<article class="creature-card">
+						<div class="unaffordable"></div>
+						<div class="lock"><img src="images/lock.png" alt="lock"></div>
+						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<button type="button" class="creature-btn">
+							<img src="images/creature.png" alt="creature-img"/>
+							<span class="price">75<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
+						</button>
+					</article>
+					<article class="creature-card">
+						<div class="unaffordable"></div>
+						<div class="lock"><img src="images/lock.png" alt="lock"></div>
+						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<button type="button" class="creature-btn">
+							<img src="images/creature.png" alt="creature-img"/>
+							<span class="price">200<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
+						</button>
+					</article>
+					<article class="creature-card">
+						<div class="unaffordable"></div>
+						<div class="lock"><img src="images/lock.png" alt="lock"></div>
+						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<button type="button" class="creature-btn">
+							<img src="images/creature.png" alt="creature-img"/>
+							<span class="price">300<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
+						</button>
+					</article>
+					<article class="creature-card">
+						<div class="unaffordable"></div>
+						<div class="lock"><img src="images/lock.png" alt="lock"></div>
+						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<button type="button" class="creature-btn">
+							<img src="images/creature.png" alt="creature-img"/>
+							<span class="price">25<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
+						</button>
+					</article>
+					<article class="creature-card">
+						<div class="unaffordable"></div>
+						<div class="lock"><img src="images/lock.png" alt="lock"></div>
+						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<button type="button" class="creature-btn">
+							<img src="images/creature.png" alt="creature-img"/>
+							<span class="price">50<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
+						</button>
+					</article>
+					<article class="creature-card">
+						<div class="unaffordable"></div>
+						<div class="lock"><img src="images/lock.png" alt="lock"></div>
+						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<button type="button" class="creature-btn">
+							<img src="images/creature.png" alt="creature-img"/>
+							<span class="price">175<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
+						</button>
+					</article>
+					<article class="creature-card">
+						<div class="unaffordable"></div>
+						<div class="lock"><img src="images/lock.png" alt="lock"></div>
+						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<button type="button" class="creature-btn">
+							<img src="images/creature.png" alt="creature-img"/>
+							<span class="price">0<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
+						</button>
+					</article>
+				</section>
+			</aside>
+			<div class="grid">
+				<div class="row-container">
+					<!-- 110 x 125 -->
+
+					<div class="row">
+						<section class="end-tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+					</div>
+					<div class="row">
+						<section class="end-tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+					</div>
+					<div class="row">
+						<section class="end-tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+					</div>
+					<div class="row">
+						<section class="end-tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+					</div>
+					<div class="row">
+						<section class="end-tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+					</div>
+
+					<div class="spawn-area">
+						<div id="creature-container">
+							<div class="creature">
+								<img src="images/creature.png"/>
+							</div>
+							<div class="creature">
+								<img src="images/creature.png"/>
+							</div>
+						</div>
+					</div>
+					<div class="spawn-area">
+						<div id="monster-container">
+							<div class="monster">
+								<img src="images/monster.png"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="menu">
+		<div class="panel">
+			<button type="button">&times;</button>
+			<h1>Paused</h1>
+			<button type="button">Resume</button>
+			<button type="button">New Game</button>
+			<button type="button">Main Menu</button>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/game.js"></script>
+</body>
+</html>
