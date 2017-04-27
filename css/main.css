@@ -3,6 +3,10 @@
 	src: url("fonts/Oswald-Regular.ttf");
 }
 
+body{
+	margin: 0;
+}
+
 *{
 	font-family: Oswald;
 	color: #333;
@@ -15,4 +19,7 @@
 nav .icon{
 	margin-right: 0.1em;
 	margin-left: 1em;
+}
+#controls {
+    
 }

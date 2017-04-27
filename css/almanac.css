@@ -1,0 +1,156 @@
+nav{
+	background-color: white;
+	position: fixed;
+	top: 0;
+	left: 0;
+	border-bottom: 1px solid #DDD;
+	width: 100%;
+	z-index: 100;
+}
+
+nav .arrow{
+	display: block;
+	height: 0.6vw;
+	background-color: #DDD;
+	width: 3vw;
+	margin: 1.5vw;
+}
+
+nav .arrow:before{
+	display: block;
+	content: "";
+	height: 1.5vw;
+	width: 1.5vw;
+	border: 0.6vw solid #DDD;
+	border-width: 0.6vw 0 0 0.6vw;
+	transform: rotate(-45deg) translate(25%,-20%);
+}
+
+.panel-container{
+	display: flex;
+	justify-content: flex-end;
+	/*align-items: center;*/
+}
+
+.left-panel{
+	width: 50vw;
+	position: fixed;
+	left: 0;
+	top: 0;
+	/*overflow-y: auto;*/
+}
+
+.left-panel > img:first-child{
+	width: 60%;
+	max-height: 375px;
+	object-fit: contain;
+	object-position: bottom;
+	display: block;
+	margin: auto;
+	margin-top: -50px;
+}
+
+.left-panel h1{
+	text-align: center;
+}
+
+.left-panel p{
+	width: 70%;
+	font-family: "Segoe UI";
+	color: #555;
+	margin: auto;
+}
+
+.left-panel .cost{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.left-panel .cost img{
+	height: 1.5em;
+	width: 1.5em;
+}
+
+.left-panel .bar-holder{
+	background-color: #DDD;
+	width: 50%;
+	margin: 10px auto;
+}
+
+.left-panel .bar{
+	height: 1.5vw;
+	width: 50%;
+	display: block;
+}
+
+.left-panel :before{
+	display: inline-block;
+	position: absolute;
+	padding: 0px 5px;
+	font-size: 1vw;
+	color: #666;
+	font-family: "Segoe UI";
+	font-style: italic;
+}
+
+.left-panel .damage .bar{
+	background-color: #FF8888;
+}
+.left-panel .attspeed .bar{
+	background-color: #FFFF88;
+}
+.left-panel .life .bar{
+	background-color: #88FF88;
+}
+.left-panel .cooldown .bar{
+	background-color: #8888FF;
+}
+
+.left-panel .damage:before{
+	content: "Damage"
+}
+.left-panel .attspeed:before{
+	content: "Attack Speed"
+}
+.left-panel .life:before{
+	content: "Life"
+}
+.left-panel .cooldown:before{
+	content: "Cooldown"
+}
+
+.right-panel{
+	width: 50vw;
+	margin: 50px 0;
+}
+
+.right-panel img{
+	width: 16vw;
+	height: 16vw;
+	object-position: 0 170%;
+	object-fit: cover;
+	float: left;
+	box-shadow: 0 0 10px rgba(0,0,0,0);
+	transition: 0.2s;
+	border-radius: 4px;
+}
+
+.right-panel img:hover{	
+	cursor: pointer;
+	box-shadow: 0 0 30px rgba(0,0,0,0.075);
+}
+
+.right-panel img:active{	
+	box-shadow: inset 0 0 30px rgba(0,0,0,0.075);
+	background-color: rgba(0,0,0,0.05);
+}
+
+.right-panel h2{
+	clear: both;
+	text-align: center;
+}
+
+.right-panel h2:not(:first-child){
+	padding-top: 5vw;
+}

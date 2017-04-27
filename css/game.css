@@ -151,7 +151,7 @@ nav .nav.right li{
 }
 
 .lock{
-	display: none;
+	/*display: none;*/
 	cursor: not-allowed;
 	background-color: rgba(0,0,0,0.5);
 }
@@ -402,3 +402,7 @@ nav .nav.right li{
 	0%{ left: 0%; }
 	100%{ left: 80vw; }
 }*/
+
+#controls {
+    
+}
