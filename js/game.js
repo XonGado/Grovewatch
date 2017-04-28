@@ -8,6 +8,14 @@ window.onload = function () {
     for (var i = creatures_card.length - 1; i >= 0; i--) {
     	unlock(i);
     }
+
+    var creature_card_btns = document.getElementsByClassName("creature-btn");
+    var creature_cards = document.getElementsByClassName("creature-card");
+
+    for (var i = creature_card_btns.length - 1; i >= 0; i--) {
+    	creature_card_btns[i].addEventListener("click", toggleCard);
+    }
+
 }
 
 function testCreaturesCreate() {
