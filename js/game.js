@@ -7,6 +7,9 @@ window.onload = function () {
     for (var i = creatures_card.length - 1; i >= 0; i--) {
     	unlock(i);
     }
+
+    setInterval(gameSimulation, 1000);
+
 }
 
 function testCreaturesCreate() {
@@ -38,7 +41,19 @@ function testMonstersCreate() {
     }
 };
 
-// Merged JS Until the end.
+
+function gameSimulation(){
+    calculate();
+    show();
+};
+
+function calculate(){
+    console.log("calculate");
+};
+
+function show(){
+     console.log("show");
+};
 
 
 
