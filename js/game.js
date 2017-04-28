@@ -1,10 +1,9 @@
 //changes game.js was changed to game-clyde.js
 
 window.onload = function () {
-    //    testCreaturesCreate();
+       // testCreaturesCreate();
     //    testMonstersCreate();
     createCards();
-
     for (var i = creatures_card.length - 1; i >= 0; i--) {
     	unlock(i);
     }
