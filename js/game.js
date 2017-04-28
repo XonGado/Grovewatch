@@ -10,10 +10,9 @@ var endGame = false;
 //changes game.js was changed to game-clyde.js
 
 window.onload = function () {
-    //    testCreaturesCreate();
+       // testCreaturesCreate();
     //    testMonstersCreate();
     creatures = [];
-
 	creatures.push(new Creature("normal creature", 3000, 100));
 	creatures.push(new Creature("normal creature", 3000, 100));
 	creatures.push(new Creature("normal creature", 3000, 100));
@@ -25,7 +24,7 @@ window.onload = function () {
 	creatures.push(new Creature("normal creature", 3000, 100));
 	creatures.push(new Creature("normal creature", 3000, 100));
 
-    unaffordable(0);
+    unaffordable(0);    
 }
 
 
