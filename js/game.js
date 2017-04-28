@@ -1,14 +1,20 @@
 //changes game.js was changed to game-clyde.js
 
 window.onload = function () {
-       // testCreaturesCreate();
-    //    testMonstersCreate();
+       testCreaturesCreate();
+       // testMonstersCreate();
     createCards();
     for (var i = creatures_card.length - 1; i >= 0; i--) {
     	unlock(i);
     }
 
     setInterval(gameSimulation, 1000);
+    var creature_card_btns = document.getElementsByClassName("creature-btn");
+    var creature_cards = document.getElementsByClassName("creature-card");
+
+    for (var i = creature_card_btns.length - 1; i >= 0; i--) {
+    	creature_card_btns[i].addEventListener("click", toggleCard);
+    }
 
 }
 

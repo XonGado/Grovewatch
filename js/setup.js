@@ -112,3 +112,4 @@ function goldLeafModify(leaves) {
     gold_leaves += leaves;
     document.getElementById("gold-leaf-count").innerHTML = gold_leaves;
 }
+
