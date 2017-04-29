@@ -4,20 +4,31 @@ var waves = 0;
 var kills = 0;
 var score = 0;
 var endGame = false;
+var selected = -1;
 
 function createCards(){
 	creatures_card = [];
 
+	creatures_card.push(new CreatureCard("normal creature", 3000, 25, false));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 50, false));
 	creatures_card.push(new CreatureCard("normal creature", 3000, 100, false));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 100, false));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 100, false));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 100, false));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 100, false));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 100, false));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 100, false));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 100, false));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 100, false));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 100, false));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 150, false));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 200, false));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 225, false));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 300, false));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 350, false));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 400, false));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 450, false));
+}
+
+function setUpCards(){
+	var creature_cards = document.getElementsByClassName("creature-card");
+	
+	for (var i = 0; i <= creatures_card.length - 1; i++) {
+    	unlock(i);
+    	unaffordable(i);
+		creature_cards[i].children[3].children[1].innerHTML = creatures_card[i].cost;
+	}
 }
 
 function CreatureCard(name, cooldown, cost, locked) {
@@ -27,14 +38,58 @@ function CreatureCard(name, cooldown, cost, locked) {
     this.locked = locked;
 }
 
-function toggleCard(){
+function createButtonListeners(index){
+    var creature_card_btns = document.getElementsByClassName("creature-btn");
+	creature_card_btns[index].addEventListener("click", function(){toggleCard(index)});
+}
 
+function createTileListeners(index){
+	var tiles = document.getElementsByClassName("tile");
+	tiles[index].addEventListener("click", function(){checkAction(index)});
+	// console.log("created listener for tile " + index);
+}
+
+function toggleCard(index){
+	var creature = creatures_card[index];
+	if (creatures_card[index].cost <= gold_leaves) {
+		var creature_btn = document.getElementsByClassName("creature-btn");
+		if (creature_btn[index].className == "creature-btn") {
+			for (var i = creature_btn.length - 1; i >= 0; i--) {
+				creature_btn[i].className = "creature-btn";
+			}
+			creature_btn[index].className = "creature-btn selected";
+			selected = index;
+			console.log(selected);
+		} else if (creature_btn[index].className == "creature-btn selected") {
+			creature_btn[index].className = "creature-btn";
+			selected = -1;
+		}
+	}
+}
+
+function checkAction(index){
+	if (selected != -1) {
+		summon(index);
+	}
+}
+
+function summon(index){
+	console.log("Summoning monster type " + selected + " on tile number " + index);
+	var creature_btn = document.getElementsByClassName("creature-btn");
+	for (var i = creature_btn.length - 1; i >= 0; i--) {
+		creature_btn[i].className = "creature-btn";
+	}
+	selected = -1
 }
 
 function unaffordable(index) {
-    if (!creatures[index].locked) {
-        creature_cards = document.getElementsByClassName("creature-card");
+	// console.log("creatures_card[index].cost >= gold_leaves = " + creatures_card[index].cost >= gold_leaves);
+    creature_cards = document.getElementsByClassName("creature-card");
+    if (!creatures_card[index].locked && gold_leaves >= creatures_card[index].cost) {
+        creature_cards[index].children[0].style.display = "none";
+    } else{
         creature_cards[index].children[0].style.display = "flex";
+    	// console.log(gold_leaves + " " +  creatures_card[index].cost + ", "+ index + " unaffordable");
     }
 }
 

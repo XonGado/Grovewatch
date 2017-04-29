@@ -1,20 +1,23 @@
 //changes game.js was changed to game-clyde.js
 
 window.onload = function () {
-       // testCreaturesCreate();
-    //    testMonstersCreate();
+	// testCreaturesCreate();
+    // testMonstersCreate();
+
     createCards();
-    for (var i = creatures_card.length - 1; i >= 0; i--) {
-    	unlock(i);
-    }
+	goldLeafModify(0);
+    setUpCards();
 
     var creature_card_btns = document.getElementsByClassName("creature-btn");
-    var creature_cards = document.getElementsByClassName("creature-card");
+	for (var i = creature_card_btns.length - 1; i >= 0; i--) {
+		createButtonListeners(i);
+	}
 
-    for (var i = creature_card_btns.length - 1; i >= 0; i--) {
-    	creature_card_btns[i].addEventListener("click", toggleCard);
-    }
+	var tiles = document.getElementsByClassName("tile");
 
+	for (var i = tiles.length - 1; i >= 0; i--) {
+		createTileListeners(i);
+	}
 }
 
 function testCreaturesCreate() {
