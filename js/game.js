@@ -18,6 +18,9 @@ window.onload = function () {
 	for (var i = tiles.length - 1; i >= 0; i--) {
 		createTileListeners(i);
 	}
+
+	document.getElementById("menu-btn").addEventListener("click", openMenu);
+	document.getElementById("resume").addEventListener("click", closeMenu);
 }
 
 function testCreaturesCreate() {

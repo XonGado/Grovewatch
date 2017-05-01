@@ -27,13 +27,11 @@ function setUpCards(){
 	for (var i = 0; i < creature_cards.length - 5; i++) {
     	unlock(i);
 	}
-	
+
 	for (var i = 0; i <= creatures_card.length - 1; i++) {
     	unaffordable(i);
 		creature_cards[i].children[3].children[1].innerHTML = creatures_card[i].cost;
 	}
-
-	
 }
 
 function CreatureCard(name, cooldown, cost, locked) {
@@ -94,10 +92,10 @@ function unaffordable(index) {
     creature_cards = document.getElementsByClassName("creature-card");
     if (!creatures_card[index].locked && gold_leaves >= creatures_card[index].cost) {
         creature_cards[index].children[0].style.display = "none";
-    } else{
+    } else if (!creatures_card[index].locked && gold_leaves < creatures_card[index].cost){
         creature_cards[index].children[0].style.display = "flex";
     	// console.log(gold_leaves + " " +  creatures_card[index].cost + ", "+ index + " unaffordable");
-    }
+    } 
 }
 
 function unlock(index) {
@@ -114,7 +112,7 @@ function setCooldown(index) {
         var time = cooldown_div[index].children[0];
         // console.log(cooldown);
         time.innerHTML = (creatures_card[index].cooldown / 1000);
-        console.log(time.innerHTML);
+        // console.log(time.innerHTML);
         if (selected == 0) {
 	    	cd0 = setInterval(function(){cooldownTick(0)}, 1000);
 	    } else if (selected == 1) {
@@ -142,7 +140,7 @@ function setCooldown(index) {
 function cooldownTick(index) {
     cooldown = document.getElementsByClassName("cooldown");
     var time = parseInt(cooldown[index].children[0].innerHTML);
-    console.log(time);
+    // console.log(time);
 
     if (time) {
         time--;
@@ -197,5 +195,13 @@ function goldLeafModify(leaves) {
     for (var i = 0; i <= creatures_card.length - 1; i++) {
     	unaffordable(i);
 	}
+}
+
+function openMenu(){
+	document.getElementById("menu").style.display = "flex";
+}
+
+function closeMenu(){
+	document.getElementById("menu").style.display = "none";
 }
 
