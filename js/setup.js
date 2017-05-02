@@ -78,6 +78,9 @@ function checkAction(index){
 
 function summon(index){
 	console.log("Summoning monster type " + selected + " on tile number " + index);
+	var gridX = (index%10) + 1;
+	var gridY = Math.floor(index/10) + 1;
+	console.log(gridY + "," + gridX);
 	var creature_btn = document.getElementsByClassName("creature-btn");
 	for (var i = creature_btn.length - 1; i >= 0; i--) {
 		creature_btn[i].className = "creature-btn";
