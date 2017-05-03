@@ -3,6 +3,7 @@
 <head>
 	<title>Grovewatch</title>
 	<link rel="stylesheet" type="text/css" href="css/game.css"/>
+	<link rel="stylesheet" type="text/css" href="css/game_animation.css"/>
 	<link rel="stylesheet" type="text/css" href="css/main.css"/>
 </head>
 <body>
@@ -46,7 +47,7 @@
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
 						<div class="cooldown"><span class="cooldown-count">0</span></div>
 						<button type="button" class="creature-btn">
-							<img class="sunflower" src="images/sunflower_creature.png" alt="sunflower-img"/>
+							<img class="sunflower" src="images/leafy.png" alt="sunflower-img"/>
 							<span class="price">100<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
 						</button>
 					</article>
@@ -130,33 +131,11 @@
 
 					<div class="row">
 						<section class="end-tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-					</div>
-					<div class="row">
-						<section class="end-tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-						<section class="tile"></section>
-					</div>
-					<div class="row">
-						<section class="end-tile"></section>
-						<section class="tile"></section>
+						<section class="tile">
+							<!-- <div class="creature">
+								<img src="images/creature.png"/>
+							</div> -->
+						</section>
 						<section class="tile"></section>
 						<section class="tile"></section>
 						<section class="tile"></section>
@@ -169,7 +148,11 @@
 					</div>
 					<div class="row">
 						<section class="end-tile"></section>
-						<section class="tile"></section>
+						<section class="tile">
+							<!-- <div class="creature">
+								<img src="images/leafy.png"/>
+							</div> -->
+						</section>
 						<section class="tile"></section>
 						<section class="tile"></section>
 						<section class="tile"></section>
@@ -182,7 +165,66 @@
 					</div>
 					<div class="row">
 						<section class="end-tile"></section>
+						<section class="tile">
+							<!-- <div class="creature">
+								<img src="images/twin.png"/>
+							</div> -->
+						</section>
 						<section class="tile"></section>
+						<section class="tile">
+							<div class="creature sunflower">
+								<div class="shadow"><img src="images/creature2/creature_shadow.png" alt="body" /></div>
+								<div class="body">
+									<div class="leaf"><img src="images/creature2/creature_leaf.png" alt="leaf" /></div>
+									<div class="right-ear"><img src="images/creature2/creature_right_ear.png" alt="right ear" /></div>
+									<img src="images/creature2/creature_body.png" alt="body" />
+									<div class="left-ear"><img src="images/creature2/creature_left_ear.png" alt="left ear" /></div>
+									<div class="eyes"><img src="images/creature2/creature_eyes.png" alt=eyes /></div>
+								</div>
+							</div>
+						</section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+					</div>
+					<div class="row">
+						<section class="end-tile"></section>
+						<section class="tile">
+							<!-- <div class="creature">
+								<img src="images/laser.png"/>
+							</div> -->
+						</section>
+						<section class="tile"></section>
+						<section class="tile">
+							<div class="creature">
+								<div class="shadow"><img src="images/creature/creature_shadow.png" alt="body" /></div>
+								<div class="body">
+									<div class="right-ear"><img src="images/creature/creature_right_ear.png" alt="right ear" /></div>
+									<img src="images/creature/creature_body.png" alt="body" />
+									<div class="left-ear"><img src="images/creature/creature_left_ear.png" alt="left ear" /></div>
+									<div class="eyes"><img src="images/creature/creature_eyes.png" alt=eyes /></div>
+								</div>
+							</div>
+						</section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+						<section class="tile"></section>
+					</div>
+					<div class="row">
+						<section class="end-tile"></section>
+						<section class="tile">
+							<!-- <div class="creature">
+								<img src="images/stone.png"/>
+							</div> -->
+						</section>
 						<section class="tile"></section>
 						<section class="tile"></section>
 						<section class="tile"></section>
@@ -210,11 +252,10 @@
 					</div>
 
 					<div class="spawn-area">
-						<div id="projectile-container">
+						<!-- <div id="projectile-container">
 							<img id="test" class="projectile" src="images/projectile.png"/>
-						</div>
+						</div> -->
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -229,7 +270,10 @@
 	</div>
 	<div id="hidden-creatures">
 		<div class="creature">
-			<img src="images/creature.png"/>
+			<div class="right-ear"><img src="images/creature/creature_right_ear.png" alt="right ear" /></div>
+			<div class="body"><img src="images/creature/creature_body.png" alt="body" /></div>
+			<div class="left-ear"><img src="images/creature/creature_left_ear.png" alt="left ear" /></div>
+			<div class="eyes"><img src="images/creature/creature_eyes.png" alt=eyes /></div>
 		</div>
 	</div>
 	<div id="hidden-monsters">

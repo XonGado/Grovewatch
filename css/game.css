@@ -1,7 +1,7 @@
 *{
 	box-sizing: border-box;
 	margin: 0;
-	image-rendering: optimizeSpeed;
+	image-rendering: auto;
 	text-rendering: optimizeSpeed;
 	color-rendering: optimizeSpeed;
 	shape-rendering: optimizeSpeed;
@@ -80,12 +80,15 @@ nav .nav.right li{
 	background-size: cover;
 }
 .grid .row{
-	overflow: hidden;
+	overflow: visible;
+	/*overflow-x: hidden;*/
 	display: flex;
 }
 .grid .end-tile{
 	width: 2.5vw;
 	height: 9.2vw;
+	position: relative;
+	z-index: -10;
 	/*background-color: #41520a;*/
 	box-shadow: inset 0 0 10vw rgba(0,0,0,0.1);
 }
@@ -262,22 +265,6 @@ nav .nav.right li{
 	display: flex;
 }
 
-.creature,
-.monster{
-	width: 100%;
-	position: absolute;
-	overflow: visible;
-}
-
-.creature img,
-.monster img,
-.projectile img{
-	position: absolute;
-	width: 100%;
-	top: 0;
-	left: 0;
-}
-
 .projectile{
 	height: 9.2vw;
 	width: 8vw;
@@ -314,23 +301,6 @@ nav .nav.right li{
 	overflow: hidden;
 }
 
-.creature,
-.monster{
-	width: 8vw;
-	height: 9.2vw;
-	position: absolute; 
-}
-
-/*.monster:first-child{
-	left: 64vw;
-	top: 9.2vw;
-	transition: 5s;
-}
-
-.monster:first-child:hover{
-	left: 56vw;
-}*/
-
 #menu{
 	background-color: rgba(0,0,0,0.9);
 	position: absolute;
@@ -363,13 +333,6 @@ nav .nav.right li{
 	border: none;
 	margin-top: 0.5em;
 }
-
-#hidden-creatures,
-#hidden-monsters, #hidden-projectiles{
-	display: none;
-}
-
-
 
 /*.creature .body{
 	transform-origin: 50% bottom;

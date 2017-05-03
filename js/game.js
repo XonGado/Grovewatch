@@ -26,21 +26,21 @@ window.onload = function () {
     // testCreaturesCreate();
     // testMonstersCreate();
 
-    var monster1 = new NormalMonster(9, 2);
-    monster1.show();
+    // var monster1 = new NormalMonster(9, 2);
+    // monster1.show();
 
-    var creature1 = new PeasantCreature(0, 2);
-    creature1.show();
-    creature1.startAttack();
+    // var creature1 = new PeasantCreature(0, 2);
+    // creature1.show();
+    // creature1.startAttack();
 
-    setTimeout(creature1.stopAttack.bind(creature1), 10000);
+    // setTimeout(creature1.stopAttack.bind(creature1), 10000);
 
     // SETUP FOR ANIMATION AND GAME LOOP INTERVAL
-    lastFrame = +new Date;
-    fps = 30;
-    timeInterval = 1000/fps;
-    changeInTime = 0;
-    setInterval(gameSimulation, timeInterval);
+    // lastFrame = +new Date;
+    // fps = 30;
+    // timeInterval = 1000/fps;
+    // changeInTime = 0;
+    // setInterval(gameSimulation, timeInterval);
 
 }
 
