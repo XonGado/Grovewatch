@@ -25,6 +25,7 @@ function testCreaturesAttack(x, y){
             normalCreature1 = new PeasantCreature(i, j);
             normalCreature1.show();
             normalCreature1.startAttack();
+            console.log("creature " + i + " " + normalCreature1);
         }
     }
 };

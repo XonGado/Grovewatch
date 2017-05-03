@@ -35,7 +35,7 @@ window.onload = function () {
     // testCreaturesCreate();
     // testMonstersCreate();
 
-    // var monster1 = new NormalMonster(9, 2);
+    // var monster1 = new NormalMonster(2, 2);
     // monster1.show();
 
     // var creature1 = new PeasantCreature(0, 2);
@@ -44,6 +44,8 @@ window.onload = function () {
 
     // setTimeout(creature1.stopAttack.bind(creature1), 10000);
 
+
+
     // var creature2 = new PeasantCreature(1, 2);
     // creature2.show();
     // creature2.startAttack();
@@ -51,7 +53,16 @@ window.onload = function () {
     // setTimeout(creature2.stopAttack.bind(creature2), 10000);
 
 
-    testCreaturesAttack(1,5);
+    // setTimeout(function(){
+    //     var creature3 = new PeasantCreature(2, 1);
+    //     creature3.show();
+    //     creature3.startAttack();
+    // }, 5000);
+
+    // setTimeout(creature3.stopAttack.bind(creature2), 10000);
+
+
+    // testCreaturesAttack(1,5);
 
     // SETUP FOR ANIMATION AND GAME LOOP INTERVAL
     time = 0;
@@ -59,7 +70,6 @@ window.onload = function () {
     running = true;
     // fps=30;
     gameSimulation();
-
 
 }
 

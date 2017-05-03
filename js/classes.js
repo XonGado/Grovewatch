@@ -11,8 +11,8 @@ var divCreature0 = document.getElementById("hidden-creatures").getElementsByClas
 function Creature(gridX, gridY, width) {
     this.gridX = gridX;
     this.gridY = gridY;
-    this.x = gridX*8;
-    this.y = gridY*9.2;
+    this.x = gridX * 8;
+    this.y = gridY * 9.2;
     this.width = 8;
     this.life = 3;
     this.div = divCreature0.cloneNode(true);
@@ -45,8 +45,10 @@ PeasantCreature.prototype.stopAttack = function () {
 
 PeasantCreature.prototype.attack = function () {
     var projectile = new Projectile(this.gridX,this.gridY);
+
     lanes[this.gridY].peasantProjectiles.push(projectile);
     console.log(lanes[this.gridY].peasantProjectiles);
+
 };
 
 // Monsters #########################################################################################

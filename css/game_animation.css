@@ -1,0 +1,223 @@
+.creature,
+.monster{
+	width: 8vw;
+	height: 9.2vw;
+	position: absolute;
+	overflow: visible;
+	transform: scale(1.3,1.3);
+	transform-origin: 50% 9.2vw;
+}
+
+.creature .body,
+.creature .shadow{
+	/*transform: translate(-15%, -30%);*/
+}
+
+.creature .body{
+	position: absolute;
+	width: 100%;
+	display: block;
+}
+
+.creature img,
+.monster img,
+.projectile img{
+	position: absolute;
+	width: 100%;
+	top: 0%;
+	left: 0%;
+}
+
+#hidden-creatures,
+#hidden-monsters, #hidden-projectiles{
+	display: none;
+}
+
+.creature .body{
+	-webkit-animation: bouncy 1s ease infinite alternate;
+	-o-animation: bouncy 1s ease infinite alternate;
+	animation: bouncy 1s ease infinite alternate;
+	transform-origin: 50% 9.2vw;
+}
+
+.creature .left-ear img,
+.creature .right-ear img{
+	-webkit-animation: move_ear 1s ease infinite alternate;
+	-o-animation: move_ear 1s ease infinite alternate;
+	animation: move_ear 1s ease infinite alternate;
+	transform-origin: 33% 40%;
+}
+
+.creature .right-ear img{
+	transform-origin: 68% 40%;
+}
+
+.creature .eyes img{
+	-webkit-animation: blink 5s ease infinite alternate;
+	-o-animation: blink 5s ease infinite alternate;
+	animation: blink 5s ease infinite alternate;
+	transform-origin: 60% 54%;
+}
+
+.creature.sunflower .body{
+	-webkit-animation: calm 3s ease infinite alternate;
+	-o-animation: calm 3s ease infinite alternate;
+	animation: calm 3s ease infinite alternate;
+}
+
+.creature .left-ear img,
+.creature .right-ear img{
+	-webkit-animation: move_ear 3s ease infinite alternate;
+	-o-animation: move_ear 3s ease infinite alternate;
+	animation: move_ear 3s ease infinite alternate;
+}
+
+.creature.sunflower .eyes img{
+	transform-origin: 63% 75%;
+}
+
+.creature.sunflower .leaf img{
+	-webkit-animation: leaf_ready 3s ease infinite alternate;
+	-o-animation: leaf_ready 3s ease infinite alternate;
+	animation: leaf_ready 3s ease infinite alternate;
+	transform-origin: 71% 40%;
+}
+
+/*.creature.sunflower .leaf img{
+	-webkit-animation: leaf_grow 1s ease 1;
+	-o-animation: leaf_grow 1s ease 1;
+	animation: leaf_grow 1s ease 1;
+	transform-origin: 71% 40%;
+}*/
+
+/*.creature.sunflower .leaf img{
+	-webkit-animation: leaf_picked 1.5s ease 1;
+	-o-animation: leaf_picked 1.5s ease 1;
+	animation: leaf_picked 1.5s ease 1;
+	animation-delay: 2s;
+	transform-origin: 71% 40%;
+}*/
+
+.creature.stone *,
+.creature.stone .left-ear img,
+.creature.stone .right-ear img{
+	animation: none;
+}
+
+.creature.stone .eyes img{
+	transform-origin: 63% 48%;
+}
+
+.creature.laser .body{
+	-webkit-animation: wavy 1.5s linear infinite alternate;
+	-o-animation: wavy 1.5s linear infinite alternate;
+	animation: wavy 1.5s linear infinite alternate;
+	transform-origin: 50% 9.2vw;
+}
+
+.creature.laser .eyes img{
+	animation: none;
+}
+
+@keyframes bouncy{
+	0%{
+		transform: scale(1,0.9) skewX(-3deg);
+	}
+	50%{
+		transform: scale(1,1) skewX(0deg);
+	}
+	100%{
+		transform: scale(1,0.9) skewX(2.5deg);
+	}
+}
+
+@keyframes calm{
+	0%{
+		transform: scale(1,0.9);
+	}
+	50%{
+		transform: scale(1,1);
+	}
+	100%{
+		transform: scale(1,0.9);
+	}
+}
+
+@keyframes wavy{
+	0%{
+		transform: skewX(-3deg);
+	}
+	50%{
+		transform: skewX(0deg);
+	}
+	100%{
+		transform: skewX(2.5deg);
+	}
+}
+
+@keyframes move_ear{
+	0%{
+		transform: scale(1,1.1) rotate(-2.5deg);
+	}
+	50%{
+		transform: scale(1,1) rotate(0deg);
+	}
+	100%{
+		transform: scale(1,1.1) rotate(2.5deg);
+	}
+}
+
+@keyframes blink{
+	0%{
+		transform: scale(1,1) translate(0,0);
+	}
+	97%{
+		transform: scale(1,1) translate(0,0);
+	}
+	100%{
+		transform: scale(1,0.1) translate(0,5%);
+	}
+}
+
+@keyframes leaf_ready{
+	0%{
+		transform: rotate(-5deg) translate(0,0.1%) scale(1,1.1) skewX(2.5deg);
+	}
+	50%{
+		transform: rotate(0deg) translate(0,0) scale(1,1) skewX(0deg);
+	}
+	100%{
+		transform: rotate(5deg) translate(0,0.1%) scale(1,1.1) skewX(-2.5deg);
+	}
+}
+
+@keyframes leaf_grow{
+	0%{
+		transform: rotate(-105deg) translate(0,0.1%) scale(0.5,0.5) skewX(-2.5deg);
+		opacity: 0;
+	}
+	5%{
+		opacity: 1;
+	}
+	50%{
+		transform: rotate(25deg) translate(0,0.1%) scale(1,1.2) skewX(-2.5deg);
+	}
+	100%{
+		transform: rotate(0deg) translate(0,0) scale(1,1) skewX(0deg);
+	}
+}
+
+
+@keyframes leaf_picked{
+	0%{
+		transform: translate(0,0) scale(1,1);
+	}
+	50%{
+		transform: translate(0,5%) scale(1,1) rotate(0deg);
+		opacity: 1;
+	}
+	100%{
+		transform: translate(0,-50%) scale(1,1.3) rotate(45deg);
+		opacity: 0;
+	}
+}
