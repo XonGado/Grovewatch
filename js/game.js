@@ -1,7 +1,6 @@
+
 peasantProjectiles = [];
-
 lanes = [];
-
 
 window.onload = function () {
     
@@ -26,7 +25,7 @@ window.onload = function () {
     // testCreaturesCreate();
     // testMonstersCreate();
 
-    // var monster1 = new NormalMonster(9, 2);
+    // var monster1 = new NormalMonster(2, 2);
     // monster1.show();
 
     // var creature1 = new PeasantCreature(0, 2);
@@ -35,12 +34,32 @@ window.onload = function () {
 
     // setTimeout(creature1.stopAttack.bind(creature1), 10000);
 
+
+
+    // var creature2 = new PeasantCreature(1, 2);
+    // creature2.show();
+    // creature2.startAttack();
+
+    // setTimeout(creature2.stopAttack.bind(creature2), 10000);
+
+
+    // setTimeout(function(){
+    //     var creature3 = new PeasantCreature(2, 1);
+    //     creature3.show();
+    //     creature3.startAttack();
+    // }, 5000);
+
+    // setTimeout(creature3.stopAttack.bind(creature2), 10000);
+
+
+    // testCreaturesAttack(1,5);
+
     // SETUP FOR ANIMATION AND GAME LOOP INTERVAL
-    // lastFrame = +new Date;
-    // fps = 30;
-    // timeInterval = 1000/fps;
-    // changeInTime = 0;
-    // setInterval(gameSimulation, timeInterval);
+    time = 0;
+    now = 0;
+    running = true;
+    // fps=30;
+    gameSimulation();
 
 }
 
@@ -48,11 +67,18 @@ window.onload = function () {
 
 // kill projectile
 function gameSimulation(){
-    // requestAnimationFrame(gameSimulation);
+    requestAnimationFrame(gameSimulation);
+    now = new Date().getTime(),
+        dt = now - (time || now);
+
+
+
     for (var i = 0; i < peasantProjectiles.length; i++) {
         if (peasantProjectiles[i].state == "alive") {
             peasantProjectiles[i].move();
             peasantProjectiles[i].show();
         }
-    };
+    }
+
+    time = now;
 };
