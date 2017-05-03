@@ -45,8 +45,7 @@ PeasantCreature.prototype.stopAttack = function () {
 };
 
 PeasantCreature.prototype.attack = function () {
-    // var projectile = new Projectile(this.gridX,this.gridY);
-    var projectile = new Projectile(0,2);
+    var projectile = new Projectile(this.gridX,this.gridY);
     peasantProjectiles.push(projectile);
     console.log(peasantProjectiles);
 };
@@ -85,14 +84,14 @@ function NormalMonster(gridX, gridY, width){
 
 function Projectile(gridX, gridY) {
     this.damage = 1;
-    this.speed = 0.1;
+    this.speed = 0.002;
     this.gridX = gridX;
     this.gridY = gridY;
     this.x = this.gridX*8 + 3; //offset = 3
     this.y = this.gridY*9.2;
     this.div = document.getElementById("hidden-projectiles").getElementsByClassName("projectile")[0].cloneNode(true);
     this.lastFrame = +new Date();
-    this.changeInTime = 1;
+    this.dt = 1;
 
     var grid = document.getElementById("creature-container");
     this.div.style.left = this.x + "vw";
@@ -102,17 +101,14 @@ function Projectile(gridX, gridY) {
 
 }
 
-
 Projectile.prototype.show = function () {
     this.div.style.left = this.x + "vw";
     this.div.style.top = this.y + "vw";
 }
 
 Projectile.prototype.move = function () {
-    var now = +new Date();
-    this.changeInTime = now - this.lastFrame;
-    this.x += this.speed*this.changeInTime/timeInterval;
-    lastFrame = now;
+    this.dt = now - this.lastFrame;
+    this.x += this.speed*this.dt;
 }
 
 

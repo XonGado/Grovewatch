@@ -1,7 +1,7 @@
 *{
 	box-sizing: border-box;
 	margin: 0;
-	image-rendering: optimizeSpeed;
+	image-rendering: auto;
 	text-rendering: optimizeSpeed;
 	color-rendering: optimizeSpeed;
 	shape-rendering: optimizeSpeed;
