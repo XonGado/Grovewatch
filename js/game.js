@@ -22,8 +22,6 @@ window.onload = function () {
 	document.getElementById("menu-btn").addEventListener("click", openMenu);
 	document.getElementById("resume").addEventListener("click", closeMenu);
 
-
-
     // testCreaturesCreate();
     // testMonstersCreate();
 

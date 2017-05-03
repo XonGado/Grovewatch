@@ -60,7 +60,7 @@ There are 10 creatures:
 	<Unlocks at 2000 points>
 
 5. Laser
-	life = 3
+	life = 3  
 	attack = 1
 	attack-speed = 1sec
 
