@@ -75,6 +75,7 @@ function testMonstersCreate() {
 };
 
 
+// kill projectile
 function gameSimulation(){
     for (var i = 0; i < peasantProjectiles.length; i++) {
         if (peasantProjectiles[i].state == "alive") {
