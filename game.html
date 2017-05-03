@@ -26,13 +26,13 @@
 				</li>			
 			</ul>
 			<ul class="nav right">
-				<li><button type="button" class="menu-btn">Menu</button></li>
+				<li><button type="button" class="menu-btn" id="menu-btn">Menu</button></li>
 			</ul>
 		</nav>
 		<div class="flex">
 			<aside class="left-panel">
 				<section class="creatures-panel">
-					<article class="creature-card">
+					<article class="creature-card" data-index="0">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
 						<div class="cooldown"><span class="cooldown-count">0</span></div>
@@ -41,7 +41,7 @@
 							<span class="price">50<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
 						</button>
 					</article>
-					<article class="creature-card">
+					<article class="creature-card" data-index="1">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
 						<div class="cooldown"><span class="cooldown-count">0</span></div>
@@ -50,7 +50,7 @@
 							<span class="price">100<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
 						</button>
 					</article>
-					<article class="creature-card">
+					<article class="creature-card" data-index="2">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
 						<div class="cooldown"><span class="cooldown-count">0</span></div>
@@ -59,7 +59,7 @@
 							<span class="price">150<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
 						</button>
 					</article>
-					<article class="creature-card">
+					<article class="creature-card" data-index="3">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
 						<div class="cooldown"><span class="cooldown-count">0</span></div>
@@ -68,7 +68,7 @@
 							<span class="price">75<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
 						</button>
 					</article>
-					<article class="creature-card">
+					<article class="creature-card" data-index="4">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
 						<div class="cooldown"><span class="cooldown-count">0</span></div>
@@ -77,7 +77,7 @@
 							<span class="price">200<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
 						</button>
 					</article>
-					<article class="creature-card">
+					<article class="creature-card" data-index="5">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
 						<div class="cooldown"><span class="cooldown-count">0</span></div>
@@ -86,7 +86,7 @@
 							<span class="price">300<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
 						</button>
 					</article>
-					<article class="creature-card">
+					<article class="creature-card" data-index="6">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
 						<div class="cooldown"><span class="cooldown-count">0</span></div>
@@ -95,7 +95,7 @@
 							<span class="price">25<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
 						</button>
 					</article>
-					<article class="creature-card">
+					<article class="creature-card" data-index="7">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
 						<div class="cooldown"><span class="cooldown-count">0</span></div>
@@ -104,7 +104,7 @@
 							<span class="price">50<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
 						</button>
 					</article>
-					<article class="creature-card">
+					<article class="creature-card" data-index="8">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
 						<div class="cooldown"><span class="cooldown-count">0</span></div>
@@ -113,7 +113,7 @@
 							<span class="price">175<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
 						</button>
 					</article>
-					<article class="creature-card">
+					<article class="creature-card" data-index="9">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
 						<div class="cooldown"><span class="cooldown-count">0</span></div>
@@ -221,15 +221,76 @@
 	</div>
 	<div id="menu">
 		<div class="panel">
-			<button type="button">&times;</button>
 			<h1>Paused</h1>
-			<button type="button">Resume</button>
+			<button type="button" id="resume">Resume</button>
 			<button type="button">New Game</button>
 			<button type="button">Main Menu</button>
 		</div>
 	</div>
-	
-
+	<div id="hidden-creatures">
+		<div id="creature1">
+			<img src="images/creature.png"/>
+		</div>
+		<div id="creature2">
+			<img src="images/creature.png"/>
+		</div>
+		<div id="creature3">
+			<img src="images/creature.png"/>
+		</div>
+		<div id="creature4">
+			<img src="images/creature.png"/>
+		</div>
+		<div id="creature5">
+			<img src="images/creature.png"/>
+		</div>
+		<div id="creature6">
+			<img src="images/creature.png"/>
+		</div>
+		<div id="creature7">
+			<img src="images/creature.png"/>
+		</div>
+		<div id="creature8">
+			<img src="images/creature.png"/>
+		</div>
+		<div id="creature9">
+			<img src="images/creature.png"/>
+		</div>
+		<div id="creature10">
+			<img src="images/creature.png"/>
+		</div>
+	</div>
+	<div id="hidden-monsters">
+		<div id="monster1">
+			<img src="images/monster.png"/>
+		</div>
+		<div id="monster2">
+			<img src="images/monster.png"/>
+		</div>
+		<div id="monster3">
+			<img src="images/monster.png"/>
+		</div>
+		<div id="monster4">
+			<img src="images/monster.png"/>
+		</div>
+		<div id="monster5">
+			<img src="images/monster.png"/>
+		</div>
+		<div id="monster6">
+			<img src="images/monster.png"/>
+		</div>
+		<div id="monster7">
+			<img src="images/monster.png"/>
+		</div>
+		<div id="monster8">
+			<img src="images/monster.png"/>
+		</div>
+		<div id="monster9">
+			<img src="images/monster.png"/>
+		</div>
+		<div id="monster10">
+			<img src="images/monster.png"/>
+		</div>
+	</div>
     <script src="js/classes.js"></script>
     <script src="js/setup.js"></script>
     <script src="js/game.js"></script>

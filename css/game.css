@@ -362,6 +362,11 @@ nav .nav.right li{
 	margin-top: 0.5em;
 }
 
+#hidden-creatures,
+#hidden-monsters{
+	display: none;
+}
+
 
 
 /*.creature .body{

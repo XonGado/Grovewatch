@@ -9,7 +9,7 @@ body{
 
 *{
 	font-family: Oswald;
-	color: #333;
+	color: #555;
 }
 
 .icon{
@@ -20,6 +20,22 @@ nav .icon{
 	margin-right: 0.1em;
 	margin-left: 1em;
 }
+
 #controls {
     
+}
+
+.back{
+	height: 2.5em;
+	width: 2.5em;
+	margin: 0.25em 1em;
+	transition: 0.5s;
+}
+
+nav a:hover .back{
+	transform: translate(-15%, 0);
+}
+
+nav{
+	border: 1px solid #DDD;
 }

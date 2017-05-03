@@ -1,0 +1,56 @@
+.content > h1{
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+ul{
+	list-style: none;
+	padding: 0;
+}
+
+.content > ul{
+	width: 50vw;
+	margin: auto;
+}
+
+.content > ul > li{
+	padding: 0.5em;
+	border: 1px solid #DDD;
+	border-radius: 4px;
+	margin-bottom: 0.75em;
+	position: relative;
+}
+
+.content > ul > li > h2{
+	text-align: center;
+	margin: 0;
+}
+
+.content > ul > li > h3{
+	position: absolute;
+	left: 0.5em;
+	top: 50%;
+	margin: 0;
+	font-size: 3em;
+	color: #BBB;
+	transform: translate(0,-50%);
+}
+
+.stats{
+	display: flex;
+	justify-content: center;
+}
+
+.stats li{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 0.5em;
+}
+
+
+.stats img{
+	height: 1.5em;
+	width: 1.5em;
+}
