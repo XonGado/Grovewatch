@@ -270,7 +270,8 @@ nav .nav.right li{
 }
 
 .creature img,
-.monster img{
+.monster img,
+.projectile img{
 	position: absolute;
 	width: 100%;
 	top: 0;
@@ -281,6 +282,7 @@ nav .nav.right li{
 	height: 9.2vw;
 	width: 8vw;
 	position: absolute;
+
 }
 
 .price{
@@ -363,7 +365,7 @@ nav .nav.right li{
 }
 
 #hidden-creatures,
-#hidden-monsters{
+#hidden-monsters, #hidden-projectiles{
 	display: none;
 }
 
