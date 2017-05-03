@@ -13,8 +13,6 @@ window.onload = function () {
     setInterval(gameSimulation, 1);
 
 
-
-
     var creature_card_btns = document.getElementsByClassName("creature-btn");
 	for (var i = creature_card_btns.length - 1; i >= 0; i--) {
 		createButtonListeners(i);
@@ -58,7 +56,6 @@ function testMonstersCreate() {
         }
     }
 };
-
 
 function gameSimulation(){
     calculate();
