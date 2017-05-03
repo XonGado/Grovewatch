@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello world</title>
+	<style type="text/css">
+		body{
+			background-color: gray;
+		}
+		.projectile{
+			position: absolute;
+			width: 8vw;
+			top: 0;
+			left: 0;
+		}
+	</style>
+</head>
+
+
+<body>
+	<div class="spawn-area">
+		<div id="projectile-container">
+			<img id="test" class="projectile" src="images/projectile.png"/>
+		</div>
+	</div>
+<script>
+
+    var something = document.getElementById("test");
+    var vx = 0;
+    var dx = 1;
+    var dir = 1;
+    setInterval(function(){
+        vx+= dx*dir;
+        something.style.left = vx + "vw";
+        if(vx == 80 || vx == 0){
+            dir = dir * -1;
+        }
+    }
+    ,15);
+</script>
+
+
+
+</body>
+</html>

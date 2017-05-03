@@ -1,19 +1,12 @@
 //changes game.js was changed to game-clyde.js
 
-window.onload = function () {
-    // testCreaturesCreate();
-    // testMonstersCreate();
+peasantProjectiles = [];
 
+window.onload = function () {
+    
     createCards();
 	goldLeafModify(0);
     setUpCards();
-
-
-
-    setInterval(gameSimulation, 1);
-
-
-
 
     var creature_card_btns = document.getElementsByClassName("creature-btn");
 	for (var i = creature_card_btns.length - 1; i >= 0; i--) {
@@ -28,6 +21,28 @@ window.onload = function () {
 
 	document.getElementById("menu-btn").addEventListener("click", openMenu);
 	document.getElementById("resume").addEventListener("click", closeMenu);
+
+
+
+    // testCreaturesCreate();
+    // testMonstersCreate();
+
+    var monster1 = new NormalMonster(9, 2);
+    monster1.show();
+
+    var creature1 = new PeasantCreature(0, 2);
+    creature1.show();
+    creature1.startAttack();
+
+    setTimeout(creature1.stopAttack.bind(creature1), 10000);
+
+    // SETUP FOR ANIMATION AND GAME LOOP INTERVAL
+    lastFrame = +new Date;
+    fps = 30;
+    timeInterval = 1000/fps;
+    changeInTime = 0;
+    setInterval(gameSimulation, timeInterval);
+
 }
 
 function testCreaturesCreate() {
@@ -61,20 +76,13 @@ function testMonstersCreate() {
 
 
 function gameSimulation(){
-    calculate();
-    show();
+    for (var i = 0; i < peasantProjectiles.length; i++) {
+        if (peasantProjectiles[i].state == "alive") {
+            peasantProjectiles[i].move();
+            peasantProjectiles[i].show();
+        }
+        else{
+            //kill the projectile
+        }
+    };
 };
-
-function calculate(){
-    console.log("calculate");
-};
-
-function show(){
-     console.log("show");
-};
-
-
-
-
-
-
