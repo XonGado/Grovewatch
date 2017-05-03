@@ -7,6 +7,7 @@
 //note  Use camelcasting in javascript, use hyphen for css/html
 
 // Creatures ######################################################################################
+var divCreature0 = document.getElementById("hidden-creatures").getElementsByClassName("creature")[0];
 function Creature(gridX, gridY, width) {
     this.gridX = gridX;
     this.gridY = gridY;
@@ -14,18 +15,16 @@ function Creature(gridX, gridY, width) {
     this.y = gridY*9.2;
     this.width = 8;
     this.life = 3;
-    this.div = document.getElementById("hidden-creatures").getElementsByClassName("creature")[0].cloneNode(true);
+    this.div = divCreature0.cloneNode(true);
     console.log('this.div', this.div);
 };
-
+var gridCreature = document.getElementById("creature-container");
 Creature.prototype.show = function () {
 //    var grid = document.getElementsByClassName("grid")[0];
-    
-    var grid = document.getElementById("creature-container");
-    
+  
     this.div.style.left = this.x + "vw";
     this.div.style.top = this.y + "vw";
-    grid.appendChild(this.div);
+    gridCreature.appendChild(this.div);
 };
 
 PeasantCreature.prototype = new Creature();
@@ -46,12 +45,13 @@ PeasantCreature.prototype.stopAttack = function () {
 
 PeasantCreature.prototype.attack = function () {
     var projectile = new Projectile(this.gridX,this.gridY);
-    peasantProjectiles.push(projectile);
-    console.log(peasantProjectiles);
+    lanes[this.gridY].peasantProjectiles.push(projectile);
+    console.log(lanes[this.gridY].peasantProjectiles);
 };
 
 // Monsters #########################################################################################
 // You can use float for gridX and gridY
+var divMonster0 = document.getElementById("hidden-monsters").getElementsByClassName("monster")[0];
 function Monster(gridX, gridY, width) {
     this.gridX = gridX;
     this.gridY = gridY;
@@ -59,16 +59,17 @@ function Monster(gridX, gridY, width) {
     this.y = gridY*9.2;
     this.width = 8;
     this.life = 10;
-    this.div = document.getElementById("hidden-monsters").getElementsByClassName("monster")[0].cloneNode(true);
+    this.div = divMonster0.cloneNode(true);
     console.log('this.div', this.div);
 };
 
+var gridMonster = document.getElementById("monster-container");
 Monster.prototype.show = function () {
-    var grid = document.getElementById("creature-container");
+
     
     this.div.style.left = this.x + "vw";
     this.div.style.top = this.y + "vw";
-    grid.appendChild(this.div);
+    gridMonster.appendChild(this.div);
 };
 
 NormalMonster.prototype = new Monster();
@@ -84,7 +85,7 @@ function NormalMonster(gridX, gridY, width){
 
 function Projectile(gridX, gridY) {
     this.damage = 1;
-    this.speed = 0.002;
+    this.speed = 0.05;
     this.gridX = gridX;
     this.gridY = gridY;
     this.x = this.gridX*8 + 3; //offset = 3
@@ -93,12 +94,10 @@ function Projectile(gridX, gridY) {
     this.lastFrame = +new Date();
     this.dt = 1;
 
-    var grid = document.getElementById("creature-container");
     this.div.style.left = this.x + "vw";
     this.div.style.top = this.y + "vw";
     this.state = "alive";
-    grid.appendChild(this.div);
-
+    gridCreature.appendChild(this.div);
 }
 
 Projectile.prototype.show = function () {
@@ -108,13 +107,25 @@ Projectile.prototype.show = function () {
 
 Projectile.prototype.move = function () {
     this.dt = now - this.lastFrame;
+    this.lastFrame = now;
     this.x += this.speed*this.dt;
+
+    if(this.x > 110){
+        this.kill();
+    }
+
+}
+
+Projectile.prototype.kill = function () {
+    this.state = "dead";
 }
 
 
 
 // ########################################   LANE OBJECT
 
-function Lane (argument) {
-    
+function Lane (creatures, monsters, peasantProjectiles) {
+    this.creatures = creatures;
+    this.monsters = monsters;
+    this.peasantProjectiles = peasantProjectiles;
 }
