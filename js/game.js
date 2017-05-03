@@ -1,12 +1,19 @@
 //changes game.js was changed to game-clyde.js
 
 window.onload = function () {
-	// testCreaturesCreate();
+    // testCreaturesCreate();
     // testMonstersCreate();
 
     createCards();
 	goldLeafModify(0);
     setUpCards();
+
+
+
+    setInterval(gameSimulation, 1);
+
+
+
 
     var creature_card_btns = document.getElementsByClassName("creature-btn");
 	for (var i = creature_card_btns.length - 1; i >= 0; i--) {
@@ -52,7 +59,19 @@ function testMonstersCreate() {
     }
 };
 
-// Merged JS Until the end.
+
+function gameSimulation(){
+    calculate();
+    show();
+};
+
+function calculate(){
+    console.log("calculate");
+};
+
+function show(){
+     console.log("show");
+};
 
 
 

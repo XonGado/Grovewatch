@@ -277,6 +277,12 @@ nav .nav.right li{
 	left: 0;
 }
 
+.projectile{
+	height: 9.2vw;
+	width: 8vw;
+	position: absolute;
+}
+
 .price{
 	display: inline-flex;
 	justify-content: center;
@@ -297,7 +303,8 @@ nav .nav.right li{
 }
 
 #creature-container,
-#monster-container{
+#monster-container,
+#projectile-container{
 	position: relative;
 	margin-left: 2.5vw;
 	width: 80vw;
