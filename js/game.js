@@ -41,7 +41,7 @@ window.onload = function () {
     // setTimeout(creature2.stopAttack.bind(creature2), 10000);
 
 
-    // testCreaturesAttack(5,5);
+    testCreaturesAttack(1,5);
 
     // SETUP FOR ANIMATION AND GAME LOOP INTERVAL
     time = 0;
