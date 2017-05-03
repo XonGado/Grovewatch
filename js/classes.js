@@ -38,8 +38,6 @@ function PeasantCreature(gridX, gridY, width){
 
 PeasantCreature.prototype.startAttack = function () {
     this.attackContext = setInterval(this.attack.bind(this), 1000);
-    // console.lengthog(this);
-
 };
 
 PeasantCreature.prototype.stopAttack = function () {
@@ -49,7 +47,6 @@ PeasantCreature.prototype.stopAttack = function () {
 PeasantCreature.prototype.attack = function () {
     // var projectile = new Projectile(this.gridX,this.gridY);
     var projectile = new Projectile(0,2);
-
     peasantProjectiles.push(projectile);
     console.log(peasantProjectiles);
 };
@@ -116,4 +113,12 @@ Projectile.prototype.move = function () {
     this.changeInTime = now - this.lastFrame;
     this.x += this.speed*this.changeInTime/timeInterval;
     lastFrame = now;
+}
+
+
+
+// ########################################   LANE OBJECT
+
+function Lane (argument) {
+    
 }
