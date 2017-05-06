@@ -1,6 +1,16 @@
 
 peasantProjectiles = [];
+
+
+
 lanes = [];
+
+for (var i = 0; i < 5; i++) {
+    lanes.push(new Lane([],[],[]));
+}
+    
+
+
 
 window.onload = function () {
     
@@ -52,7 +62,7 @@ window.onload = function () {
     // setTimeout(creature3.stopAttack.bind(creature2), 10000);
 
 
-    // testCreaturesAttack(1,5);
+    testCreaturesAttack(3,5);
 
     // SETUP FOR ANIMATION AND GAME LOOP INTERVAL
     time = 0;
@@ -70,15 +80,59 @@ function gameSimulation(){
     requestAnimationFrame(gameSimulation);
     now = new Date().getTime(),
         dt = now - (time || now);
+// start of game loop
 
 
+    // for (var i = 0; i < peasantProjectiles.length; i++) {
+    //     if (peasantProjectiles[i].state == "alive") {
+    //         peasantProjectiles[i].move();
+    //         peasantProjectiles[i].show();
+    //     }
+    // }
 
-    for (var i = 0; i < peasantProjectiles.length; i++) {
-        if (peasantProjectiles[i].state == "alive") {
-            peasantProjectiles[i].move();
-            peasantProjectiles[i].show();
+    var i = 0;
+    var len = lanes.length;
+    for (i = 0; i < len; i++) {
+        var lane = lanes[i];
+        // For creatures
+        var j = 0;
+        // var len2 = lanes[i].creatures.length;
+        // for (var j = 0; j<len2; j++) {
+        //     // lanes[i].creatures[j].mover();
+        //     // lanes[i].creatures[j].mover();
+        // }
+
+        // For monsters
+        len2 = lanes[i].monsters.length;
+        for (j = 0; j < len2; j++) {
+
         }
+
+        // For projectiles
+
+        len2 = lane.peasantProjectiles.length;
+        var projectile;
+        for (j = 0; j < len2; j++) {
+            projectile = lane.peasantProjectiles[j];
+            if (projectile.state == "alive") {
+                projectile.move();
+                projectile.show();
+            }
+        }
+
+        for (j = len2 - 1; j >= 0; j--) {
+            projectile = lane.peasantProjectiles[j];
+            if (projectile.state == "dead") {
+                lane.peasantProjectiles.splice(j, 1);
+            }   
+        }
+
     }
 
+
+
+
+
+// end of game loop
     time = now;
 };
