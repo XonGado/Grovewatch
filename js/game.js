@@ -26,7 +26,7 @@ window.onload = function () {
 
 
 
-    var prmt = prompt("Start game?");
+    var prmt = confirm("Start game?");
 
     if(prmt){
         testCreaturesAttack(1,5);
@@ -44,11 +44,11 @@ window.onload = function () {
                 lanes[0].monsters.push(monster1);
                 lanes[0].monsters[0].show();
             }
-            , 5000);
+            , 14000);
 
 
         }
-            , 5000);
+            , 14000);
     }
 
 
@@ -113,16 +113,32 @@ function gameSimulation(){
             }
         }
 
+
+        for (j = len2 - 1; j >= 0; j--) {
+            monster = lane.monsters[j];
+            if (monster.state == "dead") {
+                lane.killMonster(j);
+            }   
+        }
+
         // For projectiles
 
         len2 = lane.peasantProjectiles.length;
         var projectile;
-        for (j = 0; j < len2; j++) {
+        for (j = len2 - 1; j >= 0; j--) {
             // console.log(lane.peasantProjectiles);
             projectile = lane.peasantProjectiles[j];
             if (projectile.state == "alive") {
+
+                if(projectile.x >= nearestMonster.x){
+                    nearestMonster.inflictDamage(projectile.damage);
+                    lane.killPeasantProjectile(j);
+                    continue;
+                }
+
                 projectile.move();
                 projectile.show();
+                console.log("projectile moving");
             }
         }
 

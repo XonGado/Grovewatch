@@ -9,16 +9,24 @@
 // Creatures ######################################################################################
 var divCreature0 = document.getElementById("hidden-creatures").getElementsByClassName("creature")[0];
 function Creature(gridX, gridY, width) {
+    // positioning, display
     this.gridX = gridX;
     this.gridY = gridY;
     this.x = gridX * 8;
     this.y = gridY * 9.2;
     this.width = 8;
-    this.life = 3;
     this.div = divCreature0.cloneNode(true);
+
+    //Life
+    this.life = 3;
+
+    //Time
     this.lastFrame = new Date();
     this.dt = 1;
-    console.log('this.div' + this.div);
+    this.attackPeriod = 1; //seconds
+
+
+
 };
 var gridCreature = document.getElementById("creature-container");
 Creature.prototype.show = function () {
@@ -55,7 +63,7 @@ PeasantCreature.prototype.attack = function () {
     // console.log("dt: " + this.dt);
     // console.log("isAttackNow: " + this.isAttackNow)
     // console.log("isAttacking: " + this.isAttacking);
-    if(this.dt > 1000 && this.isAttacking){
+    if(this.dt > 1000*this.attackPeriod && this.isAttacking){
         this.lastFrame = now;
         var projectile = new Projectile(this.gridX,this.gridY);
         lanes[this.gridY].peasantProjectiles.push(projectile);
@@ -114,8 +122,21 @@ Monster.prototype.move = function(){
 }
 
 Monster.prototype.kill = function(){
-    this.state = "alive";
+    this.state = "dead";
 }
+
+Monster.prototype.unshow = function () {
+    this.div.style.display = "none";
+}
+
+Monster.prototype.inflictDamage = function (damage) {
+    this.life -= damage;
+
+    if(this.life <= 0){
+        this.kill();
+    }
+}
+
 
 NormalMonster.prototype = new Monster();
 NormalMonster.prototype.constructor = NormalMonster;
@@ -204,4 +225,9 @@ Lane.prototype.getNearestMonster = function(){
 Lane.prototype.killPeasantProjectile = function(index){
     this.peasantProjectiles[index].unshow();
     this.peasantProjectiles.splice(index, 1);
+}
+
+Lane.prototype.killMonster = function(index){
+    this.monsters[index].unshow();
+    this.monsters.splice(index, 1);
 }
