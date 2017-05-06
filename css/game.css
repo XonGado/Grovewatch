@@ -11,7 +11,7 @@ body{
 	background-color: #555;
 	display: flex;
 	justify-content: center;
-	/*align-items: center;*/
+	align-items: center;
 	min-height: 100vh;
 }
 nav{
@@ -19,6 +19,7 @@ nav{
 	background-color: white;
 	height: 2.4vw;	
 	align-items: center;
+	width: 100%;
 }
 nav .nav{
 	list-style: none;
@@ -68,6 +69,10 @@ nav .nav.right li{
 .game-content{
 	/*overflow: hidden;*/
 	max-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 .left-panel{
 	/*float: left;*/
