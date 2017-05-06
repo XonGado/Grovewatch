@@ -1,16 +1,8 @@
-
-peasantProjectiles = [];
-
-
-
 lanes = [];
 
 for (var i = 0; i < 5; i++) {
     lanes.push(new Lane([],[],[]));
 }
-    
-
-
 
 window.onload = function () {
     
@@ -32,63 +24,60 @@ window.onload = function () {
 	document.getElementById("menu-btn").addEventListener("click", openMenu);
 	document.getElementById("resume").addEventListener("click", closeMenu);
 
-    // testCreaturesCreate();
-    // testMonstersCreate();
-
-    // var monster1 = new NormalMonster(2, 2);
-    // monster1.show();
-
-    // var creature1 = new PeasantCreature(0, 2);
-    // creature1.show();
-    // creature1.startAttack();
-
-    // setTimeout(creature1.stopAttack.bind(creature1), 10000);
 
 
+    var prmt = prompt("Start game?");
 
-    // var creature2 = new PeasantCreature(1, 2);
-    // creature2.show();
-    // creature2.startAttack();
-
-    // setTimeout(creature2.stopAttack.bind(creature2), 10000);
-
-
-    // setTimeout(function(){
-    //     var creature3 = new PeasantCreature(2, 1);
-    //     creature3.show();
-    //     creature3.startAttack();
-    // }, 5000);
-
-    // setTimeout(creature3.stopAttack.bind(creature2), 10000);
+    if(prmt){
+        testCreaturesAttack(1,5);
+        // testMonstersAttack(9,5);
+        var monster1 = new NormalMonster(9, 0);
+        lanes[0].monsters.push(monster1);
+        lanes[0].monsters[0].show();
 
 
-    testCreaturesAttack(3,5);
+        setTimeout(function  () {
+            lanes[0].monsters.splice(0, 1);
+
+            setTimeout(function  () {
+                var monster1 = new NormalMonster(9, 0);
+                lanes[0].monsters.push(monster1);
+                lanes[0].monsters[0].show();
+            }
+            , 5000);
+
+
+        }
+            , 5000);
+    }
+
+
+
+
+
+
+
+
+
+
 
     // SETUP FOR ANIMATION AND GAME LOOP INTERVAL
     time = 0;
     now = 0;
     running = true;
-    // fps=30;
     gameSimulation();
 
 }
 
 
 
-// kill projectile
 function gameSimulation(){
     requestAnimationFrame(gameSimulation);
     now = new Date().getTime(),
-        dt = now - (time || now);
-// start of game loop
+    dt = now - (time || now);
+    
 
-
-    // for (var i = 0; i < peasantProjectiles.length; i++) {
-    //     if (peasantProjectiles[i].state == "alive") {
-    //         peasantProjectiles[i].move();
-    //         peasantProjectiles[i].show();
-    //     }
-    // }
+    // start of game loop
 
     var i = 0;
     var len = lanes.length;
@@ -96,16 +85,32 @@ function gameSimulation(){
         var lane = lanes[i];
         // For creatures
         var j = 0;
-        // var len2 = lanes[i].creatures.length;
-        // for (var j = 0; j<len2; j++) {
-        //     // lanes[i].creatures[j].mover();
-        //     // lanes[i].creatures[j].mover();
-        // }
+        var creature;
+        len2 = lane.creatures.length;
+        var nearestMonster = lane.getNearestMonster();
+        console.log(nearestMonster);
+        for (j = 0; j < len2; j++) {
+            var creature = lane.creatures[j];
+            if(nearestMonster){
+                //therefore there is a monster
+                creature.isAttacking = true;
+            }
+            else {
+            //     //therefore there is no monster
+                creature.stopAttack();
+            }
+            creature.attack();
+        }
 
         // For monsters
-        len2 = lanes[i].monsters.length;
+        len2 = lane.monsters.length;
+        var monster;
         for (j = 0; j < len2; j++) {
-
+            monster = lane.monsters[j];
+            if (monster.state == "alive") {
+                monster.move();
+                monster.show();
+            }
         }
 
         // For projectiles
@@ -113,6 +118,7 @@ function gameSimulation(){
         len2 = lane.peasantProjectiles.length;
         var projectile;
         for (j = 0; j < len2; j++) {
+            // console.log(lane.peasantProjectiles);
             projectile = lane.peasantProjectiles[j];
             if (projectile.state == "alive") {
                 projectile.move();
@@ -123,9 +129,13 @@ function gameSimulation(){
         for (j = len2 - 1; j >= 0; j--) {
             projectile = lane.peasantProjectiles[j];
             if (projectile.state == "dead") {
-                lane.peasantProjectiles.splice(j, 1);
+                lane.killPeasantProjectile(j);
             }   
         }
+
+
+
+
 
     }
 
