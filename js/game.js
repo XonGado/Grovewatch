@@ -7,20 +7,55 @@ window.onload = function () {
 
     var prmt = confirm("Start game?");
 
-<<<<<<< HEAD
+
     // console.log(document.getElementsByClassName("creature bomb")[0]);
     // document.getElementsByClassName("creature bomb")[0].children[1].addEventListener("webkitAnimationEnd", function(){
     //     document.getElementsByClassName("creature bomb")[0].style.display = "none";
     // });
-=======
+
+    // hasLeaf = true;
+    // sampleSunflower = document.getElementsByClassName("creature sunflower")[0];
+    // tile = document.getElementsByClassName("tile")[0];
+
+    // tile.addEventListener("click", function(){
+    //     if (hasLeaf) {
+    //         console.log("pick leaf");
+    //         sampleSunflower.webkitAnimationDuration = "1.5s";
+    //         sampleSunflower.webkitAnimationName = "leaf_picked";
+    //         sampleSunflower = document.getElementsByClassName("creature sunflower picked")[0];
+    //         sampleSunflower.addEventListener("webkitAnimationEnd", function(){
+
+    //         });
+    //     }
+    // });
+
+    // setTimeout(function(){
+    //     document.getElementById("sunny").children[1].children[0].children[0].style.display = "block";
+    //     document.getElementById("sunny").className = "creature sunflower grow";
+    // }, 3000);
+
+    // setTimeout(function(){
+    //     document.getElementById("sunny").className = "creature sunflower picked";
+    //     document.getElementById("sunny").children[1].children[0].children[0].addEventListener("webkitAnimationEnd", testingSun);
+    // }, 6000);
+
+    // setTimeout(function(){
+    //     document.getElementById("sunny").children[1].children[0].children[0].style.display = "block";
+    //     document.getElementById("sunny").className = "creature sunflower grow";
+    // }, 9000);
+
+    // function testingSun(){
+    //     document.getElementById("sunny").children[1].children[0].children[0].style.display = "none";
+    //     document.getElementById("sunny").children[1].children[0].children[0].removeEventListener("webkitAnimationEnd", testingSun);
+    // }
+
     //pausing
-    pauseGame();
->>>>>>> d961ddbf7a85ad9f48bf6dd107f09ebbd6afd12c
+    // pauseGame();
 
     if(prmt){
 
         //unpausing
-        pauseGame();
+        // pauseGame();
 
         var monster1 = new NormalMonster(3, 0);
         lanes[0].monsters.push(monster1);

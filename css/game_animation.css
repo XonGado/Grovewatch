@@ -99,6 +99,10 @@
 	transform-origin: 62% 7.6vw;
 }
 
+.creature.sunflower .leaf img{
+	display: none;
+}
+
 .creature.sunflower.ready .leaf img{
 	-webkit-animation: leaf_ready 3s ease infinite alternate;
 	-o-animation: leaf_ready 3s ease infinite alternate;

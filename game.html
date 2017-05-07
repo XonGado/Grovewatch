@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Grovewatch</title>
+	<meta charset="utf-8"/>
 	<link rel="stylesheet" type="text/css" href="css/game.css"/>
 	<link rel="stylesheet" type="text/css" href="css/game_animation.css"/>
 	<link rel="stylesheet" type="text/css" href="css/main.css"/>
@@ -10,6 +11,9 @@
 	<div class="container game-content">
 		<nav>
 			<ul class="nav">
+				<li>
+					<button type="button" id="unsummon-btn"><img src="images/unsummon.png" alt="unsummon"></button>
+				</li>
 				<li class="gold-leaf">
 					<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/>
 					<span id="gold-leaf-count">0</span>
@@ -31,6 +35,23 @@
 				<!-- <li><button type="button" class="menu-btn" id="pause-btn">Pause</button></li> -->
 			</ul>
 		</nav>
+		<div id="starting-interface" class="interface">
+			<div>
+				<h1 id="initialize-game">Start</h1>
+				<h2 id="countdown">3</h2>
+			</div>
+		</div>
+		<div id="ending-interface" class="interface">
+			<div>
+				<h2>You have made it to the leaderboard</h2>
+				<h1>1000</h1>
+				<h2>What is your name?</h2>
+				<form id="cookie-form">
+					<input type="text" name="name" id="user-name"/>
+					<input type="submit" name="submit-cookie" id="submit-cookie"/>
+				</form>
+			</div>
+		</div>
 		<div class="flex">
 			<aside class="left-panel">
 				<section class="creatures-panel">
@@ -203,6 +224,16 @@
 							<!-- <div class="creature">
 								<img src="images/creature.png"/>
 							</div> -->
+							<div id="sunny" class="creature sunflower">
+								<div class="shadow"><img src="images/creature2/creature_shadow.png" alt="body" /></div>
+								<div class="body">
+									<div class="leaf"><img src="images/creature2/creature_leaf.png" alt="leaf" /></div>
+									<div class="right-ear"><img src="images/creature2/creature_right_ear.png" alt="right ear" /></div>
+									<img src="images/creature2/creature_body.png" alt="body" />
+									<div class="left-ear"><img src="images/creature2/creature_left_ear.png" alt="left ear" /></div>
+									<div class="eyes"><img src="images/creature2/creature_eyes.png" alt=eyes /></div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="spawn-area">
@@ -408,8 +439,8 @@
 	</div>
 
 	<script src="js/requestAnimationFrame.js"></script>
-    <script src="js/classes.js"></script>
     <script src="js/setup.js"></script>
+    <script src="js/classes.js"></script>
     <script src="js/game.js"></script>
     <script src="js/test.js"></script>
 </body>

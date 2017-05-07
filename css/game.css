@@ -38,6 +38,23 @@ nav .nav.right{
 	padding-right: 3em;
 }
 
+#unsummon-btn{
+	/*border-radius: 50%;*/
+	border: none;
+	background-color: #555;
+	height: 2.4vw;
+	width: 4vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+#unsummon-btn img{
+	height: 2vw;
+	width: 2vw;
+}
+
 .gold-leaf,
 .waves,
 .kills{
@@ -72,6 +89,40 @@ nav .nav.right li{
 .container{
 	background-color: white;
 }
+
+.interface{
+	background-color: #111;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100vw;
+	z-index: 1000;
+}
+
+#starting-interface h1{
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-weight: normal;
+	font-size: 10vw;
+	text-align: center;
+}
+
+#starting-interface h2{
+	font-size: 7.5vw;
+	color: white;
+	font-weight: normal;
+	text-align: center;
+}
+
+#ending-interface{
+	display: none;
+}
+
 .game-content{
 	/*overflow: hidden;*/
 	max-height: 100vh;

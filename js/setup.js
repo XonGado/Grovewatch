@@ -258,6 +258,7 @@ function goldLeafModify(leaves) {
 function openMenu(){
 	document.getElementById("menu").style.display = "flex";
 	var cards = document.querySelectorAll(".creature-card > .cooldown > .cooldown-bar");
+
 	running = false;
 	oldTime = now;
 	time = now;
@@ -267,8 +268,9 @@ function openMenu(){
 }
 
 function closeMenu(){
-	var cards = document.querySelectorAll(".creature-card > .cooldown > .cooldown-bar");
 	document.getElementById("menu").style.display = "none";
+	var cards = document.querySelectorAll(".creature-card > .cooldown > .cooldown-bar");
+
 	running = true;
 	now = +new Date();
 	timeDilation = (now - oldTime);
@@ -295,10 +297,12 @@ function setup () {
 
 	document.getElementById("menu-btn").addEventListener("click", openMenu);
 	document.getElementById("resume").addEventListener("click", closeMenu);
-<<<<<<< HEAD
-	// document.getElementById("pause-btn").addEventListener("click", pauseGame);
-=======
-	document.getElementById("pause-btn").addEventListener("click", pauseGame);
+	document.getElementById("initialize-game").addEventListener("click", countdownStart);
+}
+
+function countdownStart(){
+	document.getElementById("initialize-game").addEventListener("click", countdownStart);
+	
 }
 
 
@@ -308,5 +312,4 @@ function updateGUI () {
 	for (var i = len - 1; i >= 0; i--) {
 		creatures_card[i].cooldowning();
 	} 
->>>>>>> d961ddbf7a85ad9f48bf6dd107f09ebbd6afd12c
 }
