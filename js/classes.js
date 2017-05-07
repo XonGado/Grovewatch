@@ -113,6 +113,7 @@ function Monster(gridX, gridY, width) {
 
 
     this.div = divMonster0.cloneNode(true);
+    gridMonster.appendChild(this.div);
     console.log('this.div', this.div);
 };
 
@@ -142,7 +143,6 @@ var gridMonster = document.getElementById("monster-container");
 Monster.prototype.show = function () {
     this.div.style.left = this.x + "vw";
     this.div.style.top = this.y + "vw";
-    gridMonster.appendChild(this.div);
 };
 
 Monster.prototype.move = function(){
