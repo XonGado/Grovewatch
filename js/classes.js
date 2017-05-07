@@ -9,7 +9,7 @@
 // Creatures ######################################################################################
 var divCreature0 = document.getElementById("hidden-creatures").getElementsByClassName("creature")[0];
 var gridCreature = document.getElementById("creature-container");
-function Creature(gridX, gridY, width) {
+function Creature(gridX, gridY) {
     // positioning, display
     this.gridX = gridX;
     this.gridY = gridY;
@@ -18,12 +18,21 @@ function Creature(gridX, gridY, width) {
     this.width = 8;
 
     //Life
-    this.life = 3;
+    this.life = 5;
+    this.state = "alive";
 
     //Time
     this.lastFrame = now;
     this.dt = 1;
     this.attackPeriod = 1; //seconds
+
+    
+
+
+
+
+
+
 
     this.div = divCreature0.cloneNode(true);
     
@@ -44,11 +53,55 @@ Creature.prototype.show = function () {
 
 };
 
+
+
+
+Creature.prototype.inflictDamage = function (damage) {
+    this.life -= damage;
+    if(this.life <= 0){
+        this.kill();
+    }else{
+        this.damageFeedback();
+    }
+}
+
+Creature.prototype.damageFeedback = function () {
+    this.div.className = "creature";
+    that = this;
+    setTimeout( function () {
+        that.div.className = "creature damaged";
+    }, 50);
+}
+
+
+Creature.prototype.kill = function(){
+    this.state = "dead";
+}
+
+Creature.prototype.unshow = function () {
+    this.div.style.display = "none";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 PeasantCreature.prototype = new Creature();
 PeasantCreature.prototype.constructor = PeasantCreature;
 
-function PeasantCreature(gridX, gridY, width){
-    Creature.call(this, gridX, gridY, width);
+function PeasantCreature(gridX, gridY){
+    Creature.call(this, gridX, gridY);
     this.attackContext;
     this.isAttacking = false;
     // this.isAttackNow = false;
@@ -74,11 +127,13 @@ PeasantCreature.prototype.attack = function () {
     }
 };
 
+
+
 // Monsters #########################################################################################
 // You can use float for gridX and gridY
 var divMonster0 = document.getElementById("hidden-monsters").getElementsByClassName("monster")[0];
 var gridMonster = document.getElementById("monster-container");
-function Monster(gridX, gridY, width) {
+function Monster(gridX, gridY) {
     
     //For display and positioning
     this.gridX = gridX;
@@ -110,8 +165,10 @@ function Monster(gridX, gridY, width) {
     this.attackPeriod = 1; //1 second
 
 
-
     this.div = divMonster0.cloneNode(true);
+
+    this.div.style.left = this.x + "vw";
+    this.div.style.top = this.y + "vw";
 
     if(gridX >= 0 && gridY >= 0){
         gridMonster.appendChild(this.div);
@@ -128,17 +185,14 @@ Monster.prototype.stopAttack = function () {
     this.isAttacking = false;
 };
 
-Monster.prototype.attack = function () {
-    // this.dt = now - this.lastFrame;
-
-    // if(this.dt > 1000*this.attackPeriod && this.isAttacking){
-    //     this.lastFrame = now;
-    //     var projectile = new Projectile(this.gridX,this.gridY);
-    //     lanes[this.gridY].peasantProjectiles.push(projectile);
-    //     // console.log(lanes[this.gridY].peasantProjectiles);
-    //     // console.log("Attack!");
-    //     // this.attackNow = false;
-    // }
+Monster.prototype.attack = function (creature) {
+    this.dt = now - this.lastFrame;
+    // console.log(creature);
+    if(this.dt > 1000*this.attackPeriod && this.isAttacking && creature){
+        this.lastFrame = now;
+        creature.inflictDamage(this.damage);
+        console.log("damaging");
+    }
 };
 
 Monster.prototype.show = function () {
@@ -186,8 +240,8 @@ Monster.prototype.damageFeedback = function () {
 NormalMonster.prototype = new Monster();
 NormalMonster.prototype.constructor = NormalMonster;
 
-function NormalMonster(gridX, gridY, width){
-    Monster.call(this, gridX, gridY, width);
+function NormalMonster(gridX, gridY){
+    Monster.call(this, gridX, gridY);
 }
 
 
@@ -197,7 +251,7 @@ var divProjectile = document.getElementById("hidden-projectiles").getElementsByC
 var gridProjectile = document.getElementById("projectile-container");
 function Projectile(gridX, gridY) {
     this.damage = 1;
-    this.speed = 0.05;
+    this.speed = 0.02;
     this.gridX = gridX;
     this.gridY = gridY;
     this.x = this.gridX*8 + 1; //offset = 3
@@ -225,7 +279,6 @@ Projectile.prototype.move = function () {
     if(this.x > 110){
         this.kill();
     }
-
 }
 
 Projectile.prototype.kill = function () {
@@ -246,7 +299,8 @@ function Lane (creatures, monsters, peasantProjectiles) {
 }
 
 
-Lane.prototype.getNearestMonster = function(){
+
+Lane.prototype.getNearestMonster = function (projectileX) {
     var monsters = this.monsters;
     var length = monsters.length;
 
@@ -254,18 +308,58 @@ Lane.prototype.getNearestMonster = function(){
         return null;
     }
 
-    var nearest = monsters[0];
-    var nearestX = nearest.x;
+    var monster;
+    var nearestMonster;
     var i = length - 1;
-    for (i; i >= 1; i--) {
-        if(monsters[i].x < nearestX){
-            nearest = monsters[i];
-            nearesX = nearest.x;
+    for (i; i >= 0; i--) {
+        monster = monsters[i];
+        if(monster.x < projectileX && projectileX < (monster.x + monster.width - 3)){
+            nearestMonster = monster;
         }
     }
 
 
-    return nearest;
+
+    if(!nearestMonster){
+        return null;
+    }
+
+    return nearestMonster;
+}
+
+function Lane (creatures, monsters, peasantProjectiles) {
+    this.creatures = creatures;
+    this.monsters = monsters;
+    this.peasantProjectiles = peasantProjectiles;
+}
+
+
+
+Lane.prototype.getNearestCreature = function (monsterX) {
+    var creatures = this.creatures;
+    var length = creatures.length;
+
+    if(length <= 0){
+        return null;
+    }
+
+    var creature;
+    var nearestCreature;
+    var i = length - 1;
+    for (i; i >= 0; i--) {
+        creature = creatures[i];
+        if(monsterX > creature.x - 2 && monsterX < (creature.x + creature.width - 2)){
+            nearestCreature = creature;
+        }
+    }
+
+
+
+    if(!nearestCreature){
+        return null;
+    }
+
+    return nearestCreature;
 }
 
 
@@ -285,3 +379,10 @@ Lane.prototype.killMonster = function(index){
     this.monsters[index].unshow();
     this.monsters.splice(index, 1);
 }
+
+Lane.prototype.killCreature = function(index){
+    this.creatures[index].unshow();
+    this.creatures.splice(index, 1);
+}
+
+

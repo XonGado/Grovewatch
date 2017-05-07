@@ -12,7 +12,7 @@ oldTime = 0;
 
 
 //UI
-var cd1, cd2, cd3, cd4, cd5, cd6, cd7, cd8, cd9;
+var cd0, cd1, cd2, cd3, cd4, cd5, cd6, cd7, cd8, cd9;
 var gold_leaves = 1000;
 var waves = 0;
 var kills = 0;
@@ -23,16 +23,16 @@ var selected = -1;
 function createCards(){
 	creatures_card = [];
 
-	creatures_card.push(new CreatureCard("normal creature", 3000, 25, true));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 50, true));
-	creatures_card.push(new CreatureCard("normal creature", 30000, 100, true));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 150, true));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 200, true));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 225, true));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 300, true));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 350, true));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 400, true));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 450, true));
+	creatures_card.push(new CreatureCard("normal creature", 2000, 100, true, 0, PeasantCreature));
+	creatures_card.push(new CreatureCard("normal creature", 10000, 50, true, 1));
+	creatures_card.push(new CreatureCard("normal creature", 30000, 150, true, 2));
+	creatures_card.push(new CreatureCard("normal creature", 45000, 400, true, 3));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 200, true, 4));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 225, true, 5));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 300, true, 6));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 350, true, 7));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 400, true, 8));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 450, true, 9));
 }
 
 function setUpCards(){
@@ -48,12 +48,47 @@ function setUpCards(){
 	}
 }
 
-function CreatureCard(name, cooldown, cost, locked) {
+function CreatureCard(name, cooldown, cost, locked, index, creatureConstructor) {
     this.name = name;
     this.cooldown = cooldown;
     this.cost = cost;
     this.locked = locked;
+
+    this.index = index;
+
+
+    this.dt = 0;
+    this.lastFrame = now;
+    this.isCoolingDown = false;
+
+    this.creatureConstructor = creatureConstructor;
 }
+
+CreatureCard.prototype.cooldowning = function () {
+    this.dt = now - this.lastFrame;
+    if(this.dt > 1000 && this.isCoolingDown){
+        this.lastFrame = now;
+        cooldownTick(this.index);
+    }
+}
+
+CreatureCard.prototype.startCooldown = function () {
+    this.lastFrame = now;
+    this.isCoolingDown = true;
+    setCooldown(this.index);
+}
+
+CreatureCard.prototype.createCreature = function (gridX, gridY){
+	var creatureCreated = new this.creatureConstructor(gridX, gridY);
+
+	// var creatureCreated = new PeasantCreature(gridX, gridY);
+	lanes[gridY].creatures.push(creatureCreated);
+	// console.log(lanes[0].creatures);
+    // var normalCreature3 = new PeasantCreature(0,4);
+    // lanes[normalCreature3.gridY].creatures.push(normalCreature3);
+}
+
+
 
 function createButtonListeners(index){
     var creature_card_btns = document.getElementsByClassName("creature-btn");
@@ -92,16 +127,18 @@ function checkAction(index){
 
 function summon(index){
 	console.log("Summoning monster type " + selected + " on tile number " + index);
-	var gridX = (index%10) + 1;
-	var gridY = Math.floor(index/10) + 1;
+	var gridX = (index%10);
+	var gridY = Math.floor(index/10);
 	console.log(gridY + "," + gridX);
 	var creature_btn = document.getElementsByClassName("creature-btn");
 	for (var i = creature_btn.length - 1; i >= 0; i--) {
 		creature_btn[i].className = "creature-btn";
 	}
-	setCooldown(selected);
-	goldLeafModify(-creatures_card[selected].cost)
-	selected = -1
+	// setCooldown(selected);
+	creatures_card[selected].startCooldown();
+	creatures_card[selected].createCreature(gridX, gridY);
+	goldLeafModify(-creatures_card[selected].cost);
+	selected = -1;
 }
 
 function unaffordable(index) {
@@ -112,7 +149,7 @@ function unaffordable(index) {
     } else if (!creatures_card[index].locked && gold_leaves < creatures_card[index].cost){
         creature_cards[index].children[0].style.display = "flex";
     	// console.log(gold_leaves + " " +  creatures_card[index].cost + ", "+ index + " unaffordable");
-    } 
+    }
 }
 
 function unlock(index) {
@@ -130,27 +167,27 @@ function setCooldown(index) {
         // console.log(cooldown);
         time.innerHTML = (creatures_card[index].cooldown / 1000);
         // console.log(time.innerHTML);
-        if (selected == 0) {
-	    	cd0 = setInterval(function(){cooldownTick(0)}, 1000);
-	    } else if (selected == 1) {
-	    	cd1 = setInterval(function(){cooldownTick(1)}, 1000);
-	    } else if (selected == 2) {
-	    	cd2 = setInterval(function(){cooldownTick(2)}, 1000);
-	    } else if (selected == 3) {
-	    	cd3 = setInterval(function(){cooldownTick(3)}, 1000);
-	    } else if (selected == 4) {
-	    	cd4 = setInterval(function(){cooldownTick(4)}, 1000);
-	    } else if (selected == 5) {
-	    	cd5 = setInterval(function(){cooldownTick(5)}, 1000);
-	    } else if (selected == 6) {
-	    	cd6 = setInterval(function(){cooldownTick(6)}, 1000);
-	    } else if (selected == 7) {
-	    	cd7 = setInterval(function(){cooldownTick(7)}, 1000);
-	    } else if (selected == 8) {
-	    	cd8 = setInterval(function(){cooldownTick(8)}, 1000);
-	    } else if (selected == 9) {
-	    	cd9 = setInterval(function(){cooldownTick(9)}, 1000);
-	    }
+     //    if (selected == 0) {
+	    // 	cd0 = setInterval(function(){cooldownTick(0)}, 1000);
+	    // } else if (selected == 1) {
+	    // 	cd1 = setInterval(function(){cooldownTick(1)}, 1000);
+	    // } else if (selected == 2) {
+	    // 	cd2 = setInterval(function(){cooldownTick(2)}, 1000);
+	    // } else if (selected == 3) {
+	    // 	cd3 = setInterval(function(){cooldownTick(3)}, 1000);
+	    // } else if (selected == 4) {
+	    // 	cd4 = setInterval(function(){cooldownTick(4)}, 1000);
+	    // } else if (selected == 5) {
+	    // 	cd5 = setInterval(function(){cooldownTick(5)}, 1000);
+	    // } else if (selected == 6) {
+	    // 	cd6 = setInterval(function(){cooldownTick(6)}, 1000);
+	    // } else if (selected == 7) {
+	    // 	cd7 = setInterval(function(){cooldownTick(7)}, 1000);
+	    // } else if (selected == 8) {
+	    // 	cd8 = setInterval(function(){cooldownTick(8)}, 1000);
+	    // } else if (selected == 9) {
+	    // 	cd9 = setInterval(function(){cooldownTick(9)}, 1000);
+	    // }
     }
 }
 
@@ -167,27 +204,30 @@ function cooldownTick(index) {
 	        var id = "creature_" + index + "_cd";
 	        creature_cards = document.getElementsByClassName("creature-card");
 	        creature_cards[index].children[2].style.display = "none";
-	        if (index == 0) {
-	            clearTimeout(cd0);
-	        } else if (index == 1) {
-	            clearTimeout(cd1);
-	        } else if (index == 2) {
-	            clearTimeout(cd2);
-	        } else if (index == 3) {
-	            clearTimeout(cd3);
-	        } else if (index == 4) {
-	            clearTimeout(cd4);
-	        } else if (index == 5) {
-	            clearTimeout(cd5);
-	        } else if (index == 6) {
-	            clearTimeout(cd6);
-	        } else if (index == 7) {
-	            clearTimeout(cd7);
-	        } else if (index == 8) {
-	            clearTimeout(cd8);
-	        } else if (index == 9) {
-	            clearTimeout(cd9);
-	        }
+	        
+	        creatures_card[index].isCoolingDown = false;
+
+	        // if (index == 0) {
+	        //     clearTimeout(cd0);
+	        // } else if (index == 1) {
+	        //     clearTimeout(cd1);
+	        // } else if (index == 2) {
+	        //     clearTimeout(cd2);
+	        // } else if (index == 3) {
+	        //     clearTimeout(cd3);
+	        // } else if (index == 4) {
+	        //     clearTimeout(cd4);
+	        // } else if (index == 5) {
+	        //     clearTimeout(cd5);
+	        // } else if (index == 6) {
+	        //     clearTimeout(cd6);
+	        // } else if (index == 7) {
+	        //     clearTimeout(cd7);
+	        // } else if (index == 8) {
+	        //     clearTimeout(cd8);
+	        // } else if (index == 9) {
+	        //     clearTimeout(cd9);
+	        // }
 	    }
     }
 }
@@ -255,5 +295,18 @@ function setup () {
 
 	document.getElementById("menu-btn").addEventListener("click", openMenu);
 	document.getElementById("resume").addEventListener("click", closeMenu);
+<<<<<<< HEAD
 	// document.getElementById("pause-btn").addEventListener("click", pauseGame);
+=======
+	document.getElementById("pause-btn").addEventListener("click", pauseGame);
+}
+
+
+function updateGUI () {
+	var len = creatures_card.length;
+
+	for (var i = len - 1; i >= 0; i--) {
+		creatures_card[i].cooldowning();
+	} 
+>>>>>>> d961ddbf7a85ad9f48bf6dd107f09ebbd6afd12c
 }
