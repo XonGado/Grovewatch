@@ -85,6 +85,14 @@ Creature.prototype.unshow = function () {
 
 
 
+StoneCreature.prototype = new Creature();
+StoneCreature.prototype.constructor = StoneCreature;
+
+function StoneCreature(gridX, gridY){
+    Creature.call(this, gridX, gridY);
+    this.life = 30;
+    this.div = divCreature1.cloneNode(true);
+}
 
 
 
@@ -385,4 +393,17 @@ Lane.prototype.killCreature = function(index){
     this.creatures.splice(index, 1);
 }
 
+Lane.prototype.isGridXAvail = function (gridX){
+    var creatures = this.creatures;
+    var len = creatures.length;
 
+    for (var i = len - 1; i >= 0; i--) {
+        if(creatures[i].gridX == gridX){
+            return false;
+        }
+    }
+
+
+    return true;
+
+}

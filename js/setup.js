@@ -3,6 +3,7 @@
 lanes = [];
 
 
+
 time = 0;
 now = +new Date();
 running = true;
@@ -80,12 +81,7 @@ CreatureCard.prototype.startCooldown = function () {
 
 CreatureCard.prototype.createCreature = function (gridX, gridY){
 	var creatureCreated = new this.creatureConstructor(gridX, gridY);
-
-	// var creatureCreated = new PeasantCreature(gridX, gridY);
 	lanes[gridY].creatures.push(creatureCreated);
-	// console.log(lanes[0].creatures);
-    // var normalCreature3 = new PeasantCreature(0,4);
-    // lanes[normalCreature3.gridY].creatures.push(normalCreature3);
 }
 
 
@@ -98,6 +94,7 @@ function createButtonListeners(index){
 function createTileListeners(index){
 	var tiles = document.getElementsByClassName("tile");
 	tiles[index].addEventListener("click", function(){checkAction(index)});
+
 	// console.log("created listener for tile " + index);
 }
 
@@ -135,9 +132,15 @@ function summon(index){
 		creature_btn[i].className = "creature-btn";
 	}
 	// setCooldown(selected);
-	creatures_card[selected].startCooldown();
-	creatures_card[selected].createCreature(gridX, gridY);
-	goldLeafModify(-creatures_card[selected].cost);
+	//if gridX avail creatures, check lane gridY
+
+	if(lanes[gridY].isGridXAvail(gridX)){
+		creatures_card[selected].startCooldown();
+		creatures_card[selected].createCreature(gridX, gridY);
+		goldLeafModify(-creatures_card[selected].cost);
+	}
+
+
 	selected = -1;
 }
 
