@@ -71,6 +71,30 @@ window.onload = function () {
     // fps=30;
     gameSimulation();
 
+
+
+
+    // setInterval(
+    //     function () {
+    //         document.querySelectorAll("#creature-container .creature")[0].className = "creature";
+    //         setTimeout(
+    //             function(){
+    //                 document.querySelectorAll("#creature-container .creature")[0].className = "creature damaged";
+    //             }
+    //         ,50);
+    //     }
+    // ,1000);
+
+    // setInterval(
+    //     function () {
+    //         document.querySelectorAll("#monster-container .monster")[0].className = "monster";
+    //         setTimeout(
+    //             function(){
+    //                 document.querySelectorAll("#monster-container .monster")[0].className = "monster damaged";
+    //             }
+    //         ,50);
+    //     }
+    // ,1000);
 }
 
 
