@@ -1,67 +1,53 @@
-
-lanes = [];
-
-
-//GAMEPLAY
-time = 0;
-now = 0;
-running = true;
-timeDilation = 0;
-oldTime = 0;
-
 for (var i = 0; i < 5; i++) {
     lanes.push(new Lane([],[],[]));
 }
-
 window.onload = function () {
     
     setup();    
 
-
-
-
     var prmt = confirm("Start game?");
 
     if(prmt){
-        // testCreaturesAttack(2,5);
 
-        var normalCreature1 = new PeasantCreature(1, 0);
-        normalCreature1.show();
-        normalCreature1.startAttack();
-        lanes[0].creatures.push(normalCreature1);
-
-        // var normalCreature2 = new PeasantCreature(8, 0);
-        // normalCreature2.show();
-        // normalCreature2.startAttack();
-        // lanes[0].creatures.push(normalCreature2);
-
-
-
-
-        // testMonstersAttack(9,5);
-        var monster1 = new NormalMonster(10, 0);
+        var monster1 = new NormalMonster(7, 0);
         lanes[0].monsters.push(monster1);
         lanes[0].monsters[0].show();
 
+    //     // testCreaturesAttack(2,5);
 
-        setTimeout(function  () {
-            // lanes[0].monsters.splice(0, 1);
+    //     var normalCreature1 = new PeasantCreature(1, 0);
+    //     normalCreature1.show();
+    //     normalCreature1.startAttack();
+    //     lanes[0].creatures.push(normalCreature1);
 
-            setTimeout(function  () {
-                var monster2 = new NormalMonster(10, 0);
-                lanes[0].monsters.push(monster2);
-                lanes[0].monsters[0].show();
-            }
-            , 4000);
+    //     // var normalCreature2 = new PeasantCreature(8, 0);
+    //     // normalCreature2.show();
+    //     // normalCreature2.startAttack();
+    //     // lanes[0].creatures.push(normalCreature2);
 
 
-        }
-            , 4000);
+
+
+    //     // testMonstersAttack(9,5);
+    //     var monster1 = new NormalMonster(10, 0);
+    //     lanes[0].monsters.push(monster1);
+    //     lanes[0].monsters[0].show();
+
+
+    //     setTimeout(function  () {
+    //         // lanes[0].monsters.splice(0, 1);
+
+    //         setTimeout(function  () {
+    //             var monster2 = new NormalMonster(10, 0);
+    //             lanes[0].monsters.push(monster2);
+    //             lanes[0].monsters[0].show();
+    //         }
+    //         , 8000);
+
+
+    //     }
+    //         , 4000);
     }
-
-
-
-
 
 
 

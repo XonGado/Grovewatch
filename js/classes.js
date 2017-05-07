@@ -21,7 +21,7 @@ function Creature(gridX, gridY, width) {
     this.life = 3;
 
     //Time
-    this.lastFrame = new Date();
+    this.lastFrame = now;
     this.dt = 1;
     this.attackPeriod = 1; //seconds
 
@@ -90,7 +90,7 @@ function Monster(gridX, gridY, width) {
 
 
     //For life
-    this.life = 30;
+    this.life = 10;
     this.state = "alive";
     this.points = 10;
 
@@ -102,7 +102,7 @@ function Monster(gridX, gridY, width) {
 
     //Timing properties
     this.dt = 0;
-    this.lastFrame = +new Date();
+    this.lastFrame = now;
 
 
     //Attacking
@@ -118,7 +118,7 @@ function Monster(gridX, gridY, width) {
 
 Monster.prototype.startAttack = function () {
     this.isAttacking = true;
-    this.lastFrame = +new Date();
+    this.lastFrame = now;
 };
 
 Monster.prototype.stopAttack = function () {
@@ -167,9 +167,20 @@ Monster.prototype.inflictDamage = function (damage) {
 
     if(this.life <= 0){
         this.kill();
+    }else{
+        this.damageFeedback();
     }
 }
 
+Monster.prototype.damageFeedback = function () {
+    this.div.className = "monster";
+    setTimeout(
+        function () {
+            this.div.className = "monster damaged";
+        }
+
+        ,50);
+}
 
 NormalMonster.prototype = new Monster();
 NormalMonster.prototype.constructor = NormalMonster;

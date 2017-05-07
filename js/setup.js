@@ -1,3 +1,17 @@
+//GAMEPLAY
+
+lanes = [];
+
+
+time = 0;
+now = +new Date();
+running = true;
+timeDilation = 0;
+oldTime = 0;
+
+
+
+//UI
 var cd1, cd2, cd3, cd4, cd5, cd6, cd7, cd8, cd9;
 var gold_leaves = 1000;
 var waves = 0;
