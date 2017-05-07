@@ -95,7 +95,7 @@ nav .nav.right li{
 	position: relative;
 	z-index: -20;
 	/*background-color: #41520a;*/
-	box-shadow: inset 0 0 10vw rgba(0,0,0,0.1);
+	/*box-shadow: inset 0 0 10vw rgba(0,0,0,0.1);*/
 }
 .grid .tile{
 	width: 8vw;
@@ -103,7 +103,7 @@ nav .nav.right li{
 	position: relative;
 	/*background-color: #41520a;*/
 	/*border: 1px solid white;*/
-	box-shadow: inset 0 0 5vw rgba(0,0,0,0.1);
+	box-shadow: inset 0 0 5vw rgba(0,0,0,0.05);
 	overflow: visible;
 }
 
