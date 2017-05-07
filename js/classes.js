@@ -50,7 +50,7 @@ function PeasantCreature(gridX, gridY, width){
 PeasantCreature.prototype.startAttack = function () {
     // this.attackContext = setInterval(this.attack.bind(this), 1000);
     this.isAttacking = true;
-    this.lastFrame = +new Date();
+    this.lastFrame = now;
 };
 
 PeasantCreature.prototype.stopAttack = function () {
@@ -90,8 +90,9 @@ function Monster(gridX, gridY, width) {
 
 
     //For life
-    this.life = 10;
+    this.life = 30;
     this.state = "alive";
+    this.points = 10;
 
 
     //Mostly monsters will have negative directions
@@ -103,8 +104,38 @@ function Monster(gridX, gridY, width) {
     this.dt = 0;
     this.lastFrame = +new Date();
 
+
+    //Attacking
+    this.isAttacking = false;
+    this.damage = 1;
+    this.attackPeriod = 1; //1 seco
+
+
+
     this.div = divMonster0.cloneNode(true);
     console.log('this.div', this.div);
+};
+
+Monster.prototype.startAttack = function () {
+    this.isAttacking = true;
+    this.lastFrame = +new Date();
+};
+
+Monster.prototype.stopAttack = function () {
+    this.isAttacking = false;
+};
+
+Monster.prototype.attack = function () {
+    // this.dt = now - this.lastFrame;
+
+    // if(this.dt > 1000*this.attackPeriod && this.isAttacking){
+    //     this.lastFrame = now;
+    //     var projectile = new Projectile(this.gridX,this.gridY);
+    //     lanes[this.gridY].peasantProjectiles.push(projectile);
+    //     // console.log(lanes[this.gridY].peasantProjectiles);
+    //     // console.log("Attack!");
+    //     // this.attackNow = false;
+    // }
 };
 
 var gridMonster = document.getElementById("monster-container");
@@ -123,6 +154,8 @@ Monster.prototype.move = function(){
 
 Monster.prototype.kill = function(){
     this.state = "dead";
+    scoreUp(this.points);
+    kill();
 }
 
 Monster.prototype.unshow = function () {
@@ -149,21 +182,22 @@ function NormalMonster(gridX, gridY, width){
 
 //Projectile #########################################################################
 var divProjectile = document.getElementById("hidden-projectiles").getElementsByClassName("projectile")[0];
+var gridProjectile = document.getElementById("projectile-container");
 function Projectile(gridX, gridY) {
     this.damage = 1;
     this.speed = 0.05;
     this.gridX = gridX;
     this.gridY = gridY;
-    this.x = this.gridX*8 + 3; //offset = 3
+    this.x = this.gridX*8 + 1; //offset = 3
     this.y = this.gridY*9.2;
     this.div = divProjectile.cloneNode(true);
-    this.lastFrame = +new Date();
+    this.lastFrame = now;
     this.dt = 1;
 
     this.div.style.left = this.x + "vw";
     this.div.style.top = this.y + "vw";
     this.state = "alive";
-    gridCreature.appendChild(this.div);
+    gridProjectile.appendChild(this.div);
 }
 
 Projectile.prototype.show = function () {
