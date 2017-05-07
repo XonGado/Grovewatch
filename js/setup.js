@@ -25,8 +25,8 @@ function createCards(){
 	creatures_card = [];
 
 	creatures_card.push(new CreatureCard("normal creature", 2000, 100, true, 0, PeasantCreature));
-	creatures_card.push(new CreatureCard("normal creature", 10000, 50, true, 1));
-	creatures_card.push(new CreatureCard("normal creature", 30000, 150, true, 2));
+	creatures_card.push(new CreatureCard("normal creature", 10000, 50, true, 1, GoldCreature));
+	creatures_card.push(new CreatureCard("normal creature", 45000, 150, true, 2, StoneCreature));
 	creatures_card.push(new CreatureCard("normal creature", 45000, 400, true, 3));
 	creatures_card.push(new CreatureCard("normal creature", 3000, 200, true, 4));
 	creatures_card.push(new CreatureCard("normal creature", 3000, 225, true, 5));
@@ -74,8 +74,8 @@ CreatureCard.prototype.cooldowning = function () {
 }
 
 CreatureCard.prototype.startCooldown = function () {
-    this.lastFrame = now;
-    this.isCoolingDown = true;
+    // this.lastFrame = now;
+    // this.isCoolingDown = true;
     setCooldown(this.index);
 }
 
@@ -163,12 +163,19 @@ function unlock(index) {
 
 function setCooldown(index) {
     if (!creatures_card[index].locked) {
-        creature_cards = document.getElementsByClassName("creature-card");
-        creature_cards[index].children[2].style.display = "flex";
-        cooldown_div = document.getElementsByClassName("cooldown");
-        var time = cooldown_div[index].children[0];
-        // console.log(cooldown);
-        time.innerHTML = (creatures_card[index].cooldown / 1000);
+        // creature_cards = document.getElementsByClassName("creature-card");
+        var temp_div = document.getElementsByClassName("creature-card")[index].children[2];
+        temp_div.style.display = "flex";
+        temp_div.firstChild.addEventListener("webkitAnimationEnd", 
+        	function () {
+        		temp_div.style.display = "none";
+        	}
+
+        	);
+        // cooldown_div = document.getElementsByClassName("cooldown");
+        // var time = cooldown_div[index].children[0];
+        // // console.log(cooldown);
+        // time.innerHTML = (creatures_card[index].cooldown / 1000);
         // console.log(time.innerHTML);
      //    if (selected == 0) {
 	    // 	cd0 = setInterval(function(){cooldownTick(0)}, 1000);
@@ -194,46 +201,46 @@ function setCooldown(index) {
     }
 }
 
-function cooldownTick(index) {
-    cooldown_UI = document.getElementsByClassName("cooldown");
-    var cooldown = parseInt(cooldown_UI[index].children[0].innerHTML);
-    // console.log(time);
+// function cooldownTick(index) {
+//     cooldown_UI = document.getElementsByClassName("cooldown");
+//     var cooldown = parseInt(cooldown_UI[index].children[0].innerHTML);
+//     // console.log(time);
 
-    if(running){
-	    if (cooldown > 0) {
-	        cooldown--;
-	        cooldown_UI[index].children[0].innerHTML = cooldown;
-	    } else {
-	        var id = "creature_" + index + "_cd";
-	        creature_cards = document.getElementsByClassName("creature-card");
-	        creature_cards[index].children[2].style.display = "none";
+//     if(running){
+// 	    if (cooldown > 0) {
+// 	        cooldown--;
+// 	        cooldown_UI[index].children[0].innerHTML = cooldown;
+// 	    } else {
+// 	        var id = "creature_" + index + "_cd";
+// 	        creature_cards = document.getElementsByClassName("creature-card");
+// 	        creature_cards[index].children[2].style.display = "none";
 	        
-	        creatures_card[index].isCoolingDown = false;
+// 	        creatures_card[index].isCoolingDown = false;
 
-	        // if (index == 0) {
-	        //     clearTimeout(cd0);
-	        // } else if (index == 1) {
-	        //     clearTimeout(cd1);
-	        // } else if (index == 2) {
-	        //     clearTimeout(cd2);
-	        // } else if (index == 3) {
-	        //     clearTimeout(cd3);
-	        // } else if (index == 4) {
-	        //     clearTimeout(cd4);
-	        // } else if (index == 5) {
-	        //     clearTimeout(cd5);
-	        // } else if (index == 6) {
-	        //     clearTimeout(cd6);
-	        // } else if (index == 7) {
-	        //     clearTimeout(cd7);
-	        // } else if (index == 8) {
-	        //     clearTimeout(cd8);
-	        // } else if (index == 9) {
-	        //     clearTimeout(cd9);
-	        // }
-	    }
-    }
-}
+// 	        // if (index == 0) {
+// 	        //     clearTimeout(cd0);
+// 	        // } else if (index == 1) {
+// 	        //     clearTimeout(cd1);
+// 	        // } else if (index == 2) {
+// 	        //     clearTimeout(cd2);
+// 	        // } else if (index == 3) {
+// 	        //     clearTimeout(cd3);
+// 	        // } else if (index == 4) {
+// 	        //     clearTimeout(cd4);
+// 	        // } else if (index == 5) {
+// 	        //     clearTimeout(cd5);
+// 	        // } else if (index == 6) {
+// 	        //     clearTimeout(cd6);
+// 	        // } else if (index == 7) {
+// 	        //     clearTimeout(cd7);
+// 	        // } else if (index == 8) {
+// 	        //     clearTimeout(cd8);
+// 	        // } else if (index == 9) {
+// 	        //     clearTimeout(cd9);
+// 	        // }
+// 	    }
+//     }
+// }
 
 function kill() {
     kills++;
@@ -260,6 +267,15 @@ function goldLeafModify(leaves) {
 
 function openMenu(){
 	document.getElementById("menu").style.display = "flex";
+	pauseGame();
+}
+
+function closeMenu(){
+	document.getElementById("menu").style.display = "none";
+	unpauseGame();
+}
+
+function pauseGame(){
 	var cards = document.querySelectorAll(".creature-card > .cooldown > .cooldown-bar");
 	running = false;
 	oldTime = now;
@@ -269,9 +285,9 @@ function openMenu(){
 	}
 }
 
-function closeMenu(){
+
+function unpauseGame(){
 	var cards = document.querySelectorAll(".creature-card > .cooldown > .cooldown-bar");
-	document.getElementById("menu").style.display = "none";
 	running = true;
 	now = +new Date();
 	timeDilation = (now - oldTime);
@@ -301,10 +317,10 @@ function setup () {
 }
 
 
-function updateGUI () {
-	var len = creatures_card.length;
+// function updateGUI () {
+// 	var len = creatures_card.length;
 
-	for (var i = len - 1; i >= 0; i--) {
-		creatures_card[i].cooldowning();
-	}
-}
+// 	for (var i = len - 1; i >= 0; i--) {
+// 		creatures_card[i].cooldowning();
+// 	}
+// }

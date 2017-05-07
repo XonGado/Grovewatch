@@ -19,7 +19,7 @@ window.onload = function () {
     if(prmt){
 
         //unpausing
-        pauseGame();
+        unpauseGame();
 
         var monster1 = new NormalMonster(3, 0);
         lanes[0].monsters.push(monster1);
@@ -101,7 +101,7 @@ function gameSimulation(){
 
     // start of game loop
 
-    updateGUI();
+    // updateGUI();
 
     var i = 0;
     var len = lanes.length;
