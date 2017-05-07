@@ -298,10 +298,6 @@ function setup () {
 
 	document.getElementById("menu-btn").addEventListener("click", openMenu);
 	document.getElementById("resume").addEventListener("click", closeMenu);
-<<<<<<< HEAD
-	// document.getElementById("pause-btn").addEventListener("click", pauseGame);
-=======
-	document.getElementById("pause-btn").addEventListener("click", pauseGame);
 }
 
 
@@ -310,6 +306,5 @@ function updateGUI () {
 
 	for (var i = len - 1; i >= 0; i--) {
 		creatures_card[i].cooldowning();
-	} 
->>>>>>> d961ddbf7a85ad9f48bf6dd107f09ebbd6afd12c
+	}
 }

@@ -7,15 +7,14 @@ window.onload = function () {
 
     var prmt = confirm("Start game?");
 
-<<<<<<< HEAD
+
     // console.log(document.getElementsByClassName("creature bomb")[0]);
     // document.getElementsByClassName("creature bomb")[0].children[1].addEventListener("webkitAnimationEnd", function(){
     //     document.getElementsByClassName("creature bomb")[0].style.display = "none";
     // });
-=======
+
     //pausing
     pauseGame();
->>>>>>> d961ddbf7a85ad9f48bf6dd107f09ebbd6afd12c
 
     if(prmt){
 
