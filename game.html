@@ -37,19 +37,26 @@
 		</nav>
 		<div id="starting-interface" class="interface">
 			<div>
-				<h1 id="initialize-game">Start</h1>
-				<h2 id="countdown">3</h2>
+				<h1 id="initialize-game">Ready?</h1>
+				<h2 id="countdown"></h2>
 			</div>
 		</div>
 		<div id="ending-interface" class="interface">
 			<div>
-				<h2>You have made it to the leaderboard</h2>
+				<h1>GAME OVER</h1>
 				<h1>1000</h1>
-				<h2>What is your name?</h2>
-				<form id="cookie-form">
-					<input type="text" name="name" id="user-name"/>
-					<input type="submit" name="submit-cookie" id="submit-cookie"/>
-				</form>
+				<div id="leaderboard-form">
+					<h2>You have made it to the leaderboard! What is your name?</h2>
+					<form id="cookie-form">
+						<input type="text" name="name" id="user-name" placeholder="Type your name here" />
+						<input type="submit" name="submit-cookie" id="submit-cookie" value="Submit"/>
+					</form>
+				</div>
+				<div class="btn-group">
+					<button id="restart-btn">Restart</button>
+					<button id="leaderboard-btn">LeaderBoard</button>
+					<button id="return-btn">Main Menu</button>
+				</div>
 			</div>
 		</div>
 		<div class="flex">

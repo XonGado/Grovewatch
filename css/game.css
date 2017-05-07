@@ -91,7 +91,7 @@ nav .nav.right li{
 }
 
 .interface{
-	background-color: #111;
+	background-color: white;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -101,28 +101,90 @@ nav .nav.right li{
 	height: 100vh;
 	width: 100vw;
 	z-index: 1000;
+	transition: 2s;
 }
 
 #starting-interface h1{
-	color: white;
 	text-transform: uppercase;
-	letter-spacing: 0.1em;
+	/*letter-spacing: 0.05em;*/
 	font-weight: normal;
 	font-size: 10vw;
 	text-align: center;
 }
 
+#starting-interface h1:hover{
+	cursor: pointer;
+	color: #03A9F4;
+}
+
 #starting-interface h2{
 	font-size: 7.5vw;
-	color: white;
 	font-weight: normal;
 	text-align: center;
 }
 
 #ending-interface{
-	display: none;
+	top: -100vh;
+	display: flex;
 }
 
+#ending-interface h1:first-child{
+	text-align: center;
+	color: #E91E63;
+	font-weight: normal;
+	font-size: 7.5vw;
+}
+
+#ending-interface h1:nth-child(2){
+	text-align: center;
+	color: #03A9F4;
+	font-weight: normal;
+	font-size: 5vw;
+}
+
+#ending-interface h2{
+	font-size: 1em;
+	text-align: center;
+	font-weight: normal;
+	margin: 0.5em;
+}
+
+#ending-interface form{
+	width: 100%;
+}
+
+#ending-interface input[type="text"]{
+	border-radius: 4px;
+	padding: 16px 6px;
+	text-align: center;
+	font-size: 1em;
+	width: 100%;
+	border: 1px solid #DDD;
+}
+
+#ending-interface input[type="submit"],
+#ending-interface button{
+	border-radius: 4px;
+	border: 1px solid #DDD;
+	padding: 10px;
+	text-transform: uppercase;
+}
+
+#ending-interface input[type="submit"]{
+	display: block;
+	width: 50%;
+	margin: 10px auto;
+}
+
+#ending-interface .btn-group{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#ending-interface .btn-group button{
+	margin: 10px;
+}
 .game-content{
 	/*overflow: hidden;*/
 	max-height: 100vh;
