@@ -260,27 +260,25 @@ function goldLeafModify(leaves) {
 
 function openMenu(){
 	document.getElementById("menu").style.display = "flex";
+	var cards = document.querySelectorAll(".creature-card > .cooldown > .cooldown-bar");
+	running = false;
+	oldTime = now;
+	time = now;
+	for (var i = cards.length - 1; i >= 0; i--) {
+		cards[i].style.animationPlayState = "paused";
+	}
 }
 
 function closeMenu(){
+	var cards = document.querySelectorAll(".creature-card > .cooldown > .cooldown-bar");
 	document.getElementById("menu").style.display = "none";
-}
-
-function pauseGame(){
-	if(running){
-		running = false;
-		oldTime = now;
-		time = now;
-		// alert("Game paused");
-	}
-	else{
-		running = true;
-		now = +new Date();
-		timeDilation = (now - oldTime);
+	running = true;
+	now = +new Date();
+	timeDilation = (now - oldTime);
+	for (var i = cards.length - 1; i >= 0; i--) {
+		cards[i].style.animationPlayState = "running";
 	}
 }
-
-
 
 function setup () {
 	createCards();
@@ -300,6 +298,9 @@ function setup () {
 
 	document.getElementById("menu-btn").addEventListener("click", openMenu);
 	document.getElementById("resume").addEventListener("click", closeMenu);
+<<<<<<< HEAD
+	// document.getElementById("pause-btn").addEventListener("click", pauseGame);
+=======
 	document.getElementById("pause-btn").addEventListener("click", pauseGame);
 }
 
@@ -310,4 +311,5 @@ function updateGUI () {
 	for (var i = len - 1; i >= 0; i--) {
 		creatures_card[i].cooldowning();
 	} 
+>>>>>>> d961ddbf7a85ad9f48bf6dd107f09ebbd6afd12c
 }
