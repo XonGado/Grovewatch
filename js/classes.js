@@ -176,7 +176,7 @@ function GoldCreature(gridX, gridY){
 
 
     this.isReady = false;
-    this.produceInterval = 4;
+    this.produceInterval = 15;
     this.goldValue = 25;
 
 
