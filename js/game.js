@@ -46,15 +46,15 @@ window.onload = function () {
         // lanes[0].monsters.push(monster1);
 
 
-        var monster3 = new GiantMonster(9, 0);
-        lanes[0].monsters.push(monster3);
+        // var monster3 = new GiantMonster(9, 0);
+        // lanes[0].monsters.push(monster3);
 
-        var normalCreature3 = new PeasantCreature(0,0);
-        lanes[normalCreature3.gridY].creatures.push(normalCreature3);
+        // var normalCreature3 = new PeasantCreature(0,0);
+        // lanes[normalCreature3.gridY].creatures.push(normalCreature3);
 
 
-        var monster3_1 = new NormalMonster(5, 2);
-        lanes[monster3_1.gridY].monsters.push(monster3_1);
+        // var monster3_1 = new NormalMonster(5, 2);
+        // lanes[monster3_1.gridY].monsters.push(monster3_1);
 
         // var monster3_2 = new NormalMonster(4, 2);
         // lanes[monster3_2.gridY].monsters.push(monster3_2);
@@ -65,30 +65,30 @@ window.onload = function () {
         // var monster3_4 = new NormalMonster(2, 2);
         // lanes[monster3_4.gridY].monsters.push(monster3_4);
 
-        var monster3_5 = new NormalMonster(1, 2);
-        lanes[monster3_5.gridY].monsters.push(monster3_5);
+        // var monster3_5 = new NormalMonster(1, 2);
+        // lanes[monster3_5.gridY].monsters.push(monster3_5);
 
-        var monster3_6 = new NormalMonster(0, 2);
-        lanes[monster3_6.gridY].monsters.push(monster3_6);
-
-
-
-
-
-        var normalCreature3 = new PeasantCreature(4,2);
-        lanes[normalCreature3.gridY].creatures.push(normalCreature3);
+        // var monster3_6 = new NormalMonster(0, 2);
+        // lanes[monster3_6.gridY].monsters.push(monster3_6);
 
 
 
 
 
+        // var normalCreature3 = new PeasantCreature(4,2);
+        // lanes[normalCreature3.gridY].creatures.push(normalCreature3);
 
 
-        var monster4 = new NormalMonster(9, 4);
-        lanes[4].monsters.push(monster4);
 
-        var normalCreature4 = new PeasantCreature(8,4);
-        lanes[normalCreature4.gridY].creatures.push(normalCreature4);
+
+
+
+
+        // var monster4 = new NormalMonster(9, 4);
+        // lanes[4].monsters.push(monster4);
+
+        // var normalCreature4 = new PeasantCreature(8,4);
+        // lanes[normalCreature4.gridY].creatures.push(normalCreature4);
 
 
 
@@ -99,6 +99,8 @@ window.onload = function () {
         // running = true;
         timeDilation = 0;
         oldTime = 0;
+
+        monsterGenerator = new MonsterGenerator();
 
         gameSimulation();
 
@@ -119,6 +121,9 @@ function gameSimulation(){
     // start of game loop
 
     // updateGUI();
+
+    monsterGenerator.generate();
+
 
     var i = 0;
     var len = lanes.length;

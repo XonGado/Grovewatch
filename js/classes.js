@@ -176,8 +176,8 @@ function GoldCreature(gridX, gridY){
 
 
     this.isReady = false;
-    this.produceInterval = 15;
-    this.goldValue = 25;
+    this.produceInterval = 10;
+    this.goldValue = 50;
 
 
     if(gridX >= 0 && gridY >= 0){
@@ -425,7 +425,7 @@ function ImpMonster(gridX, gridY){
     Monster.call(this, gridX, gridY);
     this.div = divMonsterImp.cloneNode(true);
     this.life = 6;
-    this.speed = 0.005;
+    this.speed = 0.002;
     this.attackPeriod = 0.5;
     gridMonster.lastChild.remove();
     console.log(this.div);
@@ -442,9 +442,20 @@ function GiantMonster(gridX, gridY){
     this.life = 100;
     this.attackPeriod = 2;
     this.damage = 14;
+    this.width = 16;
     gridMonster.lastChild.remove();
     console.log(this.div);
     gridMonster.appendChild(this.div);
+}
+
+GiantMonster.prototype.inflictDamage = function (damage) {
+    this.life -= damage;
+
+    if(this.life <= 0){
+        this.kill();
+    }else{
+        // this.damageFeedback();
+    }
 }
 
 //Projectile #########################################################################
@@ -600,3 +611,103 @@ Lane.prototype.isGridXAvail = function (gridX){
     return true;
 
 }
+
+
+// WAVE GENERATOR
+function MonsterGenerator(){
+    this.lastFrame = now;
+    this.lastGenerate = now;
+    this.dt = 0;
+    this.interval = 20; //at first, add 5 sec per wave
+    this.monsterPoints = 1;
+    this.maxMonsterPoints = 1;
+    this.generateDiff = 0;
+}
+
+//run always
+MonsterGenerator.prototype.generate = function(argument){
+    this.dt = now - this.lastFrame;
+    if(running){
+        if(this.dt > 1000*this.interval && this.monsterPoints <= 0){
+            this.lastFrame = now;
+            this.interval += 5;
+            this.maxMonsterPoints += 5;
+            this.monsterPoints = this.maxMonsterPoints;
+            nextWave();
+            console.log("next wave");
+            console.log("Max Points" + this.monsterPoints);
+        }
+        else{
+            this.generateDiff = now - this.lastGenerate;
+            if(this.monsterPoints > 0 && this.generateDiff > 256){
+
+                //1 to 100
+                var random = (Math.random() * 100) + 1;
+
+                //Lanes 0 - 4
+                var randomGridY = Math.floor((Math.random() * 4) + 1);
+
+                //Monster spawn will be 1.5 tile wide
+                var randomXOffset = Math.floor((Math.random() * 3)); 
+
+                console.log("random = " + random);
+
+                console.log("randomY = " + randomGridY);
+
+                console.log("randomX = " + randomXOffset);
+
+                if(random >= 0 && random < 30){
+                    //Normal monster
+                    if(this.monsterPoints >= 1){
+                        this.monsterPoints -= 1;
+                        var monsterRandom = new NormalMonster(10 + randomXOffset, randomGridY);
+                        lanes[monsterRandom.gridY].monsters.push(monsterRandom);
+                        this.lastGenerate = now;
+                    }
+                }
+                else if(random >= 30 && random < 55){
+                    //Leather monster
+                    if(this.monsterPoints >= 3){
+                        this.monsterPoints -= 3;
+                        var monsterRandom = new LeatherMonster(10 + randomXOffset, randomGridY);
+                        lanes[monsterRandom.gridY].monsters.push(monsterRandom);
+                        this.lastGenerate = now;
+                    }
+                }
+
+                else if(random >= 55 && random < 80){
+                    //Metal monster
+                    if(this.monsterPoints >= 5){
+                        this.monsterPoints -= 5;
+                        var monsterRandom = new MetalMonster(10 + randomXOffset, randomGridY);
+                        lanes[monsterRandom.gridY].monsters.push(monsterRandom);
+                        this.lastGenerate = now;
+                    }
+                }
+
+                else if(random >= 80 && random < 90){
+                    //Imp monster
+                    if(this.monsterPoints >= 1){
+                        this.monsterPoints -= 1;
+                        var monsterRandom = new ImpMonster(10 + randomXOffset, randomGridY);
+                        lanes[monsterRandom.gridY].monsters.push(monsterRandom);
+                        this.lastGenerate = now;
+                    }
+                }
+
+                else if(random >= 90 && random < 100){
+                    //Giant monster
+                    if(this.monsterPoints >= 8){
+                        this.monsterPoints -= 8;
+                        var monsterRandom = new GiantMonster(10 + randomXOffset, randomGridY);
+                        lanes[monsterRandom.gridY].monsters.push(monsterRandom);
+                        this.lastGenerate = now;
+                    }
+                }
+
+
+            }
+        }
+    }
+};
+
