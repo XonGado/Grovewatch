@@ -8,6 +8,11 @@
 	transform-origin: 50% 9.2vw;
 }
 
+.monster.franken{
+	transform: scale(2,2) translate(0,5%);
+	transform-origin: 50% 9.2vw;
+}
+
 .monster.damaged{
 	-webkit-animation: m_damaged 0.2s ease 1;
 	-o-animation: m_damaged 0.2s ease 1;
@@ -195,6 +200,51 @@
 	transform-origin: 35% 6.1vw;
 }
 
+.monster.imp .body{
+	-webkit-animation: slugy_imp 1s ease infinite;
+	-o-animation: slugy_imp 1s ease infinite;
+	animation: slugy_imp 1s ease infinite;
+	transform-origin: 32% 9.2vw;
+}
+
+.monster.imp .shadow img{
+	-webkit-animation: backforth_imp 1s ease infinite;
+	-o-animation: backforth_imp 1s ease infinite;
+	animation: backforth_imp 1s ease infinite;
+	transform-origin: 32% 9.2vw;
+}
+
+.monster.imp .left-ear img{
+	transform-origin: 17% 5.6vw;
+}
+
+.monster.imp .right-ear img{
+	transform-origin: 48% 5.6vw;
+}
+
+.monster.imp .nose{
+	transform-origin: 32% 7vw;
+}
+
+.monster.imp .eyes img{
+	transform-origin: 22% 6.3vw;
+}
+
+.monster.imp .body{
+	-webkit-animation: slugy_imp 1s ease infinite;
+	-o-animation: slugy_imp 1s ease infinite;
+	animation: slugy_imp 1s ease infinite;
+	transform-origin: 32% 9.2vw;
+}
+
+.monster.imp .shadow img{
+	-webkit-animation: backforth_imp 1s ease infinite;
+	-o-animation: backforth_imp 1s ease infinite;
+	animation: backforth_imp 1s ease infinite;
+	transform-origin: 32% 9.2vw;
+}
+
+
 @keyframes bouncy{
 	0%{
 		transform: scale(1,0.9) skewX(-3deg);
@@ -363,6 +413,30 @@
 	}
 	50%{
 		transform: translate(8%,0);
+	}
+	100%{
+		transform: translate(0,0);
+	}
+}
+
+@keyframes slugy_imp{
+	0%{
+		transform: skewX(1deg) translate(0,0);
+	}
+	50%{
+		transform: skewX(-1deg) translate(2%,0);
+	}
+	100%{
+		transform: skewX(1deg) translate(0,0);
+	}
+}
+
+@keyframes backforth_imp{
+	0%{
+		transform: translate(0,0);
+	}
+	50%{
+		transform: translate(2%,0);
 	}
 	100%{
 		transform: translate(0,0);
