@@ -64,7 +64,8 @@
 	transform-origin: 68% 40%;
 }
 
-.creature .eyes img{
+.creature .eyes img,
+.monster .eyes img{
 	-webkit-animation: blink 3s ease infinite;
 	-o-animation: blink 3s ease infinite;
 	animation: blink 3s ease infinite;
@@ -156,6 +157,42 @@
 
 .creature.twin .twin-head .eyes img{
 	transform-origin: 30% 49%;
+}
+
+.monster .body{
+	-webkit-animation: slugy 2s ease infinite;
+	-o-animation: slugy 2s ease infinite;
+	animation: slugy 2s ease infinite;
+	transform-origin: 50% 9.2vw;
+}
+
+.monster .shadow img{
+	-webkit-animation: backforth 2s ease infinite;
+	-o-animation: backforth 2s ease infinite;
+	animation: backforth 2s ease infinite;
+	transform-origin: 50% 9.2vw;
+}
+
+.monster .left-ear img,
+.monster .right-ear img{
+	-webkit-animation: shake 3s ease infinite;
+	-o-animation: shake 3s ease infinite;
+	animation: shake 3s ease infinite;
+}
+
+.monster .left-ear img{
+	transform-origin: 25% 4.2vw;
+}
+
+.monster .right-ear img{
+	transform-origin: 71% 4.2vw;
+}
+
+.monster .nose{
+	-webkit-animation: snort 3s ease 1.2s infinite;
+	-o-animation: snort 3s ease 1.2s infinite;
+	animation: snort 3s ease 1.2s infinite;
+	transform-origin: 35% 6.1vw;
 }
 
 @keyframes bouncy{
@@ -307,3 +344,61 @@
 	100%{
 	}
 }
+
+@keyframes slugy{
+	0%{
+		transform: skewX(2deg) translate(0,0);
+	}
+	50%{
+		transform: skewX(-2deg) translate(8%,0);
+	}
+	100%{
+		transform: skewX(2deg) translate(0,0);
+	}
+}
+
+@keyframes backforth{
+	0%{
+		transform: translate(0,0);
+	}
+	50%{
+		transform: translate(8%,0);
+	}
+	100%{
+		transform: translate(0,0);
+	}
+}
+
+@keyframes shake{
+	0%,90%{transform: rotate(0deg);}
+	92%{transform: rotate(5deg);}
+	95%{transform: rotate(-5deg);}
+	97%{transform: rotate(5deg);}
+	100%{transform: rotate(0deg);}
+}
+
+@keyframes snort{
+	0%,90%{transform: translate(0,0) scale(1,1);}
+	92%{transform: translate(0,-1%) scale(1.2,1.2);}
+	95%{transform: translate(0,0) scale(1,1);}
+	97%{transform: translate(0,-1%) scale(1.2,1.2);}
+	100%{transform: translate(0,0) scale(1,1);}
+}
+
+/*.skate{
+	position: absolute;
+	right: 0;
+	top: 0;
+	-webkit-animation: skate 80s linear infinite;
+	-o-animation: skate 80s linear infinite;
+	animation: skate 80s linear infinite;
+}
+
+@keyframes skate{
+	0%{
+		right: 0;
+	}
+	100%{
+		right: 80vw;
+	}
+}*/

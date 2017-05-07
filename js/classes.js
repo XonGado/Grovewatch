@@ -116,6 +116,7 @@ function Monster(gridX, gridY, width) {
     if(gridX >= 0 && gridY >= 0){
         gridMonster.appendChild(this.div);
     }
+
 };
 
 Monster.prototype.startAttack = function () {
