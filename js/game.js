@@ -1,102 +1,44 @@
-
-lanes = [];
-
-
-//GAMEPLAY
-time = 0;
-now = 0;
-running = true;
-timeDilation = 0;
-oldTime = 0;
-
 for (var i = 0; i < 5; i++) {
     lanes.push(new Lane([],[],[]));
 }
-
 window.onload = function () {
     
     setup();    
 
-
-
-
     var prmt = confirm("Start game?");
 
     if(prmt){
-        // testCreaturesAttack(2,5);
 
-        var normalCreature1 = new PeasantCreature(1, 0);
-        normalCreature1.show();
-        normalCreature1.startAttack();
-        lanes[0].creatures.push(normalCreature1);
-
-        // var normalCreature2 = new PeasantCreature(8, 0);
-        // normalCreature2.show();
-        // normalCreature2.startAttack();
-        // lanes[0].creatures.push(normalCreature2);
+        // var monster1 = new NormalMonster(3, 0);
+        // lanes[0].monsters.push(monster1);
 
 
-    var monster1 = new NormalMonster(2, 2);
-    monster1.show();
+        var monster3 = new NormalMonster(9, 0);
+        lanes[0].monsters.push(monster3);
 
-        // testMonstersAttack(9,5);
-        var monster1 = new NormalMonster(10, 0);
-        lanes[0].monsters.push(monster1);
-        lanes[0].monsters[0].show();
+        var normalCreature3 = new PeasantCreature(0,0);
+        lanes[normalCreature3.gridY].creatures.push(normalCreature3);
 
 
-        setTimeout(function  () {
-            // lanes[0].monsters.splice(0, 1);
+        var monster3 = new NormalMonster(5, 2);
+        lanes[2].monsters.push(monster3);
 
-            setTimeout(function  () {
-                var monster2 = new NormalMonster(10, 0);
-                lanes[0].monsters.push(monster2);
-                lanes[0].monsters[0].show();
-            }
-            , 4000);
+        var normalCreature3 = new PeasantCreature(4,2);
+        lanes[normalCreature3.gridY].creatures.push(normalCreature3);
 
+        var monster4 = new NormalMonster(7, 4);
+        lanes[4].monsters.push(monster4);
 
-        }
-            , 4000);
+        var normalCreature4 = new PeasantCreature(8,4);
+        lanes[normalCreature4.gridY].creatures.push(normalCreature4);
+
     }
 
 
 
 
-
-
-
-
-
-
     // SETUP FOR ANIMATION AND GAME LOOP INTERVAL
-
     gameSimulation();
-
-
-
-
-    // setInterval(
-    //     function () {
-    //         document.querySelectorAll("#creature-container .creature")[0].className = "creature";
-    //         setTimeout(
-    //             function(){
-    //                 document.querySelectorAll("#creature-container .creature")[0].className = "creature damaged";
-    //             }
-    //         ,50);
-    //     }
-    // ,1000);
-
-    // setInterval(
-    //     function () {
-    //         document.querySelectorAll("#monster-container .monster")[0].className = "monster";
-    //         setTimeout(
-    //             function(){
-    //                 document.querySelectorAll("#monster-container .monster")[0].className = "monster damaged";
-    //             }
-    //         ,50);
-    //     }
-    // ,1000);
 }
 
 
@@ -110,11 +52,8 @@ function gameSimulation(){
     }
 
 
-    console.log(timeDilation);
-
     // start of game loop
 
-    console.log("running = " + running);
 
     var i = 0;
     var len = lanes.length;
@@ -123,12 +62,14 @@ function gameSimulation(){
         // For creatures
         var j = 0;
         var creature;
-        len2 = lane.creatures.length;
-        var nearestMonster = lane.getNearestMonster();
-        console.log(nearestMonster);
-        for (j = 0; j < len2; j++) {
+        len3 = lane.creatures.length;
+
+        var hasMonster = lane.hasMonster();
+        // console.log(nearestMonster);
+        for (j = 0; j < len3; j++) {
             var creature = lane.creatures[j];
-            if(nearestMonster){
+
+            if(hasMonster){
                 //therefore there is a monster
                 creature.isAttacking = true;
             }
@@ -140,9 +81,9 @@ function gameSimulation(){
         }
 
         // For monsters
-        len2 = lane.monsters.length;
+        len3 = lane.monsters.length;
         var monster;
-        for (j = 0; j < len2; j++) {
+        for (j = 0; j < len3; j++) {
             monster = lane.monsters[j];
             if (monster.state == "alive") {
                 monster.move();
@@ -151,7 +92,7 @@ function gameSimulation(){
         }
 
 
-        for (j = len2 - 1; j >= 0; j--) {
+        for (j = len3 - 1; j >= 0; j--) {
             monster = lane.monsters[j];
             if (monster.state == "dead") {
                 lane.killMonster(j);
@@ -159,15 +100,15 @@ function gameSimulation(){
         }
 
         // For projectiles
-
-        len2 = lane.peasantProjectiles.length;
+        var nearestMonster = lane.getNearestMonster();
+        len3 = lane.peasantProjectiles.length;
         var projectile;
-        for (j = len2 - 1; j >= 0; j--) {
+        for (j = len3 - 1; j >= 0; j--) {
             // console.log(lane.peasantProjectiles);
             projectile = lane.peasantProjectiles[j];
             if (projectile.state == "alive") {
 
-                if(nearestMonster){
+                if(hasMonster){
                     if(projectile.x >= nearestMonster.x){
                         nearestMonster.inflictDamage(projectile.damage);
                         lane.killPeasantProjectile(j);
@@ -179,11 +120,13 @@ function gameSimulation(){
 
                 projectile.move();
                 projectile.show();
-                console.log("projectile moving");
             }
         }
-        len2 = lane.peasantProjectiles.length;
-        for (j = len2 - 1; j >= 0; j--) {
+
+
+        
+        len3 = lane.peasantProjectiles.length;
+        for (j = len3 - 1; j >= 0; j--) {
             projectile = lane.peasantProjectiles[j];
             if (projectile.state == "dead") {
                 lane.killPeasantProjectile(j);

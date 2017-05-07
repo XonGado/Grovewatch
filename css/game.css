@@ -3,7 +3,7 @@
 	margin: 0;
 	image-rendering: auto;
 	text-rendering: optimizeSpeed;
-	color-rendering: optimizeSpeed;
+	/*color-rendering: auto;*/
 	shape-rendering: optimizeSpeed;
 }
 body{

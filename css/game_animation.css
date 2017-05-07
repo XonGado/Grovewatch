@@ -14,9 +14,9 @@
 }
 
 .monster.damaged{
-	-webkit-animation: m_damaged 0.2s ease infinite;
-	-o-animation: m_damaged 0.2s ease infinite;
-	animation: m_damaged 0.2s ease infinite;
+	-webkit-animation: m_damaged 0.2s ease 1;
+	-o-animation: m_damaged 0.2s ease 1;
+	animation: m_damaged 0.2s ease 1;
 }
 
 .creature.damaged{
@@ -378,6 +378,7 @@
 	}
 	50%{
 		filter: hue-rotate(-30deg) saturate(200%) brightness(110%);
+	
 	}
 	100%{
 		filter: hue-rotate(0deg);

@@ -1,3 +1,17 @@
+//GAMEPLAY
+
+lanes = [];
+
+
+time = 0;
+now = +new Date();
+running = true;
+timeDilation = 0;
+oldTime = 0;
+
+
+
+//UI
 var cd1, cd2, cd3, cd4, cd5, cd6, cd7, cd8, cd9;
 var gold_leaves = 1000;
 var waves = 0;
@@ -223,9 +237,7 @@ function pauseGame(){
 	}
 }
 
-function setupPauseGame(){
-	document.getElementById("pause-btn").addEventListener("click", pauseGame);
-}
+
 
 function setup () {
 	createCards();
@@ -245,5 +257,5 @@ function setup () {
 
 	document.getElementById("menu-btn").addEventListener("click", openMenu);
 	document.getElementById("resume").addEventListener("click", closeMenu);
-	setupPauseGame();
+	document.getElementById("pause-btn").addEventListener("click", pauseGame);
 }
