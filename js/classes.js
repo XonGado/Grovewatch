@@ -13,8 +13,8 @@ function Creature(gridX, gridY) {
     // positioning, display
     this.gridX = gridX;
     this.gridY = gridY;
-    this.x = gridX * 8;
-    this.y = gridY * 9.2;
+    this.x = (gridX * 8) + 2.5;
+    this.y = (gridY * 9.2);
     this.width = 8;
 
     //Life
@@ -26,11 +26,8 @@ function Creature(gridX, gridY) {
     this.dt = 1;
     this.attackPeriod = 1; //seconds
 
-    
-
-
-
-
+    this.isAttacking = false;
+    this.lastFrame = now;
 
 
 
@@ -54,7 +51,18 @@ Creature.prototype.show = function () {
 };
 
 
+Creature.prototype.attack = function () {
 
+
+};
+
+Creature.prototype.startAttack = function () {
+
+};
+
+Creature.prototype.stopAttack = function () {
+
+};
 
 Creature.prototype.inflictDamage = function (damage) {
     this.life -= damage;
@@ -81,19 +89,6 @@ Creature.prototype.kill = function(){
 Creature.prototype.unshow = function () {
     this.div.style.display = "none";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -128,6 +123,79 @@ PeasantCreature.prototype.attack = function () {
 };
 
 
+StoneCreature.prototype = new Creature();
+StoneCreature.prototype.constructor = StoneCreature;
+
+var divCreatureStone = document.getElementById("hidden-creatures").getElementsByClassName("creature")[2];
+
+function StoneCreature(gridX, gridY){
+    Creature.call(this, gridX, gridY);
+    this.life = 30;
+    this.div = divCreatureStone.cloneNode(true);
+
+    gridCreature.lastChild.remove();
+
+    this.div.style.left = this.x + "vw";
+    this.div.style.top = this.y + "vw";
+
+    if(gridX >= 0 && gridY >= 0){
+        console.log(this.div);
+        gridCreature.appendChild(this.div);
+    }
+}
+
+StoneCreature.prototype.damageFeedback = function () {
+    this.div.className = "creature stone";
+    that = this;
+    setTimeout( function () {
+        that.div.className = "creature stone damaged";
+    }, 50);
+}
+
+
+
+
+
+
+
+
+GoldCreature.prototype = new Creature();
+GoldCreature.prototype.constructor = GoldCreature;
+
+var divCreatureGold = document.getElementById("hidden-creatures").getElementsByClassName("creature")[3];
+
+function GoldCreature(gridX, gridY){
+    Creature.call(this, gridX, gridY);
+    this.life = 3;
+    this.div = divCreatureGold.cloneNode(true);
+
+    gridCreature.lastChild.remove();
+
+    this.div.style.left = this.x + "vw";
+    this.div.style.top = this.y + "vw";
+
+    if(gridX >= 0 && gridY >= 0){
+        console.log(this.div);
+        gridCreature.appendChild(this.div);
+    }
+}
+
+GoldCreature.prototype.damageFeedback = function () {
+    // this.div.className = "creature sunflower";
+    // that = this;
+    // setTimeout( function () {
+    //     that.div.className = "creature sunflower damaged";
+    // }, 50);
+}
+
+
+
+
+
+
+
+
+
 
 // Monsters #########################################################################################
 // You can use float for gridX and gridY
@@ -138,8 +206,8 @@ function Monster(gridX, gridY) {
     //For display and positioning
     this.gridX = gridX;
     this.gridY = gridY;
-    this.x = gridX*8;
-    this.y = gridY*9.2;
+    this.x = (gridX*8) + 2.5;
+    this.y = (gridY*9.2);
     this.width = 8;
 
 
@@ -385,4 +453,17 @@ Lane.prototype.killCreature = function(index){
     this.creatures.splice(index, 1);
 }
 
+Lane.prototype.isGridXAvail = function (gridX){
+    var creatures = this.creatures;
+    var len = creatures.length;
 
+    for (var i = len - 1; i >= 0; i--) {
+        if(creatures[i].gridX == gridX){
+            return false;
+        }
+    }
+
+
+    return true;
+
+}
