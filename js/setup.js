@@ -11,7 +11,7 @@ function createCards(){
 
 	creatures_card.push(new CreatureCard("normal creature", 3000, 25, true));
 	creatures_card.push(new CreatureCard("normal creature", 3000, 50, true));
-	creatures_card.push(new CreatureCard("normal creature", 3000, 100, true));
+	creatures_card.push(new CreatureCard("normal creature", 30000, 100, true));
 	creatures_card.push(new CreatureCard("normal creature", 3000, 150, true));
 	creatures_card.push(new CreatureCard("normal creature", 3000, 200, true));
 	creatures_card.push(new CreatureCard("normal creature", 3000, 225, true));
@@ -141,39 +141,40 @@ function setCooldown(index) {
 }
 
 function cooldownTick(index) {
-    cooldown = document.getElementsByClassName("cooldown");
-    var time = parseInt(cooldown[index].children[0].innerHTML);
+    cooldown_UI = document.getElementsByClassName("cooldown");
+    var cooldown = parseInt(cooldown_UI[index].children[0].innerHTML);
     // console.log(time);
 
-    if (time) {
-        time--;
-        time.innerHTML = time;
-        cooldown[index].children[0].innerHTML = time;
-    } else {
-        var id = "creature_" + index + "_cd";
-        creature_cards = document.getElementsByClassName("creature-card");
-        creature_cards[index].children[2].style.display = "none";
-        if (index == 0) {
-            clearTimeout(cd0);
-        } else if (index == 1) {
-            clearTimeout(cd1);
-        } else if (index == 2) {
-            clearTimeout(cd2);
-        } else if (index == 3) {
-            clearTimeout(cd3);
-        } else if (index == 4) {
-            clearTimeout(cd4);
-        } else if (index == 5) {
-            clearTimeout(cd5);
-        } else if (index == 6) {
-            clearTimeout(cd6);
-        } else if (index == 7) {
-            clearTimeout(cd7);
-        } else if (index == 8) {
-            clearTimeout(cd8);
-        } else if (index == 9) {
-            clearTimeout(cd9);
-        }
+    if(running){
+	    if (cooldown > 0) {
+	        cooldown--;
+	        cooldown_UI[index].children[0].innerHTML = cooldown;
+	    } else {
+	        var id = "creature_" + index + "_cd";
+	        creature_cards = document.getElementsByClassName("creature-card");
+	        creature_cards[index].children[2].style.display = "none";
+	        if (index == 0) {
+	            clearTimeout(cd0);
+	        } else if (index == 1) {
+	            clearTimeout(cd1);
+	        } else if (index == 2) {
+	            clearTimeout(cd2);
+	        } else if (index == 3) {
+	            clearTimeout(cd3);
+	        } else if (index == 4) {
+	            clearTimeout(cd4);
+	        } else if (index == 5) {
+	            clearTimeout(cd5);
+	        } else if (index == 6) {
+	            clearTimeout(cd6);
+	        } else if (index == 7) {
+	            clearTimeout(cd7);
+	        } else if (index == 8) {
+	            clearTimeout(cd8);
+	        } else if (index == 9) {
+	            clearTimeout(cd9);
+	        }
+	    }
     }
 }
 
@@ -208,3 +209,41 @@ function closeMenu(){
 	document.getElementById("menu").style.display = "none";
 }
 
+function pauseGame(){
+	if(running){
+		running = false;
+		oldTime = now;
+		time = now;
+		// alert("Game paused");
+	}
+	else{
+		running = true;
+		now = +new Date();
+		timeDilation = (now - oldTime);
+	}
+}
+
+function setupPauseGame(){
+	document.getElementById("pause-btn").addEventListener("click", pauseGame);
+}
+
+function setup () {
+	createCards();
+	goldLeafModify(0);
+    setUpCards();
+
+    var creature_card_btns = document.getElementsByClassName("creature-btn");
+	for (var i = creature_card_btns.length - 1; i >= 0; i--) {
+		createButtonListeners(i);
+	}
+
+	var tiles = document.getElementsByClassName("tile");
+
+	for (var i = tiles.length - 1; i >= 0; i--) {
+		createTileListeners(i);
+	}
+
+	document.getElementById("menu-btn").addEventListener("click", openMenu);
+	document.getElementById("resume").addEventListener("click", closeMenu);
+	setupPauseGame();
+}
