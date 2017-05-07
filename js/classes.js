@@ -8,6 +8,7 @@
 
 // Creatures ######################################################################################
 var divCreature0 = document.getElementById("hidden-creatures").getElementsByClassName("creature")[0];
+var gridCreature = document.getElementById("creature-container");
 function Creature(gridX, gridY, width) {
     // positioning, display
     this.gridX = gridX;
@@ -15,7 +16,6 @@ function Creature(gridX, gridY, width) {
     this.x = gridX * 8;
     this.y = gridY * 9.2;
     this.width = 8;
-    this.div = divCreature0.cloneNode(true);
 
     //Life
     this.life = 3;
@@ -25,16 +25,23 @@ function Creature(gridX, gridY, width) {
     this.dt = 1;
     this.attackPeriod = 1; //seconds
 
+    this.div = divCreature0.cloneNode(true);
+    
+    this.div.style.left = this.x + "vw";
+    this.div.style.top = this.y + "vw";
 
-
+    if(gridX >= 0 && gridY >= 0){
+        console.log(this.div);
+        gridCreature.appendChild(this.div);
+    }
 };
-var gridCreature = document.getElementById("creature-container");
+
 Creature.prototype.show = function () {
 //    var grid = document.getElementsByClassName("grid")[0];
   
     this.div.style.left = this.x + "vw";
     this.div.style.top = this.y + "vw";
-    gridCreature.appendChild(this.div);
+
 };
 
 PeasantCreature.prototype = new Creature();
@@ -60,25 +67,17 @@ PeasantCreature.prototype.stopAttack = function () {
 
 PeasantCreature.prototype.attack = function () {
     this.dt = now - this.lastFrame;
-    // console.log("dt: " + this.dt);
-    // console.log("isAttackNow: " + this.isAttackNow)
-    // console.log("isAttacking: " + this.isAttacking);
     if(this.dt > 1000*this.attackPeriod && this.isAttacking){
         this.lastFrame = now;
         var projectile = new Projectile(this.gridX,this.gridY);
         lanes[this.gridY].peasantProjectiles.push(projectile);
-        // console.log(lanes[this.gridY].peasantProjectiles);
-        // console.log("Attack!");
-        // this.attackNow = false;
     }
-    // console.log("After Attack;");
 };
 
 // Monsters #########################################################################################
 // You can use float for gridX and gridY
 var divMonster0 = document.getElementById("hidden-monsters").getElementsByClassName("monster")[0];
-
-
+var gridMonster = document.getElementById("monster-container");
 function Monster(gridX, gridY, width) {
     
     //For display and positioning
@@ -108,12 +107,15 @@ function Monster(gridX, gridY, width) {
     //Attacking
     this.isAttacking = false;
     this.damage = 1;
-    this.attackPeriod = 1; //1 seco
+    this.attackPeriod = 1; //1 second
 
 
 
     this.div = divMonster0.cloneNode(true);
-    console.log('this.div', this.div);
+
+    if(gridX >= 0 && gridY >= 0){
+        gridMonster.appendChild(this.div);
+    }
 };
 
 Monster.prototype.startAttack = function () {
@@ -138,11 +140,10 @@ Monster.prototype.attack = function () {
     // }
 };
 
-var gridMonster = document.getElementById("monster-container");
 Monster.prototype.show = function () {
     this.div.style.left = this.x + "vw";
     this.div.style.top = this.y + "vw";
-    gridMonster.appendChild(this.div);
+
 };
 
 Monster.prototype.move = function(){
@@ -174,12 +175,11 @@ Monster.prototype.inflictDamage = function (damage) {
 
 Monster.prototype.damageFeedback = function () {
     this.div.className = "monster";
-    setTimeout(
-        function () {
-            this.div.className = "monster damaged";
-        }
-
-        ,50);
+    that = this;
+    setTimeout( function () {
+        that.div.className = "monster damaged";
+    }, 50);
+    
 }
 
 NormalMonster.prototype = new Monster();
@@ -265,6 +265,14 @@ Lane.prototype.getNearestMonster = function(){
 
 
     return nearest;
+}
+
+
+Lane.prototype.hasMonster = function(){
+    if(this.monsters.length > 0){
+        return true;
+    }
+    return false;
 }
 
 Lane.prototype.killPeasantProjectile = function(index){

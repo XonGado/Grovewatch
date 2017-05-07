@@ -237,9 +237,7 @@ function pauseGame(){
 	}
 }
 
-function setupPauseGame(){
-	document.getElementById("pause-btn").addEventListener("click", pauseGame);
-}
+
 
 function setup () {
 	createCards();
@@ -259,5 +257,5 @@ function setup () {
 
 	document.getElementById("menu-btn").addEventListener("click", openMenu);
 	document.getElementById("resume").addEventListener("click", closeMenu);
-	setupPauseGame();
+	document.getElementById("pause-btn").addEventListener("click", pauseGame);
 }
