@@ -8,6 +8,18 @@
 	transform-origin: 50% 9.2vw;
 }
 
+.monster.damaged{
+	-webkit-animation: m_damaged 0.2s ease 1;
+	-o-animation: m_damaged 0.2s ease 1;
+	animation: m_damaged 0.2s ease 1;
+}
+
+.creature.damaged{
+	-webkit-animation: c_damaged 0.2s ease 1;
+	-o-animation: c_damaged 0.2s ease 1;
+	animation: c_damaged 0.2s ease 1;
+}
+
 .creature .body,
 .creature .shadow{
 	/*transform: translate(-15%, -30%);*/
@@ -270,5 +282,27 @@
 	100%{
 		transform: scale(1.1,1.1);
 		filter: brightness(115%) hue-rotate(15deg);
+	}
+}
+
+@keyframes m_damaged{
+	0%{
+		filter: hue-rotate(0deg);
+	}
+	50%{
+		filter: hue-rotate(-30deg) saturate(200%) brightness(110%);
+	}
+	100%{
+		filter: hue-rotate(0deg);
+	}
+}
+
+@keyframes c_damaged{
+	0%{
+	}
+	50%{
+		filter: saturate(120%) brightness(110%);
+	}
+	100%{
 	}
 }
