@@ -33,6 +33,37 @@ window.onload = function () {
     //     document.getElementById("sunny").children[1].children[0].children[0].removeEventListener("webkitAnimationEnd", testingSun);
     // }
 
+    // var start_interface = document.getElementById("starting-interface");
+    // start_interface.style.display = "flex";
+    // var start = document.getElementById("initialize-game");
+    // var countdown = document.getElementById("countdown");
+
+    // start.addEventListener("click", startGame);
+
+    // function startGame(){
+    //     start.style.display = "none";
+    //     countdown.style.color = "#03A9F4";
+    //     countdown.innerHTML = "3";
+    //     setTimeout(function(){
+    //         countdown.style.color = "#CDDC39";
+    //         countdown.innerHTML = "2";
+    //     }, 1000);
+    //     setTimeout(function(){
+    //         countdown.style.color = "#FFC107";
+    //         countdown.innerHTML = "1";
+    //     }, 2000);
+    //     setTimeout(function(){
+    //         countdown.style.color = "#E91E63";
+    //         countdown.innerHTML = "SUMMON!";
+    //     }, 3000);
+    //     setTimeout(function(){
+    //         start_interface.style.top = "-100vh";
+    //     }, 3500);
+    // }
+
+    // var end_interface = document.getElementById("ending-interface");
+    // end_interface.style.top = "0";
+
     //pausing
     pauseGame();
 
