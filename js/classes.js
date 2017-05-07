@@ -22,7 +22,6 @@ function Creature(gridX, gridY) {
     this.state = "alive";
 
     //Time
-    this.lastFrame = now;
     this.dt = 1;
     this.attackPeriod = 1; //seconds
 
@@ -99,6 +98,7 @@ function PeasantCreature(gridX, gridY){
     Creature.call(this, gridX, gridY);
     this.attackContext;
     this.isAttacking = false;
+    this.attackPeriod = 2; //seconds
     // this.isAttackNow = false;
 }
 
@@ -174,6 +174,12 @@ function GoldCreature(gridX, gridY){
     this.div.style.left = this.x + "vw";
     this.div.style.top = this.y + "vw";
 
+
+    this.isReady = false;
+    this.produceInterval = 15;
+    this.goldValue = 25;
+
+
     if(gridX >= 0 && gridY >= 0){
         console.log(this.div);
         gridCreature.appendChild(this.div);
@@ -188,12 +194,51 @@ GoldCreature.prototype.damageFeedback = function () {
     // }, 50);
 }
 
+GoldCreature.prototype.pickGold = function () {
+    if(this.isReady){
+        console.log("picking gold");
+        this.lastFrame = now;
+        this.isReady = false;
+        this.div.className = "creature sunflower picked";
+        var x = this.removeGold.bind(this);
+        // this.div.children[1].children[0].children[0].addEventListener("webkitAnimationEnd", x);
+        this.div.children[1].children[0].children[0].onwebkitanimationend = x;
+        // Toolbox.addListener(window, 'webkitAnimationEnd', x);
+    }
+}
 
 
+GoldCreature.prototype.producing = function () {
+    this.dt = now - this.lastFrame;
+    if(this.dt > 1000*this.produceInterval && !this.isReady){
+        console.log("ready to harvest");
+        this.lastFrame = now;
+        this.isReady = true;
+        this.produceGold();
+    }
+}
 
 
+GoldCreature.prototype.produceGold = function () {
+    console.log("producing gold");
+    this.div.children[1].children[0].children[0].style.display = "block";
+    this.div.className = "creature sunflower grow";
+}
 
+GoldCreature.prototype.removeGold = function () {
+    console.log(this);
 
+    console.log("removing gold");
+    console.log(this.goldValue);
+
+    goldLeafModify(this.goldValue);
+    this.div.children[1].children[0].children[0].style.display = "none";
+    
+    var x = this.removeGold.bind(this);
+    // this.div.children[1].children[0].children[0].removeEventListener("webkitAnimationEnd", x);
+    this.div.children[1].children[0].children[0].onwebkitanimationend = null;
+    // Toolbox.addListener(window, 'webkitAnimationEnd', x);
+}
 
 
 
@@ -305,6 +350,10 @@ Monster.prototype.damageFeedback = function () {
     
 }
 
+
+
+
+
 NormalMonster.prototype = new Monster();
 NormalMonster.prototype.constructor = NormalMonster;
 
@@ -314,6 +363,90 @@ function NormalMonster(gridX, gridY){
 
 
 
+
+
+
+LeatherMonster.prototype = new Monster();
+LeatherMonster.prototype.constructor = LeatherMonster;
+
+var divMonsterLeather = document.getElementById("hidden-monsters").getElementsByClassName("monster")[1];
+function LeatherMonster(gridX, gridY){
+    Monster.call(this, gridX, gridY);
+    this.div = divMonsterLeather.cloneNode(true);
+    this.life = 20;
+    this.points = 20;
+    gridMonster.lastChild.remove();
+    console.log(this.div);
+
+    if(gridY >= 0 && gridY >= 0){
+        gridMonster.appendChild(this.div);
+    }
+}
+
+LeatherMonster.prototype.inflictDamage = function (damage) {
+    this.life -= damage;
+
+    if(this.life <= 0){
+        this.kill();
+    }
+    else if(this.life == 10){
+        this.div.remove();
+        this.div = divMonster0.cloneNode(true);
+        gridCreature.appendChild(this.div);
+    }
+    else{
+        this.damageFeedback();
+    }
+}
+
+
+
+MetalMonster.prototype = new LeatherMonster();
+MetalMonster.prototype.constructor = MetalMonster;
+
+var divMonsterMetal = document.getElementById("hidden-monsters").getElementsByClassName("monster")[2];
+function MetalMonster(gridX, gridY){
+    LeatherMonster.call(this, gridX, gridY);
+    this.div = divMonsterMetal.cloneNode(true);
+    this.life = 30;
+    this.points = 30;
+    gridMonster.lastChild.remove();
+    console.log(this.div);
+    gridMonster.appendChild(this.div);
+}
+
+
+
+ImpMonster.prototype = new Monster();
+ImpMonster.prototype.constructor = ImpMonster;
+
+var divMonsterImp = document.getElementById("hidden-monsters").getElementsByClassName("monster")[3];
+function ImpMonster(gridX, gridY){
+    Monster.call(this, gridX, gridY);
+    this.div = divMonsterImp.cloneNode(true);
+    this.life = 6;
+    this.speed = 0.005;
+    this.attackPeriod = 0.5;
+    gridMonster.lastChild.remove();
+    console.log(this.div);
+    gridMonster.appendChild(this.div);
+}
+
+GiantMonster.prototype = new Monster();
+GiantMonster.prototype.constructor = GiantMonster;
+
+var divMonsterGiant = document.getElementById("hidden-monsters").getElementsByClassName("monster")[4];
+function GiantMonster(gridX, gridY){
+    Monster.call(this, gridX, gridY);
+    this.div = divMonsterGiant.cloneNode(true);
+    this.life = 100;
+    this.attackPeriod = 2;
+    this.damage = 14;
+    gridMonster.lastChild.remove();
+    console.log(this.div);
+    gridMonster.appendChild(this.div);
+}
+
 //Projectile #########################################################################
 var divProjectile = document.getElementById("hidden-projectiles").getElementsByClassName("projectile")[0];
 var gridProjectile = document.getElementById("projectile-container");
@@ -322,7 +455,7 @@ function Projectile(gridX, gridY) {
     this.speed = 0.02;
     this.gridX = gridX;
     this.gridY = gridY;
-    this.x = this.gridX*8 + 1; //offset = 3
+    this.x = this.gridX*8 + 3; //offset = 3
     this.y = this.gridY*9.2;
     this.div = divProjectile.cloneNode(true);
     this.lastFrame = now;

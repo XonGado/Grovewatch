@@ -94,8 +94,26 @@ function createButtonListeners(index){
 function createTileListeners(index){
 	var tiles = document.getElementsByClassName("tile");
 	tiles[index].addEventListener("click", function(){checkAction(index)});
+	tiles[index].addEventListener("click", function(){getGold(index)});
+}
 
-	// console.log("created listener for tile " + index);
+function getGold(index){
+	var gridX = (index%10);
+	var gridY = Math.floor(index/10);
+
+	if(lanes[gridY].creatures.length > 0){
+		var creatures = lanes[gridY].creatures;
+		var i = creatures.length - 1;
+		for (i; i >= 0; i--) {
+		 	if(creatures[i].gridX == gridX){
+		 		var creature = creatures[i];
+		 		if(creature.pickGold){
+		 			creature.pickGold();
+		 			break;
+		 		}
+		 	}
+		} 
+	}
 }
 
 function toggleCard(index){

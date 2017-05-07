@@ -73,32 +73,28 @@ window.onload = function () {
 
         unpauseGame();
 
-        var monster1 = new NormalMonster(3, 0);
-        lanes[0].monsters.push(monster1);
+        // var monster1 = new NormalMonster(3, 0);
+        // lanes[0].monsters.push(monster1);
 
 
-        var monster3 = new NormalMonster(9, 0);
+        var monster3 = new GiantMonster(9, 0);
         lanes[0].monsters.push(monster3);
 
         var normalCreature3 = new PeasantCreature(0,0);
         lanes[normalCreature3.gridY].creatures.push(normalCreature3);
 
 
-
-
-
-
         var monster3_1 = new NormalMonster(5, 2);
         lanes[monster3_1.gridY].monsters.push(monster3_1);
 
-        var monster3_2 = new NormalMonster(4, 2);
-        lanes[monster3_2.gridY].monsters.push(monster3_2);
+        // var monster3_2 = new NormalMonster(4, 2);
+        // lanes[monster3_2.gridY].monsters.push(monster3_2);
 
-        var monster3_3 = new NormalMonster(3, 2);
-        lanes[monster3_3.gridY].monsters.push(monster3_3);
+        // var monster3_3 = new NormalMonster(3, 2);
+        // lanes[monster3_3.gridY].monsters.push(monster3_3);
 
-        var monster3_4 = new NormalMonster(2, 2);
-        lanes[monster3_4.gridY].monsters.push(monster3_4);
+        // var monster3_4 = new NormalMonster(2, 2);
+        // lanes[monster3_4.gridY].monsters.push(monster3_4);
 
         var monster3_5 = new NormalMonster(1, 2);
         lanes[monster3_5.gridY].monsters.push(monster3_5);
@@ -178,6 +174,12 @@ function gameSimulation(){
                 creature.stopAttack();
             }
             creature.attack();
+
+            if(creature.producing){
+                creature.producing();
+            }
+
+
         }
 
         for (j = len3 - 1; j >= 0; j--) {
