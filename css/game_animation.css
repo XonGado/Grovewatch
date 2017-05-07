@@ -9,7 +9,7 @@
 }
 
 .monster.franken{
-	transform: scale(2,2) translate(0,5%);
+	transform: scale(2.5,2.5) translate(0,5%);
 	transform-origin: 50% 9.2vw;
 }
 
@@ -77,7 +77,8 @@
 	transform-origin: 60% 54%;
 }
 
-.creature.sunflower .body{
+.creature.sunflower .body,
+.creature.spike .body{
 	-webkit-animation: calm 3s ease infinite alternate;
 	-o-animation: calm 3s ease infinite alternate;
 	animation: calm 3s ease infinite alternate;
@@ -94,27 +95,27 @@
 	transform-origin: 63% 75%;
 }
 
-.creature.sunflower .leaf img{
+.creature.spike .eyes img{
+	transform-origin: 62% 7.6vw;
+}
+
+.creature.sunflower.ready .leaf img{
 	-webkit-animation: leaf_ready 3s ease infinite alternate;
 	-o-animation: leaf_ready 3s ease infinite alternate;
 	animation: leaf_ready 3s ease infinite alternate;
-	transform-origin: 71% 40%;
 }
 
-/*.creature.sunflower .leaf img{
+.creature.sunflower.grow .leaf img{
 	-webkit-animation: leaf_grow 1s ease 1;
 	-o-animation: leaf_grow 1s ease 1;
 	animation: leaf_grow 1s ease 1;
-	transform-origin: 71% 40%;
-}*/
+}
 
-/*.creature.sunflower .leaf img{
+.creature.sunflower.picked .leaf img{
 	-webkit-animation: leaf_picked 1.5s ease 1;
 	-o-animation: leaf_picked 1.5s ease 1;
 	animation: leaf_picked 1.5s ease 1;
-	animation-delay: 2s;
-	transform-origin: 71% 40%;
-}*/
+}
 
 .creature.stone *,
 .creature.stone .left-ear img,
@@ -171,10 +172,23 @@
 	transform-origin: 50% 9.2vw;
 }
 
+.monster.franken .body{
+	-webkit-animation: franken_slugy 4s ease infinite;
+	-o-animation: franken_slugy 4s ease infinite;
+	animation: franken_slugy 4s ease infinite;
+}
+
 .monster .shadow img{
 	-webkit-animation: backforth 2s ease infinite;
 	-o-animation: backforth 2s ease infinite;
 	animation: backforth 2s ease infinite;
+	transform-origin: 50% 9.2vw;
+}
+
+.monster.franken .shadow img{
+	-webkit-animation: franken_backforth 4s ease infinite;
+	-o-animation: franken_backforth 4s ease infinite;
+	animation: franken_backforth 4s ease infinite;
 	transform-origin: 50% 9.2vw;
 }
 
@@ -244,6 +258,32 @@
 	transform-origin: 32% 9.2vw;
 }
 
+.monster.franken [alt="aura"]:first-of-type{
+	-webkit-animation: backforth_aura 4s ease infinite;
+	-o-animation: backforth_aura 4s ease infinite;
+	animation: backforth_aura 4s ease infinite;
+}
+
+.monster.franken [alt="aura"]{
+	-webkit-animation: glow 4s ease infinite;
+	-o-animation: glow 4s ease infinite;
+	animation: glow 4s ease infinite;
+}
+
+.monster.franken [alt="soul"]{
+	-webkit-animation: ghost_float 4.5s ease infinite alternate;
+	-o-animation: ghost_float 4.5s ease infinite alternate;
+	animation: ghost_float 4.5s ease infinite alternate;
+}
+
+.monster.franken .body > img[alt="soul"]:nth-of-type(1){animation-delay: 1s;}
+.monster.franken .body > img[alt="soul"]:nth-of-type(2){animation-delay: 3s;}
+.monster.franken .body > img[alt="soul"]:nth-of-type(3){animation-delay: 5s;}
+.monster.franken .body > img[alt="soul"]:nth-of-type(4){animation-delay: 7s;}
+.monster.franken .body > img[alt="soul"]:nth-of-type(5){animation-delay: 2s;}
+.monster.franken .body > img[alt="soul"]:nth-of-type(6){animation-delay: 4s;}
+.monster.franken .body > img[alt="soul"]:nth-of-type(7){animation-delay: 6s;}
+.monster.franken .body > img[alt="soul"]:nth-of-type(8){animation-delay: 8s;}
 
 @keyframes bouncy{
 	0%{
@@ -419,6 +459,48 @@
 	}
 }
 
+@keyframes backforth_aura{
+	0%{
+		transform: translate(0,0);
+		opacity: 1;
+	}
+	50%{
+		transform: translate(8%,0);
+		opacity: 0;
+	}
+	100%{
+		transform: translate(0,0);
+		opacity: 1;
+	}
+}
+
+@keyframes franken_slugy{
+	0%{
+		transform: skewX(0.5deg) translate(0,0);
+	}
+	50%{
+		transform: skewX(-0.5deg) translate(8%,0);
+	}
+	100%{
+		transform: skewX(0.5deg) translate(0,0);
+	}
+}
+
+@keyframes franken_backforth{
+	0%{
+		transform: translate(0,0);
+		opacity: 0;
+	}
+	50%{
+		transform: translate(8%,0);
+		opacity: 1;
+	}
+	100%{
+		transform: translate(0,0);
+		opacity: 0;
+	}
+}
+
 @keyframes slugy_imp{
 	0%{
 		transform: skewX(1deg) translate(0,0);
@@ -459,20 +541,220 @@
 	100%{transform: translate(0,0) scale(1,1);}
 }
 
-/*.skate{
-	position: absolute;
-	right: 0;
-	top: 0;
-	-webkit-animation: skate 80s linear infinite;
-	-o-animation: skate 80s linear infinite;
-	animation: skate 80s linear infinite;
-}
-
-@keyframes skate{
+@keyframes glow{
 	0%{
-		right: 0;
+		opacity: 1;
+	}
+	50%{
+		opacity: 0;
 	}
 	100%{
-		right: 80vw;
+		opacity: 1;
 	}
-}*/
+}
+
+@keyframes ghost_float{
+	0%{
+		opacity: 0.5;
+		transform: translate(0,-5%);
+	}
+	50%{
+		transform: translate(-10%,0);
+		opacity: 1;
+	}
+	100%{
+		transform: translate(-5%,-8%);
+		opacity: 0.5;
+	}
+}
+
+.laserbeam{
+	position: absolute;
+	top: 4vw;
+	left: 5.8vw;
+	height: 0.3vw;
+	width: 80vw;
+	opacity: 0;
+	border-radius: 10% 30% 30% 10%;
+	box-shadow: 0 0 1vw white;
+	filter: blur(0.05vw);
+	background-color: white;
+	-webkit-animation: beam_out 0.5s ease 4.75s 1;
+	-o-animation: beam_out 0.5s ease 4.75s 1;
+	animation: beam_out 0.5s ease 4.75s 1;
+}
+
+@keyframes beam_out{
+	0%{
+		opacity: 0;
+	}
+	50%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0;
+	}
+}
+
+.creature.bomb .eyes img{
+	-webkit-animation: bursting 1s ease 2s 1;
+	-o-animation: bursting 1s ease 2s 1;
+	animation: bursting 1s ease 2s 1;
+	transform-origin: 57% 5.6vw;
+}
+
+.creature.bomb .body{
+	-webkit-animation: burst 1s ease 2s 1;
+	-o-animation: burst 1s ease 2s 1;
+	animation: burst 1s ease 2s 1;
+}
+
+.creature.bomb .pores{
+	-webkit-animation: burst_blast3 1s ease 2s infinite;
+	-o-animation: burst_blast3 1s ease 2s infinite;
+	animation: burst_blast3 1s ease 2s infinite;
+	transform-origin: 52% 6.16vw;
+}
+
+.creature .blast img{
+	transform: scale(0,0);
+	opacity: 0;
+	transform-origin: 52% 6.16vw;
+	-webkit-animation: burst_blast 1s ease 2s 1;
+	-o-animation: burst_blast 1s ease 2s 1;
+	animation: burst_blast 1s ease 2s 1;
+} 
+
+.creature .blast img:nth-child(2){
+	animation-name: burst_blast2;
+}
+
+.creature .blast img:nth-child(3){
+	animation-name: burst_blast3;
+}
+
+.creature .blast img:nth-child(4){
+	animation-name: burst_blast2;
+	filter: brightness(300%);
+}
+
+
+@keyframes burst{
+	0%{
+		transform: perspective(0vw) scale(1.05,1.05);
+	}
+	10%{
+		transform: perspective(0vw) scale(1,1);
+	}
+	20%{
+		transform: perspective(0vw) scale(1.05,1.05);
+	}
+	30%{
+		transform: perspective(0vw) scale(1,1);
+	}
+	40%{
+		transform: perspective(0vw) scale(1.05,1.05);
+	}
+	50%{
+		transform: scale(0.85,0.85) perspective(1vw);
+	}
+	95%{
+		transform: scale(1.4,1.4) perspective(-1vw);
+		filter: brightness(300%);
+		opacity: 1;
+	}
+	98%{
+		transform: scale(1.2,1.2) perspective(0vw);
+		filter: brightness(200%) blur(0.05vw);
+		opacity: 0.5;
+	}
+	100%{
+		transform: scale(0,0) perspective(0vw);
+		filter: brightness(200%) blur(0.05vw);
+		opacity: 0;
+	}
+}
+
+@keyframes burst_blast{
+	0%{
+		transform: scale(0,0);
+	}
+	50%{
+		transform: scale(0,0);
+	}
+	95%{
+		transform: scale(2,2);
+		opacity: 0.5;
+	}
+	100%{
+		transform: scale(0,0);
+		opacity: 0;
+	}
+}
+
+@keyframes burst_blast2{
+	0%{
+		transform: scale(0,0) rotate(45deg);
+	}
+	50%{
+		transform: scale(0,0) rotate(45deg);
+	}
+	95%{
+		transform: scale(3,3) rotate(45deg);
+		opacity: 0.5;
+	}
+	100%{
+		transform: scale(0,0) rotate(45deg);
+		opacity: 0;
+	}
+}
+
+@keyframes burst_blast3{
+	0%{
+		transform: scale(0,0);
+	}
+	50%{
+		transform: scale(0,0);
+	}
+	95%{
+		transform: scale(3.5,3.5);
+		opacity: 0.5;
+	}
+	100%{
+		transform: scale(1,1);
+		opacity: 0;
+	}
+}
+
+@keyframes pore_burst{
+	0%{
+		
+	}
+	50%{
+		transform: scale(1.05,1.05);
+	}
+	100%{
+		transform: scale(1,1);
+	}
+}
+
+@keyframes bursting{
+	0%{
+		
+	}
+	50%{
+		transform: scale(1,0.1);
+	}
+	100%{
+		transform: scale(1.2,1.2);
+	}
+}
+
+@keyframes burst_blast_inner{
+	0%{
+		transform: rotate(0deg);
+	}
+	100%{
+		transform: rotate(180deg);
+	}
+}

@@ -2,7 +2,6 @@
 <html>
 <head>
 	<title>Grovewatch</title>
-	<meta charset="UTF-8" />
 	<link rel="stylesheet" type="text/css" href="css/game.css"/>
 	<link rel="stylesheet" type="text/css" href="css/game_animation.css"/>
 	<link rel="stylesheet" type="text/css" href="css/main.css"/>
@@ -29,7 +28,7 @@
 			</ul>
 			<ul class="nav right">
 				<li><button type="button" class="menu-btn" id="menu-btn">Menu</button></li>
-				<li><button type="button" class="menu-btn" id="pause-btn">Pause</button></li>
+				<!-- <li><button type="button" class="menu-btn" id="pause-btn">Pause</button></li> -->
 			</ul>
 		</nav>
 		<div class="flex">
@@ -38,7 +37,7 @@
 					<article class="creature-card" data-index="0">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
-						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<div class="cooldown"><span class="cooldown-bar"></span></div>
 						<button type="button" class="creature-btn" data-index = "0">
 							<img src="images/creature.png" alt="creature-img"/>
 							<span class="price">50<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
@@ -47,7 +46,7 @@
 					<article class="creature-card" data-index="1">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
-						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<div class="cooldown"><span class="cooldown-bar"></span></div>
 						<button type="button" class="creature-btn">
 							<img class="sunflower" src="images/leafy.png" alt="sunflower-img"/>
 							<span class="price">100<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
@@ -56,7 +55,7 @@
 					<article class="creature-card" data-index="2">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
-						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<div class="cooldown"><span class="cooldown-bar"></span></div>
 						<button type="button" class="creature-btn">
 							<img src="images/stone.png" alt="stone-img" class="stone"/>
 							<span class="price">150<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
@@ -65,7 +64,7 @@
 					<article class="creature-card" data-index="3">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
-						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<div class="cooldown"><span class="cooldown-bar"></span></div>
 						<button type="button" class="creature-btn">
 							<img src="images/laser.png" alt="laser-img" class="laser" />
 							<span class="price">75<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
@@ -74,7 +73,7 @@
 					<article class="creature-card" data-index="4">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
-						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<div class="cooldown"><span class="cooldown-bar"></span></div>
 						<button type="button" class="creature-btn">
 							<img src="images/twin.png" alt="twin-img"/>
 							<span class="price">200<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
@@ -83,25 +82,25 @@
 					<article class="creature-card" data-index="5">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
-						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<div class="cooldown"><span class="cooldown-bar"></span></div>
 						<button type="button" class="creature-btn">
-							<img src="images/creature.png" alt="creature-img"/>
+							<img src="images/spikeweed.png" class="spikeweed" alt="creature-img"/>
 							<span class="price">300<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
 						</button>
 					</article>
 					<article class="creature-card" data-index="6">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
-						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<div class="cooldown"><span class="cooldown-bar"></span></div>
 						<button type="button" class="creature-btn">
-							<img src="images/creature.png" alt="creature-img"/>
+							<img src="images/bomb.png" alt="creature-img"/>
 							<span class="price">25<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
 						</button>
 					</article>
 					<article class="creature-card" data-index="7">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
-						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<div class="cooldown"><span class="cooldown-bar"></span></div>
 						<button type="button" class="creature-btn">
 							<img src="images/creature.png" alt="creature-img"/>
 							<span class="price">50<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
@@ -110,7 +109,7 @@
 					<article class="creature-card" data-index="8">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
-						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<div class="cooldown"><span class="cooldown-bar"></span></div>
 						<button type="button" class="creature-btn">
 							<img src="images/creature.png" alt="creature-img"/>
 							<span class="price">175<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
@@ -119,7 +118,7 @@
 					<article class="creature-card" data-index="9">
 						<div class="unaffordable"></div>
 						<div class="lock"><img src="images/lock.png" alt="lock"></div>
-						<div class="cooldown"><span class="cooldown-count">0</span></div>
+						<div class="cooldown"><span class="cooldown-bar"></span></div>
 						<button type="button" class="creature-btn">
 							<img src="images/creature.png" alt="creature-img"/>
 							<span class="price">0<img class="icon" src="images/gold_leaf.png" alt="gold-leaf-icon"/></span>
@@ -131,7 +130,9 @@
 				<div class="row-container">
 					<div class="row">
 						<section class="end-tile"></section>
-						<section class="tile"></section>
+						<section class="tile">
+							
+						</section>
 						<section class="tile"></section>
 						<section class="tile"></section>
 						<section class="tile"></section>
@@ -158,7 +159,7 @@
 					<div class="row">
 						<section class="end-tile"></section>
 						<section class="tile">
-							
+
 						</section>
 						<section class="tile"></section>
 						<section class="tile"></section>
@@ -221,6 +222,7 @@
 
 					<div class="spawn-area">
 						<div id="projectile-container">
+							
 							<!-- <img id="test" class="projectile" src="images/projectile.png"/> -->
 						</div>
 					</div>
@@ -302,7 +304,36 @@
 					</div>
 				</div>
 			</div>
-		</div>				
+		</div>		
+		<div class="creature spike">
+			<div class="shadow"><img src="images/creature6/creature_shadow.png" alt="body" /></div>
+			<div class="body">
+				<div class="actual-body">
+					<img src="images/creature6/creature_body.png" alt="body" />
+					<img src="images/creature6/creature_body_pores.png" alt="pores" />
+				</div>
+				<div class="eyes">
+					<img src="images/creature6/creature_eyes.png" alt="eyes" />
+					<img src="images/creature6/creature_eyes_close.png" alt="eyes" />
+				</div>
+			</div>
+		</div>
+		<div class="creature bomb">
+			<div class="shadow"><img src="images/creature7/creature_shadow.png" alt="body" /></div>
+			<div class="body">
+				<div class="right-ear"><img src="images/creature7/creature_right_ear.png" alt="right ear" /></div>
+				<img src="images/creature7/creature_body.png" alt="body" />
+				<img src="images/creature7/creature_pores.png" class="pores" alt="body" />
+				<div class="left-ear"><img src="images/creature7/creature_left_ear.png" alt="left ear" /></div>
+				<div class="eyes"><img src="images/creature7/creature_eyes.png" alt=eyes /></div>
+			</div>
+			<div class="blast">
+				<img src="images/creature7/blast_1.png" alt="blast"/>
+				<img src="images/creature7/blast_1.png" alt="blast"/>
+				<img src="images/creature7/blast_1.png" alt="blast"/>
+				<img src="images/creature7/creature_pores.png" alt="body" />
+			</div>
+		</div>			
 	</div>
 	<div id="hidden-monsters">
 		<div class="monster">
@@ -349,9 +380,21 @@
 			<div class="shadow"><img src="images/monster3/monster_shadow.png" alt="body" /></div>
 			<div class="body">
 				<div class="left-ear"><img src="images/monster3/monster_left_ear.png" alt="left ear" /></div>
-				<img src="images/monster3/monster_body.png" alt="body" />
+				<div class="body">
+					<img src="images/monster3/monster_body.png" alt="body" />
+					<img src="images/monster3/aura_light.png" alt="body" />
+				</div>
 				<div class="right-ear"><img src="images/monster3/monster_right_ear.png" alt="right ear" /></div>
 				<div class="eyes"><img src="images/monster3/monster_eyes.png" alt=eyes /></div>
+				<img src="images/monster3/aura.png" alt="aura" />
+				<img src="images/monster3/soul1.png" alt="soul" />
+				<img src="images/monster3/soul2.png" alt="soul" />
+				<img src="images/monster3/soul3.png" alt="soul" />
+				<img src="images/monster3/soul4.png" alt="soul" />
+				<img src="images/monster3/soul5.png" alt="soul" />
+				<img src="images/monster3/soul6.png" alt="soul" />
+				<img src="images/monster3/soul7.png" alt="soul" />
+				<img src="images/monster3/soul8.png" alt="soul" />
 			</div>
 		</div>
 	</div>
@@ -359,10 +402,14 @@
 		<div class="projectile">
 			<img src="images/projectile.png"/>
 		</div>
+		<div class="projectile">
+			<div class="laserbeam"></div>
+		</div>
 	</div>
-	<script src="js/setup.js"></script>
+
 	<script src="js/requestAnimationFrame.js"></script>
     <script src="js/classes.js"></script>
+    <script src="js/setup.js"></script>
     <script src="js/game.js"></script>
     <script src="js/test.js"></script>
 </body>

@@ -7,6 +7,11 @@ window.onload = function () {
 
     var prmt = confirm("Start game?");
 
+    // console.log(document.getElementsByClassName("creature bomb")[0]);
+    // document.getElementsByClassName("creature bomb")[0].children[1].addEventListener("webkitAnimationEnd", function(){
+    //     document.getElementsByClassName("creature bomb")[0].style.display = "none";
+    // });
+
     if(prmt){
 
         // var monster1 = new NormalMonster(3, 0);
