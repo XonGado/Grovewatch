@@ -9,9 +9,9 @@
 }
 
 .monster.damaged{
-	-webkit-animation: m_damaged 0.2s ease 1;
-	-o-animation: m_damaged 0.2s ease 1;
-	animation: m_damaged 0.2s ease 1;
+	-webkit-animation: m_damaged 0.2s ease infinite;
+	-o-animation: m_damaged 0.2s ease infinite;
+	animation: m_damaged 0.2s ease infinite;
 }
 
 .creature.damaged{

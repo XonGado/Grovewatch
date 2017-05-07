@@ -35,8 +35,8 @@ window.onload = function () {
     // testCreaturesCreate();
     // testMonstersCreate();
 
-    // var monster1 = new NormalMonster(2, 2);
-    // monster1.show();
+    var monster1 = new NormalMonster(2, 2);
+    monster1.show();
 
     // var creature1 = new PeasantCreature(0, 2);
     // creature1.show();
