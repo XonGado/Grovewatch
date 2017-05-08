@@ -176,7 +176,7 @@ function GoldCreature(gridX, gridY){
 
 
     this.isReady = false;
-    this.produceInterval = 10;
+    this.produceInterval = 15;
     this.goldValue = 50;
 
 
@@ -319,6 +319,11 @@ Monster.prototype.move = function(){
     this.lastFrame = now;
 
     this.x += this.speed*this.dt*this.dir;
+
+
+    if(this.x <= -5){
+        gameOver();
+    }
 }
 
 Monster.prototype.kill = function(){

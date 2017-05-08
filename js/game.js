@@ -5,7 +5,7 @@ window.onload = function () {
     
     setup();    
 
-    var prmt = confirm("Start game?");
+
 
 
     // console.log(document.getElementsByClassName("creature bomb")[0]);
@@ -33,111 +33,112 @@ window.onload = function () {
     //     document.getElementById("sunny").children[1].children[0].children[0].removeEventListener("webkitAnimationEnd", testingSun);
     // }
 
-    // var start_interface = document.getElementById("starting-interface");
-    // start_interface.style.display = "flex";
-    // var start = document.getElementById("initialize-game");
-    // var countdown = document.getElementById("countdown");
+    start_interface = document.getElementById("starting-interface");
+    start_interface.style.display = "flex";
+    start = document.getElementById("initialize-game");
+    countdown = document.getElementById("countdown");
 
-    // start.addEventListener("click", startGame);
+    start.addEventListener("click", startGame);
 
-    // function startGame(){
-    //     start.style.display = "none";
-    //     countdown.style.color = "#03A9F4";
-    //     countdown.innerHTML = "3";
-    //     setTimeout(function(){
-    //         countdown.style.color = "#CDDC39";
-    //         countdown.innerHTML = "2";
-    //     }, 1000);
-    //     setTimeout(function(){
-    //         countdown.style.color = "#FFC107";
-    //         countdown.innerHTML = "1";
-    //     }, 2000);
-    //     setTimeout(function(){
-    //         countdown.style.color = "#E91E63";
-    //         countdown.innerHTML = "SUMMON!";
-    //     }, 3000);
-    //     setTimeout(function(){
-    //         start_interface.style.top = "-100vh";
-    //     }, 3500);
-    // }
 
-    // var end_interface = document.getElementById("ending-interface");
-    // end_interface.style.top = "0";
+
 
     //pausing
     pauseGame();
 
-    if(prmt){
-
-        //unpausing
-
-        unpauseGame();
-
-        // var monster1 = new NormalMonster(3, 0);
-        // lanes[0].monsters.push(monster1);
-
-
-        // var monster3 = new GiantMonster(9, 0);
-        // lanes[0].monsters.push(monster3);
-
-        // var normalCreature3 = new PeasantCreature(0,0);
-        // lanes[normalCreature3.gridY].creatures.push(normalCreature3);
-
-
-        // var monster3_1 = new NormalMonster(5, 2);
-        // lanes[monster3_1.gridY].monsters.push(monster3_1);
-
-        // var monster3_2 = new NormalMonster(4, 2);
-        // lanes[monster3_2.gridY].monsters.push(monster3_2);
-
-        // var monster3_3 = new NormalMonster(3, 2);
-        // lanes[monster3_3.gridY].monsters.push(monster3_3);
-
-        // var monster3_4 = new NormalMonster(2, 2);
-        // lanes[monster3_4.gridY].monsters.push(monster3_4);
-
-        // var monster3_5 = new NormalMonster(1, 2);
-        // lanes[monster3_5.gridY].monsters.push(monster3_5);
-
-        // var monster3_6 = new NormalMonster(0, 2);
-        // lanes[monster3_6.gridY].monsters.push(monster3_6);
-
-
-
-
-
-        // var normalCreature3 = new PeasantCreature(4,2);
-        // lanes[normalCreature3.gridY].creatures.push(normalCreature3);
-
-
-
-
-
-
-
-        // var monster4 = new NormalMonster(9, 4);
-        // lanes[4].monsters.push(monster4);
-
-        // var normalCreature4 = new PeasantCreature(8,4);
-        // lanes[normalCreature4.gridY].creatures.push(normalCreature4);
-
-
-
-
-        // SETUP FOR ANIMATION AND GAME LOOP INTERVAL
-        time = 0;
-        now = +new Date();
-        // running = true;
-        timeDilation = 0;
-        oldTime = 0;
-
-        monsterGenerator = new MonsterGenerator();
-
-        gameSimulation();
-    }
 }
 
+function startGame(){
+    start.style.display = "none";
+    countdown.style.color = "#03A9F4";
+    countdown.innerHTML = "3";
+    setTimeout(function(){
+        countdown.style.color = "#CDDC39";
+        countdown.innerHTML = "2";
+    }, 1000);
+    setTimeout(function(){
+        countdown.style.color = "#FFC107";
+        countdown.innerHTML = "1";
+    }, 2000);
+    setTimeout(function(){
+        countdown.style.color = "#E91E63";
+        countdown.innerHTML = "SUMMON!";
+    }, 3000);
+    setTimeout(function(){
+        start_interface.style.top = "-100vh";
+    }, 3500);
 
+    unpauseGame();
+
+    // var monster1 = new NormalMonster(3, 0);
+    // lanes[0].monsters.push(monster1);
+
+
+    // var monster3 = new GiantMonster(9, 0);
+    // lanes[0].monsters.push(monster3);
+
+    // var normalCreature3 = new PeasantCreature(0,0);
+    // lanes[normalCreature3.gridY].creatures.push(normalCreature3);
+
+
+    // var monster3_1 = new NormalMonster(5, 2);
+    // lanes[monster3_1.gridY].monsters.push(monster3_1);
+
+    // var monster3_2 = new NormalMonster(4, 2);
+    // lanes[monster3_2.gridY].monsters.push(monster3_2);
+
+    // var monster3_3 = new NormalMonster(3, 2);
+    // lanes[monster3_3.gridY].monsters.push(monster3_3);
+
+    // var monster3_4 = new NormalMonster(2, 2);
+    // lanes[monster3_4.gridY].monsters.push(monster3_4);
+
+    // var monster3_5 = new NormalMonster(1, 2);
+    // lanes[monster3_5.gridY].monsters.push(monster3_5);
+
+    // var monster3_6 = new NormalMonster(0, 2);
+    // lanes[monster3_6.gridY].monsters.push(monster3_6);
+
+
+
+
+
+    // var normalCreature3 = new PeasantCreature(4,2);
+    // lanes[normalCreature3.gridY].creatures.push(normalCreature3);
+
+
+
+
+
+
+
+    // var monster4 = new NormalMonster(9, 4);
+    // lanes[4].monsters.push(monster4);
+
+    // var normalCreature4 = new PeasantCreature(8,4);
+    // lanes[normalCreature4.gridY].creatures.push(normalCreature4);
+
+
+
+
+    // SETUP FOR ANIMATION AND GAME LOOP INTERVAL
+    time = 0;
+    now = +new Date();
+    // running = true;
+    timeDilation = 0;
+    oldTime = 0;
+
+    monsterGenerator = new MonsterGenerator();
+
+    gameSimulation();
+}
+
+function gameOver(){
+    pauseGame();
+    var end_interface = document.getElementById("ending-interface");
+    end_interface.style.top = "0";
+
+}
 
 function gameSimulation(){
     

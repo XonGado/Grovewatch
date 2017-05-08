@@ -101,7 +101,7 @@ nav .nav.right li{
 	height: 100vh;
 	width: 100vw;
 	z-index: 1000;
-	transition: 2s;
+	transition: 1s;
 }
 
 #starting-interface h1{
@@ -124,6 +124,7 @@ nav .nav.right li{
 }
 
 #ending-interface{
+	background-color: rgba(0,0,0,0.8);
 	top: -100vh;
 	display: flex;
 }
