@@ -42,6 +42,24 @@ window.onload = function () {
 
 
 
+    // var end_interface = document.getElementById("ending-interface");
+    // end_interface.style.top = "0";
+
+    // var leaderboard_form = document.getElementById("leaderboard-form");
+    // var username = document.getElementById("username");
+    // leaderboard_form.addEventListener("submit", function(){
+    //     if (username.value) {
+    //         addToLeaderboard();
+    //     } else{
+    //         username.style.backgroundColor = "#F8BBD0";
+    //         return false;
+    //     }
+    // });
+
+    // function addToLeaderboard(){
+    //     var cookies = document.cookie.split(";");
+    //     document.cookie = document.cookie + "player" + count + "=" + username.value + "-" + score + "-" + "-" +";"; 
+    // }
 
     //pausing
     pauseGame();

@@ -116,9 +116,9 @@
 }
 
 .creature.sunflower.picked .leaf img{
-	-webkit-animation: leaf_picked 1.5s ease 1;
-	-o-animation: leaf_picked 1.5s ease 1;
-	animation: leaf_picked 1.5s ease 1;
+	-webkit-animation: leaf_picked 0.5s ease 1;
+	-o-animation: leaf_picked 0.5s ease 1;
+	animation: leaf_picked 0.5s ease 1;
 }
 
 .creature.stone *,
