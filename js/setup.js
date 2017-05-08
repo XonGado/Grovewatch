@@ -17,11 +17,46 @@ var monsterGenerator = null;
 //UI
 var cd0, cd1, cd2, cd3, cd4, cd5, cd6, cd7, cd8, cd9;
 var gold_leaves = 500;
-var waves = 1;
+var waves = 0;
 var kills = 0;
 var score = 0;
 var endGame = false;
 var selected = -1;
+
+var isUnsummonToggle = false;
+
+function setUnsummonToggle(){
+	document.getElementById("unsummon-btn").addEventListener("click", unsummonToggle);
+}
+
+function unsummonToggle(){
+	isUnsummonToggle = !isUnsummonToggle;
+	if(isUnsummonToggle){
+		document.getElementsByClassName("grid")[0].style.cursor = "url(unsummon.PNG), crosshair";
+	}
+	else{
+		document.getElementsByClassName("grid")[0].style.cursor = "auto";
+	}
+}
+
+function unsummonCreature(index){
+	if(isUnsummonToggle && selected == -1){
+		var gridX = (index%10);
+		var gridY = Math.floor(index/10);
+	
+		if(lanes[gridY].creatures.length > 0){
+			var creatures = lanes[gridY].creatures;
+			var i = creatures.length - 1;
+			for (i; i >= 0; i--) {
+			 	if(creatures[i].gridX == gridX){
+			 		creatures[i].kill();
+			 	}
+			} 
+		}
+		unsummonToggle();
+	}
+}
+
 
 function createCards(){
 	creatures_card = [];
@@ -29,7 +64,7 @@ function createCards(){
 	creatures_card.push(new CreatureCard("normal creature", 2000, 100, true, 0, PeasantCreature));
 	creatures_card.push(new CreatureCard("normal creature", 10000, 50, true, 1, GoldCreature));
 	creatures_card.push(new CreatureCard("normal creature", 45000, 150, true, 2, StoneCreature));
-	creatures_card.push(new CreatureCard("normal creature", 45000, 400, true, 3));
+	creatures_card.push(new CreatureCard("normal creature", 3000, 100, true, 3, LaserCreature));
 	creatures_card.push(new CreatureCard("normal creature", 3000, 200, true, 4));
 	creatures_card.push(new CreatureCard("normal creature", 3000, 225, true, 5));
 	creatures_card.push(new CreatureCard("normal creature", 3000, 300, true, 6));
@@ -97,6 +132,7 @@ function createTileListeners(index){
 	var tiles = document.getElementsByClassName("tile");
 	tiles[index].addEventListener("click", function(){checkAction(index)});
 	tiles[index].addEventListener("click", function(){getGold(index)});
+	tiles[index].addEventListener("click", function(){unsummonCreature(index)});
 }
 
 function getGold(index){
@@ -320,6 +356,7 @@ function setup () {
 	createCards();
 	goldLeafModify(0);
     setUpCards();
+    setUnsummonToggle();
 
     var creature_card_btns = document.getElementsByClassName("creature-btn");
 	for (var i = creature_card_btns.length - 1; i >= 0; i--) {

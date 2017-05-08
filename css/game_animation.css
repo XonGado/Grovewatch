@@ -583,9 +583,9 @@
 	box-shadow: 0 0 1vw white;
 	filter: blur(0.05vw);
 	background-color: white;
-	-webkit-animation: beam_out 0.5s ease 4.75s 1;
-	-o-animation: beam_out 0.5s ease 4.75s 1;
-	animation: beam_out 0.5s ease 4.75s 1;
+	-webkit-animation: beam_out 0.5s ease 1;
+	-o-animation: beam_out 0.5s ease 1;
+	animation: beam_out 0.5s ease 1;
 }
 
 @keyframes beam_out{

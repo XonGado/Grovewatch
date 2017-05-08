@@ -123,6 +123,62 @@ PeasantCreature.prototype.attack = function () {
 };
 
 
+
+var divCreatureLaser = document.getElementById("hidden-creatures").getElementsByClassName("creature")[1];
+var divLaser = document.getElementById("hidden-projectiles").getElementsByClassName("projectile")[1];
+var gridProjectile = document.getElementById("projectile-container");
+
+LaserCreature.prototype = new PeasantCreature();
+LaserCreature.prototype.constructor = LaserCreature;
+
+function LaserCreature(gridX, gridY){
+    PeasantCreature.call(this, gridX, gridY);
+    this.attackPeriod = 3; //seconds
+    this.damage = 2;
+
+    this.div = divCreatureLaser.cloneNode(true);
+
+    gridCreature.lastChild.remove();
+
+    this.div.style.left = this.x + "vw";
+    this.div.style.top = this.y + "vw";
+
+    if(gridX >= 0 && gridY >= 0){
+        console.log(this.div);
+        gridCreature.appendChild(this.div);
+    }
+}
+
+
+LaserCreature.prototype.attack = function () {
+    this.dt = now - this.lastFrame;
+    if(this.dt > 1000*this.attackPeriod && this.isAttacking){
+        this.lastFrame = now;
+        var laser = divLaser.cloneNode(true);
+        laser.style.left = this.x + "vw";
+        laser.style.top = this.y + "vw";
+        
+        gridProjectile.appendChild(laser);
+
+        console.log(laser);
+
+        var monsters = lanes[this.gridY].monsters;
+        var i = monsters.length - 1;
+        for (i; i >= 0; i--) {
+            if(monsters[i].x > this.x){
+                monsters[i].inflictDamage(this.damage);
+                // monsters[i].x += 10;
+            }
+        }
+
+        // var projectile = new Projectile(this.gridX,this.gridY);
+        // lanes[this.gridY].peasantProjectiles.push(projectile);
+    }
+};
+
+
+
+
 StoneCreature.prototype = new Creature();
 StoneCreature.prototype.constructor = StoneCreature;
 
@@ -668,7 +724,7 @@ MonsterGenerator.prototype.generate = function(argument){
                 var randomGridY = Math.floor(Math.random() * 5);
 
                 //Monster spawn will be 1.5 tile wide
-                var randomXOffset = Math.random() * 4; 
+                var randomXOffset = Math.random(); 
 
 
 
