@@ -58,3 +58,102 @@ body > .container{
     background-color: #DDD;
 }
 
+.creature{
+    width: 13vw;
+    height: 15vw;
+    /*position: absolute;*/
+    margin: auto;
+    overflow: visible;
+    transform: scale(1.3,1.3);
+    transform-origin: 50% 15vw;
+}
+.creature .body{
+    position: absolute;
+    width: 100%;
+    display: block;
+}
+.creature img,
+.monster img,
+.projectile img{
+    position: absolute;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+}
+.creature .body{
+    -webkit-animation: bouncy 1s ease infinite alternate;
+    -o-animation: bouncy 1s ease infinite alternate;
+    animation: bouncy 1s ease infinite alternate;
+    transform-origin: 50% 15vw;
+}
+
+.creature .left-ear img,
+.creature .right-ear img{
+    -webkit-animation: move_ear 1s ease infinite alternate;
+    -o-animation: move_ear 1s ease infinite alternate;
+    animation: move_ear 1s ease infinite alternate;
+    transform-origin: 33% 40%;
+}
+
+.creature .right-ear img{
+    transform-origin: 68% 40%;
+}
+
+.creature .eyes img,
+.monster .eyes img{
+    -webkit-animation: blink 3s ease infinite;
+    -o-animation: blink 3s ease infinite;
+    animation: blink 3s ease infinite;
+    transform-origin: 60% 54%;
+}
+
+.creature.sunflower .body,
+.creature.spike .body{
+    -webkit-animation: calm 3s ease infinite alternate;
+    -o-animation: calm 3s ease infinite alternate;
+    animation: calm 3s ease infinite alternate;
+}
+
+.creature .left-ear img,
+.creature .right-ear img{
+    -webkit-animation: move_ear 3s ease infinite alternate;
+    -o-animation: move_ear 3s ease infinite alternate;
+    animation: move_ear 3s ease infinite alternate;
+}
+@keyframes bouncy{
+    0%{
+        transform: scale(1,0.9) skewX(-3deg);
+    }
+    50%{
+        transform: scale(1,1) skewX(0deg);
+    }
+    100%{
+        transform: scale(1,0.9) skewX(2.5deg);
+    }
+}
+@keyframes move_ear{
+    0%{
+        transform: scale(1,1.1) rotate(-2.5deg);
+    }
+    50%{
+        transform: scale(1,1) rotate(0deg);
+    }
+    100%{
+        transform: scale(1,1.1) rotate(2.5deg);
+    }
+}
+
+@keyframes blink{
+    0%{
+        transform: scale(1,1) translate(0,0);
+    }
+    94%{
+        transform: scale(1,1) translate(0,0);
+    }
+    97%{
+        transform: scale(1,0.1) translate(0,5%);
+    }
+    100%{
+        transform: scale(1,1) translate(0,0);
+    }
+}
