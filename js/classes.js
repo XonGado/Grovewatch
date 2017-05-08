@@ -201,8 +201,8 @@ GoldCreature.prototype.pickGold = function () {
         this.isReady = false;
         this.div.className = "creature sunflower picked";
         var x = this.removeGold.bind(this);
-        this.div.children[1].children[0].children[0].addEventListener("webkitAnimationEnd", x);
-        // this.div.children[1].children[0].children[0].onwebkitanimationend = x;
+        // this.div.children[1].children[0].children[0].addEventListener("webkitAnimationEnd", x);
+        this.div.children[1].children[0].children[0].onwebkitanimationend = x;
         // Toolbox.addListener(window, 'webkitAnimationEnd', x);
     }
 }
@@ -235,8 +235,8 @@ GoldCreature.prototype.removeGold = function () {
     this.div.children[1].children[0].children[0].style.display = "none";
     
     var x = this.removeGold.bind(this);
-    this.div.children[1].children[0].children[0].removeEventListener("webkitAnimationEnd", x);
-    // this.div.children[1].children[0].children[0].onwebkitanimationend = null;
+    // this.div.children[1].children[0].children[0].removeEventListener("webkitAnimationEnd", x);
+    this.div.children[1].children[0].children[0].onwebkitanimationend = null;
     // Toolbox.addListener(window, 'webkitAnimationEnd', x);
 }
 
