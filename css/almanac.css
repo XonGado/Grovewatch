@@ -123,13 +123,14 @@ nav .arrow:before{
 .right-panel{
 	width: 50vw;
 	margin: 50px 0;
+	overflow: auto;
 }
 
 .right-panel img{
-	width: 16vw;
-	height: 16vw;
-	object-position: 0 170%;
-	object-fit: cover;
+	width: 10vw;
+	height: 15vw;
+	/*object-position: 0 170%;*/
+	object-fit: contain;
 	float: left;
 	box-shadow: 0 0 10px rgba(0,0,0,0);
 	transition: 0.2s;

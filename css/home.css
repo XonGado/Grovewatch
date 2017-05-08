@@ -46,14 +46,15 @@ body > .container{
     flex-direction: column;
 }*/
 
-.button-group > button{
+.button-group > a{
     border: 1px solid #DDD;
     border-radius: 4px;
     background-color: white;
     padding: 6px 16px;
+    text-decoration: none;
 }
 
-.button-group > button:hover{
+.button-group > a:hover{
     cursor: pointer;
     background-color: #DDD;
 }

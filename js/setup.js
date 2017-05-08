@@ -23,6 +23,9 @@ var score = 0;
 var endGame = false;
 var selected = -1;
 
+
+
+
 function createCards(){
 	creatures_card = [];
 

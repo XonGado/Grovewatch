@@ -25,6 +25,18 @@
 	animation: c_damaged 0.2s ease 1;
 }
 
+.creature.dying{
+	-webkit-animation: c_dying 0.2s ease 1;
+	-o-animation: c_dying 0.2s ease 1;
+	animation: c_dying 0.2s ease 1;
+}
+
+@keyframes c_dying{
+	0%{}
+	50%{}
+	100%{}
+}
+
 .creature .body,
 .creature .shadow{
 	/*transform: translate(-15%, -30%);*/
