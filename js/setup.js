@@ -10,12 +10,14 @@ running = true;
 timeDilation = 0;
 oldTime = 0;
 
+//Monster generator
+var monsterGenerator = null;
 
 
 //UI
 var cd0, cd1, cd2, cd3, cd4, cd5, cd6, cd7, cd8, cd9;
-var gold_leaves = 1000;
-var waves = 0;
+var gold_leaves = 500;
+var waves = 1;
 var kills = 0;
 var score = 0;
 var endGame = false;
@@ -267,7 +269,7 @@ function kill() {
 
 function nextWave() {
     waves++;
-    document.getElementById("wave-count").innerHTML = kills;
+    document.getElementById("wave-count").innerHTML = waves;
 }
 
 function scoreUp(points) {
