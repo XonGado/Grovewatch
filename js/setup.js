@@ -23,7 +23,7 @@ var score = 0;
 var endGame = false;
 var selected = -1;
 
-
+ 
 var isUnsummonToggle = false;
 
 function setUnsummonToggle(){

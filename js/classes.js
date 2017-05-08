@@ -492,6 +492,15 @@ function ImpMonster(gridX, gridY){
     gridMonster.appendChild(this.div);
 }
 
+ImpMonster.prototype.damageFeedback = function () {
+    this.div.className = "monster imp";
+    that = this;
+    setTimeout( function () {
+        that.div.className = "monster imp damaged";
+    }, 50);
+    
+}
+
 GiantMonster.prototype = new Monster();
 GiantMonster.prototype.constructor = GiantMonster;
 
