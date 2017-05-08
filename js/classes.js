@@ -389,11 +389,6 @@ LeatherMonster.prototype.inflictDamage = function (damage) {
     if(this.life <= 0){
         this.kill();
     }
-    else if(this.life == 10){
-        this.div.remove();
-        this.div = divMonster0.cloneNode(true);
-        gridCreature.appendChild(this.div);
-    }
     else{
         this.damageFeedback();
     }
@@ -425,7 +420,7 @@ function ImpMonster(gridX, gridY){
     Monster.call(this, gridX, gridY);
     this.div = divMonsterImp.cloneNode(true);
     this.life = 6;
-    this.speed = 0.002;
+    this.speed = 0.003;
     this.attackPeriod = 0.5;
     gridMonster.lastChild.remove();
     console.log(this.div);
@@ -609,7 +604,6 @@ Lane.prototype.isGridXAvail = function (gridX){
 
 
     return true;
-
 }
 
 
@@ -624,14 +618,35 @@ function MonsterGenerator(){
     this.generateDiff = 0;
 }
 
+function hasMonsters(){
+    var i = lanes.length - 1
+    for (i; i >= 0; i--) {
+        if(lanes[i].monsters.length > 0){
+            return true;
+        }
+    }
+    return false;
+}
+
 //run always
 MonsterGenerator.prototype.generate = function(argument){
     this.dt = now - this.lastFrame;
     if(running){
-        if(this.dt > 1000*this.interval && this.monsterPoints <= 0){
+        var hasMonstersLane = hasMonsters();
+
+        if(this.dt > 1000*this.interval && this.monsterPoints <= 0 && !hasMonstersLane){
             this.lastFrame = now;
             this.interval += 5;
-            this.maxMonsterPoints += 5;
+            
+
+            if(waves % 2 == 0){
+                this.maxMonsterPoints += this.maxMonsterPoints;
+            }
+            else{
+                this.maxMonsterPoints += 3;
+            }
+
+
             this.monsterPoints = this.maxMonsterPoints;
             nextWave();
             console.log("next wave");
@@ -639,16 +654,19 @@ MonsterGenerator.prototype.generate = function(argument){
         }
         else{
             this.generateDiff = now - this.lastGenerate;
-            if(this.monsterPoints > 0 && this.generateDiff > 256){
-
+            if(this.monsterPoints > 0 && this.generateDiff > 500){
+                this.lastGenerate = now;
                 //1 to 100
-                var random = (Math.random() * 100) + 1;
+                var random = Math.floor((Math.random() * 100) + 1);
 
                 //Lanes 0 - 4
-                var randomGridY = Math.floor((Math.random() * 4) + 1);
+                var randomGridY = Math.floor(Math.random() * 5);
 
                 //Monster spawn will be 1.5 tile wide
-                var randomXOffset = Math.floor((Math.random() * 3)); 
+                var randomXOffset = Math.random() * 4; 
+
+
+
 
                 console.log("random = " + random);
 

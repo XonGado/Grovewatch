@@ -17,7 +17,7 @@ var monsterGenerator = null;
 //UI
 var cd0, cd1, cd2, cd3, cd4, cd5, cd6, cd7, cd8, cd9;
 var gold_leaves = 500;
-var waves = 0;
+var waves = 1;
 var kills = 0;
 var score = 0;
 var endGame = false;

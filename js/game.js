@@ -134,7 +134,6 @@ window.onload = function () {
         monsterGenerator = new MonsterGenerator();
 
         gameSimulation();
-
     }
 }
 
