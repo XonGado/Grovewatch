@@ -163,12 +163,14 @@ function gameOver(){
     document.getElementById("final-score").innerHTML = score;
     var end_interface = document.getElementById("ending-interface");
     var form = document.getElementById("leaderboard-form");
+    var name = document.getElementById("username");
     var cookies = cookiesToArray();
-    console.log("First cookie: " + cookies[0]);
-    console.log(score > cookies[cookies.length-1][1]);
     if (cookies.length < 10 || score > cookies[cookies.length-1][1]) {
         form.style.display = "block";
         form.addEventListener("submit", addToLeaderboard);
+        name.addEventListener("input", function(){
+            name.value = name.value.replace(/[^a-z]/ig, '');
+        });
     }
     end_interface.style.top = "0";
 }
