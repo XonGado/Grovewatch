@@ -23,6 +23,7 @@ var score = 0;
 var endGame = false;
 var selected = -1;
 
+<<<<<<< HEAD
 var isUnsummonToggle = false;
 
 function setUnsummonToggle(){
@@ -56,6 +57,9 @@ function unsummonCreature(index){
 		unsummonToggle();
 	}
 }
+=======
+
+>>>>>>> 0c7434a7fae11fe7ace41550032575e77cf4cb83
 
 
 function createCards(){

@@ -33,6 +33,11 @@ window.onload = function () {
     //     document.getElementById("sunny").children[1].children[0].children[0].removeEventListener("webkitAnimationEnd", testingSun);
     // }
 
+    console.log(document.cookie);
+    if (document.cookie) {
+        console.log(cookiesToArray());
+    }
+
     start_interface = document.getElementById("starting-interface");
     start_interface.style.display = "flex";
     start = document.getElementById("initialize-game");
@@ -67,6 +72,7 @@ window.onload = function () {
 }
 
 function startGame(){
+    // gameOver();
     start.style.display = "none";
     countdown.style.color = "#03A9F4";
     countdown.innerHTML = "3";
@@ -153,14 +159,81 @@ function startGame(){
 
 function gameOver(){
     pauseGame();
+    endGame = true;
+    document.getElementById("final-score").innerHTML = score;
     var end_interface = document.getElementById("ending-interface");
+    var form = document.getElementById("leaderboard-form");
+    var cookies = cookiesToArray();
+    console.log("First cookie: " + cookies[0]);
+    console.log(score > cookies[cookies.length-1][1]);
+    if (cookies.length < 10 || score > cookies[cookies.length-1][1]) {
+        form.style.display = "block";
+        form.addEventListener("submit", addToLeaderboard);
+    }
     end_interface.style.top = "0";
+}
 
+function cookiesToArray(){
+    var cookies = document.cookie.split(";");
+    var cookie_values = [];
+    var temp = [];
+
+    if (!(document.cookie == "")) {
+        for (var i = 0; i < cookies.length || i < 10; i++) {
+            console.log(cookies[i]);
+        }
+
+        for (var i = 0; i < cookies.length || i < 10; i++) {
+            temp = cookies[i].split("=");
+            cookies[i] = temp[1]; 
+            cookies[i] = cookies[i].split("$-$");
+            cookie_values.push(cookies[i]);
+            // console.log(cookies[i]);
+        }
+    }
+
+    cookie_values.sort(function (a,b){
+        return b[1] - a[1];
+    });
+
+    // console.log("cookie sorted:");
+    // for (var i = 0; i < cookie_values.length; i++) {
+    //     console.log(cookie_values[i]);
+    // }
+
+    return cookie_values;
+}
+
+function addToLeaderboard(e){
+    e.preventDefault();
+    var cookies = document.cookie.split(";");
+
+    console.log(cookies);
+    // var newCookie = "player" + (cookies.length + 1) + "=" + username.value + "-" + score + "-" + waves + "-" + kills + ";"; 
+    // console.log(newCookie);
+    
+    if(cookies[0] == ""){
+        length = 0;
+    }
+    else{
+        length = cookies.length;
+    }
+
+    document.cookie = "player" + (length + 1) + "=" + username.value + "$-$" + score + "$-$" + waves + "$-$" + kills + ";";
+
+    console.log(document.cookie);
+    console.log((cookiesToArray())[0]);
+
+    var form = document.getElementById("leaderboard-form");
+    form.innerHTML = "<h3 class='thanks'>Thank you for playing!</h3>";
 }
 
 function gameSimulation(){
     
-    requestAnimationFrame(gameSimulation);
+    if(!endGame){
+        requestAnimationFrame(gameSimulation);
+    }
+
     if(running){
         now = new Date().getTime() - timeDilation,
         dt = now - (time || now);

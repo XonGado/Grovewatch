@@ -82,7 +82,7 @@ nav .nav.right li{
 	border: none;
 	color: white;
 	text-transform: uppercase;
-	padding: 2px 16px;
+	padding: 2px 5px;
 	font-size: 1.2em;
 }
 
@@ -145,6 +145,7 @@ nav .nav.right li{
 
 #ending-interface h2{
 	font-size: 1em;
+	color: white;
 	text-align: center;
 	font-weight: normal;
 	margin: 0.5em;
@@ -152,6 +153,10 @@ nav .nav.right li{
 
 #ending-interface form{
 	width: 100%;
+}
+
+#leaderboard-form{
+	display: none;
 }
 
 #ending-interface input[type="text"]{
@@ -164,11 +169,20 @@ nav .nav.right li{
 }
 
 #ending-interface input[type="submit"],
-#ending-interface button{
+#ending-interface a{
+	text-decoration: none;
 	border-radius: 4px;
 	border: 1px solid #DDD;
 	padding: 10px;
 	text-transform: uppercase;
+	margin: 50px 0 10px 0 10px;
+	background-color: white;
+}
+
+#ending-interface .thanks{
+	color: white;
+	text-align: center;
+	font-weight: normal;
 }
 
 #ending-interface input[type="submit"]{
