@@ -321,9 +321,9 @@ function Monster(gridX, gridY) {
     //Mostly monsters will have negative directions
     //To the left = negative dir
     this.dir = -1;
-    // this.speed = 0.001;
 
-    this.speed = 0.001;
+    // this.speed = 0.001;
+    this.speed = 0.5;
 
 
 

@@ -18,16 +18,17 @@ window.onload = function(){
 }
 
 function cookiesToArray(){
-    var cookies = document.cookie.split(";");
+    var cookies = document.cookie.split("; ");
     var cookie_values = [];
     var temp = [];
+    console.log(cookies);
 
-    if (!(document.cookie == "")) {
-        for (var i = 0; i < cookies.length || i < 10; i++) {
+    if (cookies[0] != "") {
+        for (var i = 0; i < cookies.length && i < 10; i++) {
             console.log(cookies[i]);
         }
 
-        for (var i = 0; i < cookies.length || i < 10; i++) {
+        for (var i = 0; i < cookies.length && i < 10; i++) {
             temp = cookies[i].split("=");
             cookies[i] = temp[1]; 
             cookies[i] = cookies[i].split("$-$");

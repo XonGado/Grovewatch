@@ -165,12 +165,15 @@ function gameOver(){
     var form = document.getElementById("leaderboard-form");
     var name = document.getElementById("username");
     var cookies = cookiesToArray();
-    if (cookies.length < 10 || score > cookies[cookies.length-1][1]) {
+    if ((cookies.length < 10 || score > cookies[cookies.length-1][1]) && score > 0) {
         form.style.display = "block";
         form.addEventListener("submit", addToLeaderboard);
         name.addEventListener("input", function(){
-            name.value = name.value.replace(/[^a-z]/ig, '');
+            name.value = name.value.replace(/[^a-z ]/ig, '');
         });
+    } else{
+        form.style.display = "block";
+        form.innerHTML = "<h3 class='thanks'>Thank you for playing!</h3>";
     }
     end_interface.style.top = "0";
 }
@@ -180,7 +183,7 @@ function cookiesToArray(){
     var cookie_values = [];
     var temp = [];
 
-    if (!(document.cookie == "")) {
+    if (cookies[0] == "") {
         for (var i = 0; i < cookies.length || i < 10; i++) {
             console.log(cookies[i]);
         }
@@ -227,7 +230,7 @@ function addToLeaderboard(e){
     console.log((cookiesToArray())[0]);
 
     var form = document.getElementById("leaderboard-form");
-    form.innerHTML = "<h3 class='thanks'>Thank you for playing!</h3>";
+    form.innerHTML = "<h3 class='thanks'>Thank you " + username.value + " for playing!</h3>";
 }
 
 function gameSimulation(){

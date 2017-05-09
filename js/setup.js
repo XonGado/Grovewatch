@@ -77,7 +77,7 @@ function createCards(){
 function setUpCards(){
 	var creature_cards = document.getElementsByClassName("creature-card");
 	
-	for (var i = 0; i < creature_cards.length - 5; i++) {
+	for (var i = 0; i < 2; i++) {
     	unlock(i);
 	}
 
@@ -311,6 +311,14 @@ function nextWave() {
 
 function scoreUp(points) {
     score += points;
+    if (score >= 100 && score < 200){unlock(2);}
+    if (score >= 200 && score < 400){unlock(3);}
+    if (score >= 400 && score < 800){unlock(4);}
+    if (score >= 800 && score < 1600){unlock(5);}
+    if (score >= 1600 && score < 3200){unlock(6);}
+    if (score >= 3200 && score < 6400){unlock(7);}
+    if (score >= 6400 && score < 12800){unlock(8);}
+    if (score >= 12800){unlock(9);}
     document.getElementById("score-count").innerHTML = score;
 }
 
