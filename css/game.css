@@ -480,7 +480,11 @@ nav .nav.right li{
 	font-size: 4em;
 }
 
-#menu button{
+#menu button,
+#menu a{
+	text-align: center;
+	font-size: 1em;
+	text-decoration: none;
 	display: block;
 	width: 100%;
 	background-color: #ddd;

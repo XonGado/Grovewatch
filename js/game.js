@@ -183,17 +183,18 @@ function cookiesToArray(){
     var cookie_values = [];
     var temp = [];
 
-    if (cookies[0] == "") {
-        for (var i = 0; i < cookies.length || i < 10; i++) {
+    console.log(document.cookie);
+    if (document.cookie) {
+        for (var i = 0; i < cookies.length && i < 10; i++) {
             console.log(cookies[i]);
         }
 
-        for (var i = 0; i < cookies.length || i < 10; i++) {
+        for (var i = 0; i < cookies.length && i < 10; i++) {
             temp = cookies[i].split("=");
             cookies[i] = temp[1]; 
             cookies[i] = cookies[i].split("$-$");
             cookie_values.push(cookies[i]);
-            // console.log(cookies[i]);
+            // console.log(cookies[i]);&&
         }
     }
 

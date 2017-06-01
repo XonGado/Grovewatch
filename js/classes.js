@@ -323,7 +323,7 @@ function Monster(gridX, gridY) {
     this.dir = -1;
 
     // this.speed = 0.001;
-    this.speed = 0.5;
+    this.speed = 0.001;
 
 
 
